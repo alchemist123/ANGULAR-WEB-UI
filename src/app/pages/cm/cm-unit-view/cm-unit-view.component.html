@@ -1,0 +1,198 @@
+<div class="row">
+  <div class="col-md-10">
+    <h3 style="font-family:Metropolis ;">{{ taskName | titlecase}}</h3><br>
+
+    <br>
+    <div style="margin-left: 60px; margin-right: 60px; cursor: pointer;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="float-right" *ngIf="addModule=='true'">
+            <button (click)="mapLabLesson()" class="btn-primary float-right" mat-button style="letter-spacing: 1px;"><i
+                class="fas fa-plus"></i> Add Module</button>
+          </div>
+        </div>
+      </div><br><br>
+      <div *ngIf="contentTypeValue == ''">
+        <h3>Select any Inventory</h3>
+      </div>
+
+      <div *ngIf="contentTypeValue == '0'">
+        <h4>{{lessoName | titlecase}}</h4>
+        <p>{{ description }}</p>
+        <iframe *ngIf="value" [src]="TypeUrl" frameborder="0" style="width: 100%; height: 400px"></iframe>
+      </div>
+
+      <div *ngIf="contentTypeValue == '1'">
+        <h4>{{lessoName | titlecase}}</h4>
+        <p>{{ description }}</p>
+        <iframe *ngIf="value" [src]="TypeUrl" frameborder="0" style="width: 100%; height: 400px"></iframe>
+      </div>
+
+      <div *ngIf="contentTypeValue == '2'">
+        <h4>{{lessoName | titlecase}}</h4>
+        <p>{{ description }}</p>
+        <iframe *ngIf="value" [src]="TypeUrl" frameborder="0" style="width: 100%; height: 400px"></iframe>
+      </div>
+
+      <div *ngIf="contentTypeValue == '3'">
+        <h4>{{lessoName | titlecase}}</h4>
+        <p>{{ description }}</p>
+        <iframe *ngIf="value" [src]="TypeUrl" frameborder="0" style="width: 100%; height: 400px"></iframe>
+      </div>
+
+      <div *ngIf="contentTypeValue == '4'">
+        <h4>{{lessoName | titlecase}}</h4>
+        <p>{{ description }}</p>
+        <iframe *ngIf="value" [src]="TypeUrl" frameborder="0" style="width: 100%; height: 400px"></iframe>
+      </div>
+
+
+      <div *ngIf="contentTypeValue == '5'">
+        <h4>{{lessoName | titlecase}}</h4>
+        <p>{{ description }}</p>
+        <!-- <iframe *ngIf="value" [src]="TypeUrl" frameborder="0" style="width: 100%; height: 400px"></iframe> -->
+        <img [src]="TypeUrl" alt="" width="100%" height="400px">
+      </div>
+
+
+      <div *ngIf="contentTypeValue=='6'">
+        <h4>{{lessoName | titlecase}}</h4>
+        <p>{{ description }}</p>
+        <video controls width="100%" height="400px">
+          <source [src]="TypeUrl" type="video/mp4" />
+        </video><br>
+        <div class="float-right">
+          <h6 style="font-family:Metropolis ;">You have viewed this video {{count}} times</h6>
+        </div>
+      </div>
+
+      <div *ngIf="contentTypeValue == '7'">
+        <h4>{{lessoName | titlecase}}</h4>
+        <p>{{ description }}</p>
+        <iframe [src]="typeValue | safe: 'resourceUrl'" frameborder="0" style="width: 100%; height: 400px"></iframe><br>
+        <div class="float-right">
+          <h6 style="font-family:Metropolis ;">You have viewed this video {{count}} times</h6>
+        </div>
+      </div>
+
+
+
+      <!-- <div *ngIf="challengeType == '11'">
+        <h4>{{lessoName | titlecase}}</h4>
+        <p>{{ description }}</p>
+        <div *ngFor="let data of task">
+          <div>
+
+            <div style="background-color:  #F5F5F5; font-family:Metropolis ;" class="alert alert-primary" role="alert">
+              <p style="font-weight: 700;font-family:Metropolis ;">{{ data.taskName | titlecase}} <span
+                  *ngIf="data.studTasks=='1'"><i class="fas fa-check"></i></span></p>
+              <p>{{ data.instruction }}</p>
+              <p>Points - {{ data.point }}</p><br>
+              <button *ngIf="data.studTasks=='3'" (click)="medialUploadModal()" class="taskbtn"><b
+                  style="color: #0079B8;" (click)="taskData(data)">Completed {{ data.taskName | titlecase}}? Click here
+                  to upload
+                  the media</b></button>
+
+              <button *ngIf="data.studTasks=='0'" class="taskbtn"><b
+                  style="color: #0079B8;">Task is pending</b></button>
+
+              <button *ngIf="data.studTasks=='1'" class="taskbtn"><b
+                  style="color: #0079B8;">Task is accepted</b></button>
+              <button *ngIf="data.studTasks=='2'" (click)="medialUploadModal()" class="taskbtn"><b
+                  style="color: #0079B8;" (click)="taskData(data)">Task is rejected, please submit again Completed {{
+                  data.taskName | titlecase}}? Click here to upload
+                  the media</b></button>
+
+              <p class="ml-2" style="color: rgb(202, 56, 56);" *ngIf="data.studTasks!=='3' && data.studTasks!=='0'"><b>Remark : {{ data.feedback }}</b></p>
+
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+      <div *ngIf="challengeType == '11'">
+        <h4>{{lessoName | titlecase}}</h4>
+        <p>{{ description }}</p>
+        <div *ngFor="let data of tasks">
+          <div>
+
+            <div style="background-color:  #F5F5F5; font-family:Metropolis ;" class="alert alert-primary" role="alert">
+              <p style="font-weight: 700;font-family:Metropolis ;">{{ data.task.taskName | titlecase}} <span
+                  *ngIf="data.studTask=='1'"><i class="fas fa-check"></i></span></p>
+              <p>{{ data.task.instruction }}</p>
+              <p>Points - {{ data.task.point }}</p><br>
+              <button *ngIf="data.studTask=='3'" (click)="medialUploadModal()" class="taskbtn"><b
+                  style="color: #0079B8;" (click)="taskData(data)">Completed {{ data.task.taskName | titlecase}}? Click here
+                  to upload
+                  the media</b></button>
+
+              <button *ngIf="data.studTask=='0'" class="taskbtn"><b
+                  style="color: #0079B8;">Task is pending</b></button>
+
+              <button *ngIf="data.studTask=='1'" class="taskbtn"><b
+                  style="color: #0079B8;">Task is accepted</b></button>
+              <button *ngIf="data.studTask=='2'" (click)="medialUploadModal()" class="taskbtn"><b
+                  style="color: #0079B8;" (click)="taskData(data)">Task is rejected, please submit again Completed {{
+                  data.task.taskName | titlecase}}? Click here to upload
+                  the media</b></button>
+
+              <p class="ml-2" style="color: rgb(202, 56, 56);" *ngIf="data.studTask!=='3' && data.studTask!=='0'"><b>Remark : {{ data.feedback }}</b></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h5>{{ msg }}</h5>
+      </div>
+
+
+      <!-- <div *ngIf="challengeType == '11'">
+       
+        <div *ngFor="let data of task">
+          <div *ngIf="taskCompletedId(data._id)">
+            <p>{{ description }}</p>
+           
+            <div style="background-color:  #F0F9EB; font-family:Metropolis ;" class="alert alert-primary" role="alert">
+              <p style="font-weight: 700;font-family:Metropolis ;">{{ data.taskName | titlecase}} <span
+                  *ngIf="taskCompletedId(data._id)"><i class="fas fa-check"></i></span></p>
+              <p>{{ data.instruction }}</p>
+              <p>Points - {{ data.point }}</p><br>
+              <button  class="taskbtn"><b
+                  style="color: #8f884c;" (click)="taskData(data)">Media Uploaded</b></button>
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+      </div> -->
+
+    </div><br><br><br><br>
+
+    <!-- <div>
+      <h6>Have you practised this using a virtual tool?</h6><br><br>
+      <h6>Have you also practised using a aurdino board?</h6>
+    </div><br><br><br><br><br> -->
+
+    <!-- <div class="float-right">
+      <button (click)="completedInventory()" class="btn-primary " mat-button
+        style="letter-spacing: 2px; padding: 3px 36px;">NEXT</button><br><br>
+    </div><br><br> -->
+
+  </div>
+
+
+  <div class="col-md-2 sideMenu" style="background-color:#d6bbbb;" (click)="onEdit()">
+    <div class="hide-scrollbar flex-grow-1 height-after-header" style="overflow-y: scroll; scrollbar-width: 0px">
+      <app-cm-side-navigation (click)="listInventoryContent()">
+
+      </app-cm-side-navigation>
+    </div>
+  </div>
+</div>

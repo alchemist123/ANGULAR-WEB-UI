@@ -1,0 +1,124 @@
+<div id="{{ dataTarget }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0" id="myModalLabel" *ngIf="lessonId==''">
+          Create new {{ typeText | titlecase }} <br /><small class="text-muted">Create a new {{ typeText }} with {{
+            typeText }} name and
+            number.</small>
+        </h5>
+        <h5 class="modal-title mt-0" id="myModalLabel" *ngIf="lessonId!=''">
+          Update {{ typeText | titlecase }} <br /><small class="text-muted">Update the {{ typeText }} here.</small>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-bs-dismiss="modal">
+          ×
+        </button>
+      </div>
+      <form [formGroup]="lessonForm" (validSubmit)="addLesson()">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="number">{{ typeText | titlecase }} Number</label>
+              <input type="text" class="form-control" id="number" formControlName="lessonNumber"
+                placeholder="Enter the {{ typeText }}  number" />
+            </div>
+            <div class="form-group col-md-12">
+              <label for="name">{{ typeText | titlecase }} Name</label>
+              <input type="text" class="form-control" id="name" formControlName="lessonName"
+                placeholder="Enter the {{ typeText }}  name" />
+            </div>
+            <div class="form-group col-md-12" *ngIf="typeText!='nano unit'">
+
+              <label>{{ typeText | titlecase }} Type</label>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" name="isComplex" [value]="false" formControlName="complex" /> {{
+                  typeText=="chapter"? "Simple": "CL1" }}
+                  <div class="alert alert-info mt-1" role="alert">
+                    {{ typeText=="chapter"? "If your chapter is of a simple plan format, this option best suits. It may
+                    be used to explain a single concept or topic.":"If you are explaining topics, concepts or both in
+                    one micro unit this suits best." }}
+
+                  </div>
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" name="isComplex" [value]="true" formControlName="complex" /> {{
+                  typeText=="chapter"? "Complex": "CL2" }}
+                  <div class="alert alert-info mt-1" role="alert">
+                    {{ typeText=="chapter"? "If your chapter consists of multiple concepts or topics or of both, then
+                    this suits best. Complex lesson consists of multiple micro-units. Some of the Micro-units may have
+                    one or more nano-units.": "If you have more nano units that explains topic or concepts then this
+                    will be ideal." }}
+
+
+                  </div>
+                </label>
+              </div>
+
+
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="time">Please select an option</label>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" formControlName="knwoledge" value="0"
+                    name="knowledge" />Previous knowledge
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" value="1" formControlName="knwoledge" class="form-check-input"
+                    name="knowledge" />Current knowledge
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="time">Number of periods required for teaching/ activity completion
+              </label>
+              <input type="text" class="form-control" id="time" formControlName="timeRequired"
+                placeholder="Time required for teaching/ activity completion in minutes" />
+            </div>
+
+            <div class="col-md-12 ">
+              <!-- <h6>Date</h6>
+              <label for="">From</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label for="">To</label><br>
+              <input type="date" id="to" formControlName="startDate" class="date" data-role="date" value="31-12-1969">&nbsp;
+              <input type="date" id="from" formControlName="endDate" class="date" data-role="date" value="31-12-1969"> -->
+              <h6>Date</h6>
+              <mat-form-field appearance="outline">
+                <mat-label>From</mat-label>
+                <input required matInput [matDatepicker]="picker1" id="startDate" name="startDate"
+                  formControlName="startDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>&nbsp; &nbsp;
+
+              <mat-form-field appearance="outline">
+                <mat-label>To</mat-label>
+                <input required matInput [matDatepicker]="picker2" id="endDate" name="endDate"
+                  formControlName="endDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary waves-effect waves-light">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,14 @@
+<h4>List of activities in selected chapter</h4><br/>
+
+<div class="list-group" *ngIf="isActivityLoaded" >
+    <a *ngFor="let activity of activityData | sortBy: 'asc':'lessonNumber'"  routerLink= "/teacher/activity-reports/{{activity.acitvityData._id}}/{{activity.acitvityData.type}}"  class="list-group-item list-group-item-action">
+        <h6 class="text-capitalize">{{activity.lessonNumber}} - {{activity.lessonName}}</h6>
+           <p class="text-capitalize">Activity : {{activity.acitvityData.lessonName}}</p>
+    </a>
+</div>
+<div class="list-group" *ngIf="!isActivityLoaded" >
+    <a  class="list-group-item list-group-item-action">
+           <p class="text-capitalize">Loading, please wait...</p>
+    </a>
+</div>
+

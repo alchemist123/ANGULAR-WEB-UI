@@ -1,0 +1,163 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "stem-class": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "www",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/custom-theme.scss",
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/icons.min.css",
+              "src/assets/css/app.min.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/libs/jquery-ui-dist/jquery-ui.min.css",
+              "node_modules/trumbowyg/dist/ui/trumbowyg.min.css",
+              "node_modules/trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css",
+              "node_modules/trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css",
+              "node_modules/trumbowyg/dist/plugins/specialchars/ui/trumbowyg.specialchars.min.css",
+              "node_modules/quill/dist/quill.bubble.css",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.snow.css",
+              "src/assets/libs/drawer/drawerJs.min.css"
+            ],
+            "scripts": [
+              "src/assets/libs/jquery/jquery.min.js",
+              "src/assets/libs/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/libs/metismenu/metisMenu.min.js",
+              "src/assets/libs/simplebar/simplebar.min.js",
+              "src/assets/libs/node-waves/waves.min.js",
+              "src/assets/libs/peity/jquery.peity.min.js",
+              "src/assets/js/app.js",
+              "src/assets/libs/jquery-ui-dist/jquery-ui.min.js",
+              "node_modules/trumbowyg/dist/trumbowyg.min.js",
+              "node_modules/trumbowyg/dist/plugins/base64/trumbowyg.base64.min.js",
+              "node_modules/trumbowyg/dist/plugins/table/trumbowyg.table.min.js",
+              "node_modules/trumbowyg/dist/plugins/fontsize/trumbowyg.fontsize.min.js",
+              "node_modules/trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js",
+              "node_modules/trumbowyg/dist/plugins/resizimg/trumbowyg.resizimg.js",
+              "node_modules/trumbowyg/dist/plugins/specialchars/trumbowyg.specialchars.min.js",
+              "src/assets/pdfjs/build/pdf.worker.min.js",
+              "node_modules/chart.js/dist/chart.min.js",
+              "src/assets/libs/drawer/drawerJs.standalone.js",
+              "src/assets/libs/geogibra/deployggb.js",
+              "src/assets/libs/html2canvas/html2canvas.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "50mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "stem-class:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "stem-class:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "stem-class:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "stem-class:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "stem-class:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "stem-class",
+  "cli": {
+    "analytics": "86b7f9a6-e661-461e-8ddf-16fd4ddb055b"
+  }
+}

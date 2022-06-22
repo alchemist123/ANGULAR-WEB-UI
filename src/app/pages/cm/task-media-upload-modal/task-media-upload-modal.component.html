@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2>Submit Task</h2>
+        <span>You can submit your task here.</span>
+    </div><br>
+
+    <div class="content">
+        <form action="" [formGroup]="taskForm" (ngSubmit)="taskSubmission()">
+            <h6>Your Comments</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter your comments for this task</mat-label>
+                    <input matInput id="comments" name="comments" formControlName="comments">
+                  </mat-form-field>
+                  <br><br>
+                  <h6>Choose you file type</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please choose media type</mat-label>
+                    <mat-select  id="gender" name="gender" formControlName="contentType">
+                        <mat-option value="5">Image</mat-option>
+                        <mat-option value="6">Video</mat-option>
+                        <!-- <mat-option value="Others">Others</mat-option> -->
+                      </mat-select>
+                  </mat-form-field><br><br>
+                  <h6>Upload your files here</h6><br>
+                  <input type="file"  id="input" formControlName="inputFile" (change)="handleUpload($event)">
+                  <br><br><br>
+                  <h6>Please paste your code below (if any)</h6><br>
+                  <textarea rows="7" cols="50" style="background-color: #363D4A; color: white;" id="code" name="code" formControlName="code">  
+                   
+                    </textarea>  
+                  <br><br>
+
+                  <div class="float-right">
+                    <button mat-stroked-button mat-dialog-close mat-button style="letter-spacing: 2px;">Cancel</button>&nbsp;&nbsp;
+                    <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Save</button>
+                  </div>
+                  
+        </form>
+    </div>
+</div>
+
+

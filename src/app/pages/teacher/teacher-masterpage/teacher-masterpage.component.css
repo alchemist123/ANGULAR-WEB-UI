@@ -1,0 +1,26 @@
+.vertical-menu,
+.navbar-brand-box {
+  background: #007CBB !important;
+  color: #fff !important;
+}
+
+li:active{
+  background-color: #680c0c;
+}
+.active{
+  background-color: #ffffff;
+}
+
+.notification{
+  position: sticky;
+  /* top: 200px; */
+  bottom: 0px;
+}
+
+/* .vertical-menu .notification
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+} */

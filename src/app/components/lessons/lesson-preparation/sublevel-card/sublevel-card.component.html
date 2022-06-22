@@ -1,0 +1,21 @@
+<div class="card text-center info-card-blue ">
+  <div class="card-body">
+    <div class="mb-3" style="font-size: 25px; color: #fe6f71">
+      <i class="mdi mdi-notebook pr-2 pt-2 pb-2 pl-2 bg-white rounded"></i>
+    </div>
+    <h5 style="overflow: hidden">
+      {{ unit.lessonNumber }} - {{ unit.lessonName | titlecase }}
+    </h5>
+    <h6 class="card-subtitle text-muted mt-3">
+      {{ unit.typeText | titlecase }}
+    </h6><br>
+    <div  *ngIf="isActivity">
+      <h5>Activity</h5>
+    </div>
+
+    <div *ngIf = "isCompleted">
+      <h5>Completed</h5>
+    </div>
+
+  </div>
+</div>

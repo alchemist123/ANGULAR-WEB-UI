@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">Text editor</div>
+        <div class="row">
+          <div class="col">
+            <div class="float-left">
+              <div class="card-sub-title">
+                You can create text articles with tables, images etc here.
+              </div>
+              <div class="card-sub-title mt-3 text-muted">
+                This content will be used in {{ forText }}
+              </div>
+              <app-breadcrumb [lessonId]="lessonId"></app-breadcrumb>
+            </div>
+            <div class="float-right">
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle mr-3 ml-2"
+                  id="lessonSettings"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-cog"></i> &nbsp; Text Editor Settings
+                </button>
+                <div class="dropdown-menu" aria-labelledby="lessonSettings">
+                  <a class="dropdown-item" (click)="deleteContent()">Delete</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <form [formGroup]="textEditorForm">
+              <div class="form-group col-md-12">
+                <label for="link" style="text-transform: capitalize;">{{lessonTypes[type]}} number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="link"
+                  formControlName="lessonNumber"
+                  placeholder="Please enter the number"
+                />
+              </div>
+
+              <div class="form-group col-md-12">
+                <label for="link" style="text-transform: capitalize;">{{lessonTypes[type]}} title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="link"
+                  formControlName="lessonName"
+                  placeholder="Please enter the title"
+                />
+              </div>
+              <div>
+                <app-text-editor
+                  [id]="'wordpad'"
+                  [content]="contentData"
+                  (onUpdate)="updateText($event)"
+                ></app-text-editor>
+              </div>
+              <div class="float-right mt-3">
+                <button
+                  type="button"
+                  (click)="addTextContent()"
+                  class="btn btn-primary"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end col -->
+</div>
+<!-- end row -->

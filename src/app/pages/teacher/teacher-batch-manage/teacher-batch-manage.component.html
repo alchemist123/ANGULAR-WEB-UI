@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3>Batches</h3>
+    </div>
+</div><br><br>
+
+<div class="row">
+<div class="col">
+<div class="row mt-4">
+<div class="col">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <th>SI</th>
+            <th>Batch Name</th>
+            <th>Batch Code</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let data of batch let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ data.batchName | titlecase }}</td>
+              <td [(ngModel)]="data.batchCode" (click)="copiedMsg()">{{ data.batchCode }} &nbsp;<a [cdkCopyToClipboard]="data.batchCode" style="cursor:pointer; color: blue;">Copy</a></td>
+              <td>{{ data.startDate | date: 'dd/MM/yyyy'}}</td>
+              <td>{{ data.endDate | date: 'dd/MM/yyyy'}}</td>
+              <td routerLink="/teacher/teacher-batch-module/{{ data._id }}"><a style="cursor:pointer; color: blue;">Click here</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+<!-- <div class="row">
+    <div class="col-md-3" *ngFor = "let data of batch">
+        <div class="card info-card-blue text-center h-100" routerLink="/teacher/teacher-batch-module/{{ data._id }}">
+            <div class="card-body">
+              <div class="mb-3" style="font-size: 25px; color: #fe6f71"></div>
+              <h4 style="text-transform: capitalize" >
+                {{ data.batchName | titlecase}}
+              </h4>
+              <h6 class="mb-1 text-muted">Batch Code : {{ data.batchCode }}</h6>
+              
+            </div>
+          </div>
+    </div>
+</div> -->

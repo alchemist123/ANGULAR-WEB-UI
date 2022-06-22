@@ -1,0 +1,25 @@
+<div class="card text-center info-card-green">
+  <div class="card-body"> 
+    <div class="mb-3" style="font-size: 25px; color: #fe6f71">
+      <i class="mdi mdi-book pr-2 pt-2 pb-2 pl-2 bg-white rounded"></i>
+    </div>
+    <h5 class="text-capitalize">
+      {{ chapter?.lessonName | titlecase }}
+    </h5>
+    <h6 class="card-subtitle text-muted mt-1">
+      Chapter - {{ chapter?.lessonNumber }}
+    </h6>
+    <br>
+    <div *ngIf="chapterStatus">
+      <h6>Completed</h6>
+    </div>
+
+    <div *ngIf="reviewStatus">
+      <h6><i class="fas fa-check-circle"></i>&nbsp; Reviewed</h6>
+    </div>
+  </div>
+  <!-- <div class="card-footer">0 Microunits</div> -->
+</div>
+
+
+

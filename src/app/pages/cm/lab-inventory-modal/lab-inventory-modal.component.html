@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2>Register</h2>
+        <span>Add content for inventory <b>Register</b> for <b>Microcontroller</b> here.</span>
+    </div><br>
+
+    <div class="content">
+        <form action="" [formGroup]="inventoryForm" (ngSubmit)="createInventory()">
+                  <h6>Inventory Name</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter Inventory name</mat-label>
+                    <input matInput id="inventoryName" name="inventoryName" formControlName="inventoryName">
+                  </mat-form-field>
+               
+                  <h6>Inventory Description</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter Inventory description</mat-label>
+                    <input [maxlength]="130" matInput id="inventoryDescr" name="inventoryDescr" formControlName="inventoryDescr">
+                  </mat-form-field>
+
+                  <!-- <h6>Order By</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please choose Content type</mat-label>
+                    <mat-select  id="contentType" name="contentType" formControlName="orderBy">
+                        <mat-option value="1">1</mat-option>
+                        <mat-option value="0">2</mat-option>
+                        <mat-option value="2">3</mat-option>
+                        <mat-option value="3">4</mat-option>
+                        <mat-option value="4">5</mat-option>
+                        <mat-option value="5">6</mat-option>
+                        <mat-option value="6">7</mat-option>
+                        <mat-option value="6">8</mat-option>
+                        <mat-option value="6">9</mat-option>
+                        <mat-option value="6">10</mat-option>
+                      </mat-select>
+                  </mat-form-field> -->
+
+                  <h6>Media Type</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please choose media type</mat-label>
+                    <mat-select  id="gender" name="gender" formControlName="mediaType">
+                        <mat-option value="2">File</mat-option>
+                        <mat-option value="1">Text/URL</mat-option>
+                        <!-- <mat-option value="Others">Others</mat-option> -->
+                      </mat-select>
+                  </mat-form-field>
+
+                  <h6>Content Type</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please choose Content type</mat-label>
+                    <mat-select  id="contentType" name="contentType" formControlName="contentType">
+                        <mat-option value="1">google_slide</mat-option>
+                        <mat-option value="0">adobe_spark</mat-option>
+                        <mat-option value="2">pdf</mat-option>
+                        <mat-option value="3">rich_text</mat-option>
+                        <mat-option value="4">html</mat-option>
+                        <mat-option value="5">image</mat-option>
+                        <mat-option value="6">video</mat-option>
+                        <mat-option value="7">You Tube URL</mat-option>
+                        
+                      </mat-select>
+                  </mat-form-field>
+
+                  <h6>URL</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter the url</mat-label>
+                    <input matInput id="url" name="url" formControlName="url">
+                  </mat-form-field>
+
+                  <h6>Choose the file</h6><br>
+                  <input type="file" id="input" formControlName="inputFile" (change)="handleUpload($event)">
+                  <!-- <label for="input" id="label">Browse</label> -->
+
+                  
+                  <!-- <angular-file-uploader 
+                  [config]="afuConfig"
+                  [resetUpload]=resetVar
+                  (fileSelected)="fileSelected($event)"
+                  (ApiResponse)="docUpload($event)">
+                 </angular-file-uploader> -->
+             
+                 <br><br><br>
+                  <div class="float-right">
+                    <button mat-stroked-button mat-dialog-close mat-button style="letter-spacing: 2px;">Cancel</button>&nbsp;&nbsp;
+                    <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Save</button>
+                  </div>
+                  
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-8">
+    <h4>Create/ Edit Simple Activity</h4>
+  </div>
+<div class="col-4">
+          <button class="btn btn-danger" *ngIf="contentId!=undefined" (click)="deleteContent()">Delete this activity</button>
+</div> 
+</div>
+
+<div class="row mt-4">
+  <div class="col-9">
+    <div class="form-group mt-4 mb-4">
+      <label>Activity title</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="activityTitle"
+        placeholder="Please enter activity title"
+      />
+    </div>
+    <br />
+    <div class="form-group">
+      <label>Activity Objective</label>
+      <app-text-editor
+        [id]="'activityObjective'"
+        (onUpdate)="setActivityObjective($event)"
+        [content]="activityObjective_"
+      ></app-text-editor>
+    </div>
+    <br />
+    <div class="form-group mt-4 mb-4">
+      <label>Activity description</label>
+      <app-text-editor
+        [id]="'activity-title'"
+        (onUpdate)="setActivityDescription($event)"
+        height="150px"
+        [content]="activityDescription_"
+        placeholder="Please enter activiy description"
+      ></app-text-editor>
+    </div>
+    <br />
+    <div class="form-group mt-4 mb-4">
+      <label>List of materials required for the activity</label>
+      <app-text-editor
+        [id]="'activity-materials'"
+        [content]="activityMaterials_"
+        (onUpdate)="setActivityMaterials($event)"
+        height="150px"
+      ></app-text-editor>
+    </div>
+    <br />
+    <div class="mt-3">
+      <label>Steps for activity</label>
+      <div class="form-group" *ngFor="let step of stepsForCount; let i = index">
+        <label>Step {{ i + 1 }}</label>
+        <app-text-editor
+          [id]="i"
+          [content]="steps_[i]"
+          (onUpdate)="updateStep($event, i)"
+          height="80px"
+        ></app-text-editor>
+        <hr />
+      </div>
+      <div class="float-right">
+        <div class="btn btn-warning" (click)="addNewStep()">
+          <i class="fas fa-plus"></i>&nbsp;&nbsp;Add new step
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <div class="form-group">
+        <div class="float-right">
+          <button class="btn btn-primary" (click)="saveActivity()">
+            <i class="fas fa-save"></i> &nbsp;&nbsp;Save activity
+          </button>
+        </div>
+      </div>
+      <br /><br />
+    </div>
+  </div>
+</div>

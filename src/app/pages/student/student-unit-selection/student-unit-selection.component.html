@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4>
+      Units<br /><small class="text-muted">Choose a unit to continue</small>
+    </h4>
+    <br /><br />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card text-center">
+      <div class="card-body">
+
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Unit No</th>
+              <th>Unit Name</th>
+              <th>Theme</th>
+              <th>Chapter</th>
+            </tr>
+            <ng-container *ngFor="let unit of units | sortBy: 'asc':'unitNo'">
+              <ng-container *ngFor="let data of unit['chapters']"> 
+            <tr>
+              <td rowspan="data.length">{{unit.unitNo}}</td>
+              <td>{{ unit.unitName }}</td>
+              <td ><button (click)="selectTheme(unit)" style="color: rgb(64, 64, 238); cursor: pointer; border: transparent;background-color: transparent;">click here to view the theme</button></td>
+              <td style="color: blue; cursor: pointer;" (click)="loadChapters(data._id)"> {{ data.lessonNumber }} - {{ data?.lessonName }} </td>
+            </tr>
+            </ng-container>
+          </ng-container>
+          </thead>
+
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- <div  class="col-md-12">
+                <app-student-unit-card
+                (click)="loadChapters(unit.chapters[0]._id)"
+                [unit]="unit"
+
+                >
+
+                </app-student-unit-card>
+              </div> -->
+</div>

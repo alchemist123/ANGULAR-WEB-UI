@@ -1,0 +1,17 @@
+<div *ngFor="let data of challenges">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <h5 style="text-transform: capitalize">
+                    {{ data.lessonName }}
+                </h5>
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div (click)="taskData(data)" *ngFor="let task of data['task']" routerLink="/teacher/teacher-evaluation-task-content/{{ task?._id  }}/{{studentsId }}">
+            <button   mat-stroked-button color="warn"> {{ task?.taskName }}</button>
+
+        </div>
+    </mat-expansion-panel>
+</div>

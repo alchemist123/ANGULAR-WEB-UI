@@ -1,0 +1,78 @@
+<div class="card-title">Create questionnaire</div>
+<div class="float-left">
+  <div class="card-sub-title">
+    You can create a questionnaire here by adding multiple questions here.
+  </div>
+</div>
+
+<div class="float-right">
+  <div class="dropdown">
+    <button
+      class="btn btn-secondary dropdown-toggle mr-3 ml-2"
+      id="lessonSettings"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <i class="fas fa-cog"></i> &nbsp; Questionnaire Settings
+    </button>
+    <div class="dropdown-menu" aria-labelledby="lessonSettings">
+      <a class="dropdown-item" (click)="deleteContent()">Delete</a>
+    </div>
+  </div>
+</div>
+<div class="card-sub-title mt-1 text-muted">
+  This questionnaire will be used in {{ forText }}
+</div>
+<app-breadcrumb [lessonId]="lessonId"></app-breadcrumb>
+<br />
+<div class="row">
+  <div class="col">
+    <form>
+      <div class="form-group">
+        <label for="link">Questionnaire title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="link"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="lessonName"
+          placeholder="Please enter the topic/title"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div *ngFor="let q of questionsArray; let i = index" class="mt-2 mb-2">
+      <div class="card">
+        <h5 class="card-header">
+          Question #{{ i + 1 }}
+          <button
+            type="button"
+            (click)="removeQuestion(i)"
+            class="btn btn-outline-danger float-right"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </h5>
+        <div class="card-body">
+          <app-question-card #cmp [idx]="i" [question]="q"></app-question-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-center">
+    <button
+      class="btn btn-primary mt-4 rounded-circle add-qstn-btn"
+      (click)="addNewQuestion()"
+    >
+      <span class="fas fa-plus"></span>
+    </button>
+  </div>
+</div>
+<div class="row"></div>
+<button (click)="saveQuestions()" class="btn btn-primary">Save question</button>

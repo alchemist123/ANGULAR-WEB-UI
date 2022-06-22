@@ -1,0 +1,15 @@
+<div class="row mb-3">
+    <div class="col"><h4>Subjects</h4></div>
+</div>
+
+<div class="row">
+    <div class="col-md-3" *ngFor="let subject of subjects">
+        <div class="card gray-card" routerLink="/teacher/section-chapters/{{subject._id}}">
+            <div class="card-body text-center">
+                <h4>{{subject['subject'][0].subject}}</h4>
+                <h5 class="text-muted">{{subject['subject'][0].type}}</h5>
+                <p class="text-success"> {{subject['teacher'][0].teacherFirstName}} {{subject['teacher'][0].teacherLastName}}</p>
+            </div>
+        </div>
+    </div>
+</div>

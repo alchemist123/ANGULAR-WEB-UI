@@ -1,0 +1,126 @@
+<div class="row">
+  <div class="col">
+    <h4>
+      Manage Classes<br /><small class="text-muted"
+        >You can add or modify Standard, Division details here.</small
+      >
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="row mt-4">
+      <div class="col">
+        <div class="float-right">
+          <button
+            type="button"
+            (click)="addStandardModal()"
+            class="btn btn-primary waves-effect waves-light"
+          >
+            <i class="fas fa-plus mr-2"></i> Add Standard
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="float-left mb-2">
+              <h4 class="card-title">Standards</h4>
+              <h6 class="card-subtitle font-14 text-muted"></h6>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <th>SI</th>
+                  <th class="text-center">Standard name</th>
+                  <th class="text-center">Edit</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let std of stdList; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td class="text-center">{{ std.standards }}</td>
+                    <td class="text-center">
+                      <button
+                        class="btn"
+                        type="button"
+                        (click)="selectStd(std)"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row mt-4">
+      <div class="col">
+        <div class="float-right" >
+          <button
+            type="button"
+            class="btn btn-primary waves-effect waves-light"
+            (click)="addDivisionModal()"
+          >
+            <i class="fas fa-plus mr-2"></i> Add Division
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="float-left mb-2">
+              <h4 class="card-title mt-0">List of Divisions</h4>
+              <h6 class="card-subtitle font-14 text-muted"></h6>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <th>SI</th>
+                  <th class="text-center">Name</th>
+                  <th class="text-center">Edit</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let div of divisionList; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td class="text-center">{{ div.division }}</td>
+
+                    <td class="text-center">
+                      <button
+                        class="btn"
+                        type="button"
+                        (click)="selectDiv(div)"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.modal -->
+  <app-add-standard-modal
+    [selectedStandard]="currentStd"
+    dataTarget="standardModal"
+    (formSubmitted)="refreshStdList()"
+  ></app-add-standard-modal>
+  <app-add-division-modal
+    [selectedDivision]="currentDiv"
+    dataTarget="divisionModal"
+    (formSubmitted)="refreshDivList()"
+  ></app-add-division-modal>
+</div>

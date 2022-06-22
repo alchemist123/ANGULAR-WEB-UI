@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="mai-head">
+        <h2 >Create/Update a new unit</h2>
+        <!-- <h2 *ngIf="unitId!=''">Update unit with unit name and number.</h2> -->
+        <span >Create a new unit with unit name and number.</span>
+        
+    </div>
+    <br>
+
+    <div class="content">
+        <form action="" [formGroup]="unitForm" (validSubmit)="addUnit()">
+            <h6>Unit Number</h6>
+            <mat-form-field class="example-full-width">
+                <mat-label>Please enter the unit number here</mat-label>
+                <input matInput id="unitNumber" name="unitNumber" formControlName="unitNumber">
+            </mat-form-field>
+            <br><br>
+
+            <h6>Unit Name</h6>
+            <mat-form-field class="example-full-width">
+                <mat-label>Please enter the unit name here</mat-label>
+                <input matInput id="unitName" name="unitName" formControlName="unitName">
+            </mat-form-field><br><br>
+
+            <h6>Theme</h6>
+            <!-- <mat-form-field class="example-full-width" >
+                
+                <textarea matInput placeholder="Please enter the theme here" id="theme" name="theme" formControlName="theme"></textarea>
+                
+            </mat-form-field> -->
+            <br><br>
+
+            <app-text-editor  
+            [id]="123"
+            height="150px"
+            (onUpdate)="getTheme($event)"
+            [content]="theme"
+            ></app-text-editor><br>
+
+            <div class="float-right">
+                <button mat-stroked-button mat-dialog-close mat-button
+                    style="letter-spacing: 2px;">Close</button>&nbsp;&nbsp;
+                <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Submit</button>
+            </div>
+
+        </form><br><br>
+    </div>
+</div>

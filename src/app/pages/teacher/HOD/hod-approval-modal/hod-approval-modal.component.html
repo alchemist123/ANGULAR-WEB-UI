@@ -1,0 +1,150 @@
+<div class="row float-right">
+  <button style="background-color: transparent; border: transparent;"  mat-dialog-close><span><i class="fas fa-times"></i></span></button>
+</div>
+
+<div class="slider">
+  
+  <h3 matDialogTitle>Here you can grade the quality of each field.</h3>
+ 
+  <p>Use the slide bar to fix the level between 0 and 10.</p><br>
+  <form action="" [formGroup]="eventForm" (validSubmit)="hodApproval()">
+    <mat-dialog-content class="mat-typography">
+    <div class="sliderone">
+      <div>
+        <div class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+          <label id="example-name-label" class="example-name-label float-left">Pre-Assessment</label>
+          <label class="example-value-label float-right">{{value}}</label>
+        </div>
+        <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step"
+          [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="value"
+          [ngModelOptions]="{standalone: true}" [vertical]="vertical" aria-labelledby="example-name-label">
+        </mat-slider>
+      </div>
+
+      <div>
+        <div class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+          <label id="example-name-label" class="example-name-label">Post-Assessment</label>
+          <label class="example-value-label float-right">{{value7}}</label>
+        </div>
+        <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step"
+          [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="value7"
+          [ngModelOptions]="{standalone: true}" [vertical]="vertical" aria-labelledby="example-name-label">
+        </mat-slider>
+
+      </div>
+
+      <!-- <div>
+        <div class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+          <label id="example-name-label" class="example-name-label">Learning Objective</label>
+          <label class="example-value-label float-right">{{value1}}</label>
+        </div>
+        <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step"
+          [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="value1"
+          [ngModelOptions]="{standalone: true}" [vertical]="vertical" aria-labelledby="example-name-label">
+        </mat-slider>
+      </div> -->
+
+    </div>
+
+
+
+
+    <div class="sliderone">
+      <div>
+        <div class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+          <label id="example-name-label" class="example-name-label">Topic</label>
+          <label class="example-value-label float-right">{{value2}}</label>
+        </div>
+        <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step"
+          [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="value2"
+          [ngModelOptions]="{standalone: true}" [vertical]="vertical" aria-labelledby="example-name-label">
+        </mat-slider>
+
+      </div>
+
+      <div>
+        <div class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+          <label id="example-name-label" class="example-name-label">Concept</label>
+          <label class="example-value-label float-right">{{value3}}</label>
+        </div>
+        <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step"
+          [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="value3"
+          [ngModelOptions]="{standalone: true}" [vertical]="vertical" aria-labelledby="example-name-label">
+        </mat-slider>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="sliderone">
+      <div>
+        <div class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+          <label id="example-name-label" class="example-name-label">Activity</label>
+          <label class="example-value-label float-right">{{value4}}</label>
+        </div>
+        <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step"
+          [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="value4"
+          [ngModelOptions]="{standalone: true}" [vertical]="vertical" aria-labelledby="example-name-label">
+        </mat-slider>
+
+      </div>
+
+      <div>
+
+        <div class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+          <label id="example-name-label" class="example-name-label">Understanding Questions</label>
+          <label class="example-value-label float-right">{{value5}}</label>
+        </div>
+        <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step"
+          [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="value5"
+          [ngModelOptions]="{standalone: true}" [vertical]="vertical" aria-labelledby="example-name-label">
+        </mat-slider>
+      </div>
+
+    </div>
+
+
+
+    <div class="sliderone">
+      <div>
+        <div class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+          <label id="example-name-label" class="example-name-label">Learning Outcome</label>
+          <label class="example-value-label float-right">{{value6}}</label>
+        </div>
+        <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step"
+          [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="value6"
+          [ngModelOptions]="{standalone: true}" [vertical]="vertical" aria-labelledby="example-name-label">
+        </mat-slider>
+
+      </div>
+
+      
+
+    </div>
+
+
+
+    
+
+      <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput placeholder="" id="eventNamee" name="eventNamee" [(ngModel)]="remark"
+            [ngModelOptions]="{standalone: true}"></textarea>
+
+        </mat-form-field><br>
+        You can "Approve" or "Reject" the content. If you opt to "Reject", the reasons for improvement may be <br> mentioned in the box.
+      </div>
+    </mat-dialog-content>
+    
+    <div class="btn">
+      <button (click)="reviewReject()" class="btn1"  mat-stroked-button color="warn" mat-button matDialogClose="no">Reject</button>&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="submit"  class="btn-primary" mat-button="yes">Approve</button>
+    </div>
+  </form>
+
+
+
+</div>

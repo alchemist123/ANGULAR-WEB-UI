@@ -1,0 +1,336 @@
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <h4 style="cursor: pointer;"><small>{{greetingMsg}}</small><span> {{teacherInfo.teacherFirstName | titlecase }}
+                {{teacherInfo.teacherLastName | titlecase}}</span>, </h4>
+    </div>
+</div>
+<div class="row" style="cursor: pointer;">
+    <div class="col">
+        <div class="alert alert-primary" role="alert">
+
+            <p class="mb-0"><b><i>{{quotes}}</i></b>
+                <br>
+                - {{author}}
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col">
+        <mat-expansion-panel hideToggle style="box-shadow: none;">
+            <mat-expansion-panel-header style="height: 60px; margin:0px; padding:0px">
+                <div class="row" style="width: 100%">
+                    <div class="col-12 float-left">
+                        <h5 class="float-left"><small>Your Teaching Progress:</small> {{teachingpercentage}}%
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-primary">(Click to expand)</small></h5>
+                        <h5 class="float-right"><small>Completed {{teachingComplition?.compltedChapter}} chapter(s) of
+                                {{teachingComplition?.totalChapters}}</small></h5>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="progress" style="height:20px">
+                            <div class="progress-bar  progress-bar-striped progress-bar-animated" role="progressbar"
+                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                style="width: {{teachingpercentage}}%; height:20px"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </mat-expansion-panel-header>
+            <div class="row" *ngFor="let item of teacherProgress | keyvalue; let i = index">
+                <div class="col-12">
+
+                    <div class="row" style="width: 100%" *ngFor="let data of item.value">
+                        <div class="col-12 float-left">
+                            <!-- <h5 class="float-right text-muted"><small>Completed {{data.completedChapter}} chapter(s) of {{data.totalChapter}}</small></h5> -->
+
+                        </div>
+                        <div class="col-12 mb-1  float-left">
+                            <h5 class="float-left text-muted">
+                                <small>{{data["standard"]}}.{{data["division"]}}/{{data["stubject"]}}/{{data["chapterName"]}}
+                                    :</small> {{data["completion"] | number : '1.2-2'}}%</h5>
+
+                            <h5 class="float-right"><small>Completed {{data["completedNumber_micro"]}} micro units(s) of
+                                    {{data["totalNumber_lesson"]}}</small></h5>
+                        </div>
+                        <div class="col-12">
+                            <div class="progress" style="height:10px">
+                                <div class="progress-bar  progress-bar-striped progress-bar-animated bg-success"
+                                    role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                    style="width: {{data['completion']}}%; height:10px"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12 mb-3">
+        <!-- <h5><small>Insights</small></h5> -->
+    </div>
+</div>
+<div class="row">
+    <div class="col" style="cursor: pointer;">
+        <circle-progress [percent]="lessonPercentage" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
+            [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [title]="'auto'" [titleFontSize]="'34'"
+            [subtitle]="'Lesson Preparation'" [animation]="true" [animationDuration]="300" [subtitleFontSize]="'14'">
+        </circle-progress>
+    </div>
+    <div class="col" style="cursor: pointer;">
+        <circle-progress [percent]="teachingpercentage" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
+            [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [title]="'auto'" [titleFontSize]="'34'"
+            [subtitle]="'Instruction'" [animation]="true" [animationDuration]="300" [subtitleFontSize]="'14'">
+        </circle-progress>
+    </div>
+    <div class="col" style="cursor: pointer;">
+        <circle-progress [percent]="studentCompletionPercentage" [radius]="100" [outerStrokeWidth]="16"
+            [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [title]="'auto'"
+            [titleFontSize]="'34'" [subtitle]="'Effectiveness'" [animation]="true" [animationDuration]="300"
+            [subtitleFontSize]="'14'"></circle-progress>
+    </div>
+</div>
+
+<!-- <div class="row ">
+    <div class="col-md-3 d-flex" *ngIf="teachingComplition">
+        <div class="card info-card-blue ">
+            <div class="card-body text-center">
+                <h3  class="text-muted">{{teachingpercentage}}%</h3>
+                <h5 class="text-muted">Teaching Completion</h5>
+                <p class="text-muted">Completed {{teachingComplition.compltedChapter}} chapter(s) of {{teachingComplition.totalChapters}}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-green">
+            <div class="card-body text-center" >
+                <h3  class="text-muted">{{lessonPercentage}}%</h3>
+                <h5 class="text-muted">Your Lesson Score</h5>
+                <p class="text-muted">Stem Score based on your contents</p>
+            </div>
+        </div>
+ 
+    </div>
+ 
+    <div class="col-md-3 d-flex" *ngIf="lessonCompletion">
+        <div class="card info-card-yellow">
+            <div class="card-body text-center">
+                <h3  class="text-muted">{{microLessonPecentage}}%</h3>
+                <h5 class="text-muted">Lesson Preparation</h5>
+                <p class="text-muted">Added {{lessonCompletion.completed}} chapters of {{lessonCompletion.micro}} chapters</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-green">
+            <div class="card-body text-center" style="row-gap: 5px;">
+                <h3 class="text-muted">{{studentCompletionPercentage}}%</h3>
+                <h5 class="text-muted">Student completion on time</h5>
+                <p  class="text-muted"   >{{studentCompletionPercentage}}% students completing on time</p>
+            </div>
+        </div>
+
+    </div>
+</div> -->
+<br>
+
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <h5>Student Learning</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-blue">
+            <div class="pie">
+                <div class="card-body text-center" style="cursor: pointer;">
+                    <div class="pie">
+
+                        <h5>Pre Assessment</h5>
+                        <ngx-charts-pie-chart *ngIf="preAssesmentIntegratedData.length > 0" [doughnut]="true"
+                            [scheme]="colorScheme" [legend]="false" [labels]="false" [tooltipDisabled]="true"
+                            [tooltipText]="formatToolTip" [results]="preAssesmentIntegratedData">
+                        </ngx-charts-pie-chart>
+                        <!-- <div class="data" *ngIf="preAssesmentIntegratedData[0].value==0">
+                            <p>No Data to Display</p>   
+                        </div> -->
+                        <div class="row">
+                            <div class="lg1"></div>&nbsp;&nbsp;
+                            <div class="lg">Correct Answers</div>&nbsp;&nbsp;&nbsp;
+                            <div class="lg2"></div>&nbsp;&nbsp;
+                            <div class="lg">Wrong Answers</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="lg3" style="visibility: hidden;"></div>&nbsp;&nbsp;
+                            <div class="lg" style="visibility: hidden;">Pending Self Review</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-green">
+            <div class="card-body text-center " style="cursor: pointer;">
+
+                <div class="pie">
+
+                    <h5>Self Assessment</h5>
+                    <ngx-charts-pie-chart *ngIf="understandingIntegratedData.length > 0" [doughnut]="true"
+                        [scheme]="colorScheme" [legend]="false" [labels]="false" [tooltipDisabled]="true"
+                        [tooltipText]="formatToolTip" [results]="understandingIntegratedData">
+                    </ngx-charts-pie-chart>
+                    <!-- <div class="data" *ngIf="understandingIntegratedData[0].value==0">
+                        <p>No Data to Display</p>   
+                    </div>  -->
+                    <div class="row">
+                        <div class="lg1"></div>&nbsp;&nbsp;
+                        <div class="lg">Correct Answers</div>&nbsp;&nbsp;&nbsp;
+                        <div class="lg2"></div>&nbsp;&nbsp;
+                        <div class="lg">Wrong Answers</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="lg3"></div>&nbsp;&nbsp;
+                        <div class="lg">Pending Self Review</div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-yellow">
+            <div class="card-body text-center" style="cursor: pointer;">
+                <div class="pie">
+                    <h5>Activities</h5>
+
+                    <ngx-charts-pie-chart *ngIf="activityIntegratedData.length > 0" [doughnut]="true"
+                        [scheme]="colorScheme" [legend]="false" [labels]="false" [tooltipDisabled]="true"
+                        [tooltipText]="formatToolTip" [results]="activityIntegratedData">
+                    </ngx-charts-pie-chart>
+                    <!-- <div class="data" *ngIf="activityIntegratedData[0].value==0">
+                        <p>No Data to Display</p>   
+                    </div> -->
+                    <div class="row">
+                        <div class="lg1"></div>&nbsp;&nbsp;
+                        <div class="lg">Total Activity</div>&nbsp;&nbsp;&nbsp;
+                        <div class="lg2"></div>&nbsp;&nbsp;
+                        <div class="lg">Completed Activity</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="lg3" style="visibility: hidden;"></div>&nbsp;&nbsp;
+                        <div class="lg" style="visibility: hidden;">Pending Self Review</div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-green">
+            <div class="card-body text-center" style="cursor: pointer;">
+
+                <div class="pie">
+
+                    <h5>Post Assessment</h5>
+                    <ngx-charts-pie-chart *ngIf="postAssementIntegratedData.length>0" [doughnut]="true"
+                        [scheme]="colorScheme" [legend]="false" [labels]="false" [tooltipDisabled]="true"
+                        [tooltipText]="formatToolTip" [results]="postAssementIntegratedData">
+
+                    </ngx-charts-pie-chart>
+                    <!-- <div *ngIf="postAssementIntegratedData[0].value==0">
+                        <p>No Data to Display</p>   
+                    </div> -->
+
+                    <div class="row">
+                        <div class="lg1"></div>&nbsp;&nbsp;
+                        <div class="lg">Correct Answers</div>&nbsp;&nbsp;&nbsp;
+                        <div class="lg2"></div>&nbsp;&nbsp;
+                        <div class="lg">Wrong Answers</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="lg3" style="visibility: hidden;"></div>&nbsp;&nbsp;
+                        <div class="lg" style="visibility: hidden;">Pending Self Review</div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- <div class="row">
+    <div class="col-md-12 mb-1 mt-3">
+        <h5>Aggregated performance</h5>
+        <p>Aggregated performance of the students on the various assesment.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card info-card-green">
+            <div class="card-body">
+                <h5>Pre Assesments</h5>
+                <ngx-charts-advanced-pie-chart [scheme]="colorScheme" [results]="preAssesmentIntegratedData">
+                </ngx-charts-advanced-pie-chart>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="card  info-card-green">
+            <div class="card-body">
+                <h5>Understanding Questions</h5>
+                <ngx-charts-advanced-pie-chart [scheme]="colorScheme" [results]="understandingIntegratedData">
+                </ngx-charts-advanced-pie-chart>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+        <div class="card  info-card-green">
+            <div class="card-body">
+                <h5>Post Assesments</h5>
+                <ngx-charts-advanced-pie-chart [scheme]="colorScheme" [results]="postAssementIntegratedData">
+                </ngx-charts-advanced-pie-chart>
+            </div>
+        </div>
+
+    </div>
+</div> -->
+
+<div class="row mt-5">
+    <div class="col-12 mb-2 ">
+        <h5>Total number of students</h5>
+    </div>
+    <div class="col-md-2 d-flex" *ngFor="let class of studentsCounts">
+        <div class="card info-card-blue">
+            <div class="card-body text-center" style="cursor: pointer;">
+                <h4>{{class.total_no_of_student}}</h4>
+                <h6>{{class.standard}} - {{class.division}}</h6>
+            </div>
+        </div>
+    </div>
+</div>

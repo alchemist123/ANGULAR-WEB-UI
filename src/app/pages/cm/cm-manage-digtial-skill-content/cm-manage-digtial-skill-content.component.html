@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col"><h4>Add new topic</h4></div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="card gray-card">
+      <div class="card-body">
+        <form [formGroup]="contentForm" (validSubmit)="save()">
+          <div class="form-group">
+            <label>Topic Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="contentTitle"
+              placeholder="Please enter a topic name"
+            />
+          </div>
+          <div class="form-group">
+            <label>Topic Description</label>
+            <textarea
+              class="form-control"
+              formControlName="contentDescription"
+              placeholder="Please enter a description for the content if any"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label>Please select the content type</label>
+            <select
+              (change)="contentTypeChange($event)"
+              formControlName="contentType"
+              class="form-control"
+            >
+              <option value="">Please select the content type</option>
+              <option value="0">Google Slide</option>
+              <option value="1">PDF File</option>
+              <option value="2">Text Editor</option>
+              <option value="3">HTML</option>
+              <option value="6">Youtube Video</option>
+              <option value="7">PhET Simulation</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <app-text-editor
+              [content]="linkContent"
+              (onUpdate)="updateText($event)"
+              *ngIf="contentType == 2"
+            ></app-text-editor>
+            <input
+              type="text"
+              *ngIf="mediaType == 0"
+              class="form-control"
+              [(ngModel)]="linkContent"
+              [ngModelOptions]="{ standalone: true }"
+              placeholder="Please paste the link here"
+            />
+          </div>
+          <div class="form-group">
+            <label>Lesson type</label>
+            <select class="form-control" formControlName="type">
+              <option value="">Please select content type</option>
+              <option value="0">Step</option>
+              <option value="1">Assignment</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary float-right">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col"></div>
+</div>
+<div class="row">
+  <div class="col"></div>
+</div>

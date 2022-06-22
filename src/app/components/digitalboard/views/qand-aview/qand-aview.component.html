@@ -1,0 +1,238 @@
+<div *ngIf="view != 'list'">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="question != undefined">
+        <div class="mt-4">
+          <div class="question-area" style="display: flex; align-items: baseline">
+            <span class="mdi mdi-crosshairs-question text-info" style="font-size: 20px"></span>
+            &nbsp; &nbsp;
+            <div [innerHtml]="question.question"></div>
+          </div>
+          <!-- <div *ngIf="studentAnswers.length > 0">
+            <section class="teacher-answer">
+              <h6>Answer by your teacher</h6>
+              <hr />
+              <div *ngIf="question.questionType == 'multichoice'" class="pl-4">
+                <div
+                  [innerHtml]="question.answerOptions[question.answer]"
+                ></div>
+              </div>
+              <div *ngIf="question.questionType == 'freeflow'" class="pl-4">
+                <div [innerHtml]="question.answer"></div>
+              </div>
+            </section>
+            <section
+              class="student-answer"
+              *ngIf="editStatus[question.questionId] == 0"
+            >
+              <h6>Your Answer</h6>
+              <hr />
+              <div class="pl-4">
+                <div
+                  [innerHtml]="
+                    studentAnswers[studentAnswers.length - 1].contentData[
+                      question.questionId
+                    ]
+                  "
+                ></div>
+              </div>
+            </section>
+          </div> -->
+          <div >
+            <div *ngIf="studentAnswers.length == 0 || studentAnswers.length > 0 " class="mt-3">
+              <app-text-editor *ngIf="question.questionType == 'freeflow'" [id]="contentId + '_' + questionIndex"
+                [content]="studentContentForSync[question.questionId]" (onUpdate)="updateText($event, questionIndex)">
+              </app-text-editor>
+              <div *ngIf="question.questionType == 'multichoice'">
+                <div class="row">
+                  <div *ngFor="let ansOpt of question.answerOptions; let j = index" class="col-md-6">
+                    <div class="card answerCard" [ngClass]="
+                      answers[questionIndex] == j ? 'card-selected' : ''
+                    " (click)="updateAnswer(j, questionIndex)">
+                      <div class="card-body text-center">
+                        <h6 style="text-transform: capitalize" class="text-muted" [innerHtml]="ansOpt">
+
+                        </h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="studentAnswers.length > 0" class="row mt-3">
+              <div class="col-12">
+                <!-- Button Section -->
+                <section class="float-right">
+                  <div class="">
+                    <button [disabled]="isLoading" class="btn btn-primary" (click)="correctAndSave(question.questionId)">
+                      Save
+                    </button>
+                  </div>
+                  <!-- <div
+                  *ngIf="
+                    this.extraInfo[question.questionId]['status'] == 0 &&
+                    editStatus[question.questionId] == 0
+                  "
+                >
+                  <button
+                    (click)="editAnswer(question.questionId)"
+                    class="btn btn-primary mr-2"
+                  >
+                    Edit your answer
+                  </button>
+                  <button
+                    (click)="markAsCorrect(question.questionId)"
+                    class="btn btn-primary"
+                  >
+                    Mark as correct
+                  </button>
+                </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="float-right">
+        <button  [disabled]="isLoading"  *ngIf="
+            studentAnswers.length == 0 && questionIndex < questions.length - 1
+          " type="button" (click)="updateAnswerAndMoveNextQuestion()" class="btn btn-primary">
+          Save
+        </button>
+        <button  [disabled]="isLoading"  *ngIf="
+            studentAnswers.length == 0 && questionIndex == questions.length - 1
+          " type="button" (click)="submitAnswers()" class="btn btn-primary">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view == 'list'">
+  <div class="row">
+    <div class="col">
+      <div *ngFor="let question_ of questions; let i = index">
+        <div class="mt-4">
+          <div class="question-area" style="display: flex; align-items: baseline">
+            <span class="mdi mdi-crosshairs-question text-info" style="font-size: 20px"></span>
+            &nbsp; &nbsp;
+            <div [innerHtml]="question_.question"></div>
+          </div>
+          <div *ngIf="
+              studentAnswers.length > 0 &&
+              this.extraInfo[question_.questionId]['status'] != -1
+            ">
+            <section class="teacher-answer">
+              <h6>Answer by your teacher</h6>
+              <hr />
+              <div *ngIf="question_.questionType == 'multichoice'" class="pl-4">
+                <div [innerHtml]="question_.answerOptions[question_.answer]"></div>
+              </div>
+              <div *ngIf="question_.questionType == 'freeflow'" class="pl-4">
+                <div [innerHtml]="question_.answer"></div>
+              </div>
+            </section>
+            <section class="student-answer" *ngIf="editStatus[question_.questionId] == 0">
+              <h6>Your Answer</h6>
+              <hr />
+              <div class="pl-4">
+                <div *ngIf="question_.questionType != 'multichoice'" [innerHtml]="
+                    studentAnswers[studentAnswers.length - 1].contentData[
+                      question_.questionId
+                    ]
+                  "></div>
+                <div *ngIf="question_.questionType == 'multichoice'" [innerHtml]="
+                    question_.answerOptions[
+                      studentAnswers[studentAnswers.length - 1].contentData[
+                        question_.questionId
+                      ]
+                    ]
+                  "></div>
+              </div>
+            </section>
+          </div>
+          <div *ngIf="(
+              studentAnswers.length == 0 ||
+              (studentAnswers.length > 0 &&
+                editStatus[question_.questionId] == 1) ||
+              this.extraInfo[question_.questionId]['status'] == -1) &&  answerInputVisible
+            " class="mt-3">
+            <app-text-editor *ngIf="question_.questionType == 'freeflow'" [id]="contentId + '_' + i"
+              [content]="studentContentForSync[question_.questionId]" (onUpdate)="updateText($event, i)">
+            </app-text-editor>
+            <div *ngIf="question_.questionType == 'multichoice'">
+              <div class="row">
+                <div *ngFor="let ansOpt of question_.answerOptions; let j = index" class="col-md-6">
+                  <div class="card answerCard" [ngClass]="answers[i] == j ? 'card-selected' : ''"
+                    (click)="updateAnswer(j, i)">
+                    <div class="card-body text-center">
+                      <h6 style="text-transform: capitalize" class="text-muted" [innerHTML]="ansOpt">
+
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="studentAnswers.length > 0 " class="row mt-3">
+            <div class="col-12">
+              <!-- Button Section -->
+              <section class="float-right">
+                <div class="" *ngIf="editStatus[question_.questionId] == 1">
+                  <button  [disabled]="isLoading"  class="btn btn-primary"  (click)="correctAndSave(question_.questionId)" >
+                    Save
+                  </button>
+                </div>
+                <div *ngIf="
+                    this.extraInfo[question_.questionId]['status'] == 0 &&
+                    editStatus[question_.questionId] == 0
+                  ">
+                  <button (click)="editAnswer(question_.questionId)" class="btn btn-primary mr-2 mb-2">
+                    Edit your answer
+                  </button>
+                  <button (click)="markAsCorrect(question_.questionId)" class="btn btn-primary">
+                    Mark as correct
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div *ngIf="this.extraInfo[question_.questionId]['status'] == -1  && answerInputVisible" class="row mt-3">
+            <div class="col-12">
+              <!-- Button Section -->
+              <section class="float-right">
+                <div class="">
+                  <button  [disabled]="isLoading" class="btn btn-primary" (click)="saveSingleAnswer(question_.questionId)">
+                    Save
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <!-- <div class="float-right">
+        <button
+          *ngIf="studentAnswers.length == 0"
+          type="button"
+          (click)="submitAnswers()"
+          class="btn btn-primary"
+        >
+          Save
+        </button>
+      </div> -->
+    </div>
+  </div>
+</div>

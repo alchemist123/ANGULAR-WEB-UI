@@ -1,0 +1,292 @@
+<div class="row">
+  <div class="col">
+    <div class="float-left">
+      <h4>
+        {{ parentLessonName | titlecase }}<br /><small class="text-muted">{{
+          routeMap
+          }}</small>
+      </h4>
+      <app-breadcrumb [lessonId]="parentId"></app-breadcrumb>
+    </div>
+    <div class="float-right btn-group" role="group">
+
+      <button *ngIf="parentType == 0" (click)="logTeachingStart()"
+        [routerLink]="'/teacher/bookView/' + currentLessonDetails._id" class="btn btn-warning mr-2">
+        <i class="fas fa-play"></i> &nbsp;Present
+      </button>
+      <button class="btn btn-info mr-2" *ngIf="parentType == 0" (click)="migrateLesson()"> <i class="fas fa-share"></i>
+        &nbsp;Share</button>
+      <button *ngIf="parentType != 2 && complex==true" (click)="addUnit(currentType)" class="btn btn-primary bg-primary">
+        <i class="fas fa-plus"></i> &nbsp;Create new
+         {{ typeLabels[currentType] }}
+      </button>
+      <div class="dropdown">
+        <button *ngIf="currentType != 'nano_unit'" class="btn btn-secondary dropdown-toggle mr-3 ml-2"
+          id="lessonSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-cog"></i> &nbsp;
+          {{ typeLabels[parentType] }} Settings
+        </button>
+        <div class="dropdown-menu" aria-labelledby="lessonSettings">
+          <a routerLink="/teacher/reports/{{ parentId }}" class="dropdown-item">View Reports</a>
+          <a class="dropdown-item" (click)="updateLesson()">Edit</a>
+          <a class="dropdown-item" *ngIf="lessonStatus && parentType == 0" (click)="publishStatus(false)">Unpublish</a>
+          <a class="dropdown-item" *ngIf="!lessonStatus && parentType == 0" (click)="publishStatus(true)">Publish</a>
+
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-danger mt-2" (click)="deleteContent()">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col">
+
+    <div class="alert alert-danger" *ngIf="parentType==0 && !totalLessonStatus" role="alert">
+      You have not updated the total number of microunits for this lesson.
+      <button class="addchapter" (click)="addChapter()">Add Here</button>
+      <!-- This is chapter has been published and available to the students. -->
+    </div>
+
+    <div class="alert alert-success" *ngIf="parentType==0 && totalLessonStatus" role="alert">
+      {{lessonAdded.added}} Micro Unit(s) Added of {{lessonAdded.total}} Micro Units
+      <button class="addchapter " (click)="addChapter()">Edit Total Number of Micro Units</button>
+      <!-- This is chapter has been published and available to the students. -->
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col">
+
+    <div class="alert alert-primary" *ngIf="parentType==0 && lessonStatus " role="alert">
+      This chapter is published and hence available to students.
+      <!-- This is chapter has been published and available to the students. -->
+    </div>
+    <div class="alert alert-danger" *ngIf="parentType==0 && !lessonStatus" role="alert">
+      This chapter has not been published and is not available to students.
+      <!-- This is chapter has not published and not available to the students. -->
+    </div>
+
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col">
+
+    <div class="alert alert-success" *ngIf="status" role="alert">
+
+      This chapter score {{percentage | number : '1.2-2'}}
+    </div>
+
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-9">
+    <div *ngFor="let type of lessons | keyvalue">
+      <div class="row mt-2 mb-2" *ngIf="type.value.length > 0 && (type.key == '1' || type.key == '2')">
+        <div class="col">
+          <h5 style="text-transform: capitalize">
+            {{ parentTypeLabels[type.key] | titlecase }}
+          </h5>
+        </div>
+      </div>
+      <div class="row">
+        <div *ngFor="let lesson of type.value | sortBy: 'asc':'lessonNumber'" class="col-md-3">
+          <app-sublevel-card (click)="selectSubLevel(lesson.type, lesson._id)" [unit]="lesson"
+            [typeText]="typeLabels[lesson.type]" [isActivity]="getActivity(lesson._id)" [isCompleted]="">
+          </app-sublevel-card>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let type of displayOrder">
+      <mat-expansion-panel *ngIf="!currentLessonDetails.complex " class="mt-2 rounded"
+        [ngClass]="{'list-group-item-danger':(type=='19' || type=='20'), 'list-group-item-success':(type=='5' || type=='6'), 'list-group-item-danger':(type=='19' || type=='20'), 'list-group-item-info':(type=='7' || type=='23'|| type=='3' || type==18)}">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h5 style="text-transform: capitalize">
+              {{ parentTypeLabels[type] | titlecase }}
+            </h5>
+          </mat-panel-title>
+          <mat-panel-description>
+            <div class="badge badge-danger" *ngIf="supportContents[type].length==0">
+              Empty
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+          <div class="col-12" *ngIf="supportContents[type].length==0">
+            <p class="text-muted">You have not added any {{ parentTypeLabels[type] | titlecase }} yet.</p>
+          </div>
+          <div class="col-12">
+            <a *ngIf="type==5" (click)="addUnit(5)" class="badge badge-primary float-right"><i class="fas fa-plus"></i>
+              Learning Objectivee</a>
+            <a *ngIf="type==6" (click)="addUnit(6)" class="badge badge-info"><i class="fas fa-plus"></i> Learning
+              Outcome</a>
+
+            <div class="btn-group float-right" role="group" *ngIf="type==7">
+              <button class="btn btn-info" (click)="addUnit(9)"><i class="fas fa-plus"></i> Topic</button>
+
+            </div><br><br>
+            <a *ngIf="type==23" (click)="addUnit(23)" class="badge badge-primary  float-right"><i
+                class="fas fa-plus"></i> Concept</a><br><br>
+
+            <div class="btn-group  float-right" *ngIf="type==3">
+
+              <button class="btn btn-info" (click)="addUnit(14)"><i class="fas fa-plus"></i> Simple Activity</button>
+              <button class="btn btn-info" (click)="addUnit(15)"><i class="fas fa-plus"></i> Experiential
+                Activity</button>
+
+              <button class="btn btn-info" ><i class="fas fa-plus"></i> Multidisciplinary Activity</button>
+              <button class="btn btn-info" (click)="addUnit(17,content.contents[0].lessonId, true)"><i class="fas fa-plus"></i> Scientific Experimentation</button>
+
+            </div>
+
+            <a *ngIf="type==18" (click)="addUnit(18)" class="badge badge-success  float-right"><i
+                class="fas fa-plus"></i> Understanding Question</a>
+            <a *ngIf="type==19" (click)="addUnit(19)" class="badge badge-danger  float-right"><i
+                class="fas fa-plus"></i> Pre-assessment Question</a>
+            <a *ngIf="type==20" (click)="addUnit(20)" class="badge badge-warning  float-right"><i
+                class="fas fa-plus"></i> Post-assessment Question</a>
+          </div>
+
+         
+          <div  *ngFor="let content of  supportContents[type]" class="col-md-3">
+            <app-support-lesson-card *ngIf="type!=23 && type!=7" (click)="
+                  selectUnit(
+                    content.contents[0]._id,
+                    content.contents[0].contentType
+                  )
+                " [unit]="content" [typeText]="typeLabels[content.contents[0].contentType]"></app-support-lesson-card>
+          </div>
+       
+          <br>
+        </div>
+
+          <div *ngIf="type==7" class="row">
+            <div *ngFor="let content of topics" class="col-md-12">
+
+              <div class="card text-center" style="background-color: rgb(213, 177, 246);">
+                <div class="card-body">
+                  <div>
+                    <h5 class="mt-1 cut-text" *ngIf="content.lessonName != 'N/A' && content.lessonNumber != 'N/A'">
+                      {{ content.lessonNumber | titlecase }}. {{ content.lessonName | titlecase }}
+                    </h5>
+
+                  </div><br><br>
+
+                  <div class="btn-group  float-right">
+
+                    <button class="btn btn-info" (click)="addUnit(14,content.contents[0].lessonId, true)"><i class="fas fa-plus"></i> Simple
+                      Activity</button>
+                    <button class="btn btn-info" (click)="addUnit(15,content.contents[0].lessonId, true)"><i class="fas fa-plus"></i>
+                      Experiential Learning</button>
+                    <button class="btn btn-info" (click)="addUnit(17,content.contents[0].lessonId, true)"><i class="fas fa-plus"></i> Scientific Experimentation</button>
+                    <button class="btn btn-info"><i class="fas fa-plus"></i> Multidisciplinary Activity</button>
+                    
+                
+
+                  </div><br><br><br>
+                  <div class="row mt-2">
+                  <div class="col-md-4 ">
+        
+                      <app-support-lesson-card  (click)="
+                           selectUnit(
+                           content.contents[0]._id,
+                           content.contents[0].contentType, true)"
+                           [unit]="content" [typeText]="typeLabels[content.type]">
+                      </app-support-lesson-card>
+                  </div>
+                  <div  *ngFor="let data of content['sons']" class="col-md-4">
+                    <app-support-lesson-card  (click)="
+                      selectUnit(
+                      data.contents[0]._id,
+                      data.contents[0].contentType,
+                      true)" 
+                      [unit]="data" [typeText]="typeLabels[data.type]">
+                    </app-support-lesson-card>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+          <div *ngIf="type==23" class="row">
+            <div *ngFor="let content of concept" class="col-md-12">
+
+              <div class="card text-center" style="background-color: rgb(213, 177, 246);">
+                <div class="card-body">
+                  <div>
+                    <h5 class="mt-1 cut-text" *ngIf="content.lessonName != 'N/A' && content.lessonNumber != 'N/A'">
+                      {{ content.lessonNumber | titlecase }}. {{ content.lessonName | titlecase }}
+                    </h5>
+
+                  </div><br><br>
+
+                  <div class="btn-group  float-right">
+
+                    <button class="btn btn-info" (click)="addUnit(14,content.concept[0]._id, true)"><i class="fas fa-plus"></i> Simple
+                      Activity</button>
+                    <button class="btn btn-info" (click)="addUnit(15,content.concept[0]._id, true)"><i class="fas fa-plus"></i>
+                      Experiential Learning</button>
+                      <button class="btn btn-info" (click)="addUnit(17,content.concept[0]._id, true)"><i class="fas fa-plus" ></i> Scientific Experimentation</button>
+                    <button class="btn btn-info"><i class="fas fa-plus"></i> Multidisciplinary Activity</button>
+                   
+                    <button class="btn btn-success" (click)="addUnit(18,content.concept[0]._id, true)"><i
+                        class="fas fa-plus"></i> Understanding Question</button>
+
+                  </div><br><br><br>
+                  <div class="row mt-2">
+                  <div class="col-md-4">
+        
+                      <app-support-lesson-card  (click)="
+                           selectUnit(
+                           content.contents[0]._id,
+                           content.contents[0].contentType, true
+                             )
+                            " [unit]="content" [typeText]="typeLabels[content.type]"></app-support-lesson-card>
+                  </div>
+                  <div  *ngFor="let data of content['sons']" class="col-md-4" style="background-color: rgb(213, 177, 246);">
+                    <app-support-lesson-card  (click)="
+                    selectUnit(
+                      data.contents[0]._id,
+                      data.contents[0].contentType,
+                      true
+                    )
+                  " [unit]="data" [typeText]="typeLabels[data.type]"></app-support-lesson-card>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </mat-expansion-panel>
+    </div>
+    <br />
+  </div>
+
+
+  <div class="col-md-3">
+    <h5 class="text-muted mb-3">Lesson Plan</h5>
+    <app-lesson-plan-count [lessonId]="parentId"></app-lesson-plan-count>
+  </div>
+</div>
+
+<!-- Modal for adding content -->
+<app-add-chapter-modal (formSubmitted)="refreshList()" [parentId]="parentId" [type]="currentType"
+  [subType]="currentSubType" [typeText]="typeLabels[currentType]" dataTarget="unitModal"></app-add-chapter-modal>
+
+<!-- Modal for updating content -->
+<app-add-chapter-modal (formSubmitted)="refreshList()" [parentId]="parentId" [type]="currentType"
+  [subType]="currentSubType" [typeText]="typeLabels[parentType]" dataTarget="lessonUpdate" [lessonId]="parentId"
+  [complex]="currentLessonDetails['complex']"></app-add-chapter-modal>

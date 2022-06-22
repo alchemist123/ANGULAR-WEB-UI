@@ -1,0 +1,53 @@
+
+<div>
+  
+    <h2 matDialogTitle>Add Event</h2>
+    <mat-dialog-actions >
+        <form action="" [formGroup]="eventForm" (validSubmit)="addEvent()">
+             <mat-form-field floatLabel="auto" appearance="outline" class="chapterform" >
+                <mat-label>Event Name</mat-label>
+                <input matInput required id="eventNamee" name="eventNamee" formControlName="eventName">
+
+             </mat-form-field>
+             <br>
+             <mat-form-field floatLabel="auto" appearance="outline" class="chapterform" >
+                <mat-label>Content</mat-label>
+                <input matInput required id="eventCntt" name="eventCntt" formControlName="eventCnt">
+                
+
+             </mat-form-field>
+           
+             <h2 matDialogTitle>Date</h2>
+             <mat-form-field  appearance="outline">
+                <mat-label>From</mat-label>
+                <input required matInput [matDatepicker]="picker1" id="eventToDatee" name="eventToDatee" formControlName="eventToDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+              &nbsp;
+              <mat-form-field  appearance="outline">
+                <mat-label>To</mat-label>
+                <input required matInput [matDatepicker]="picker2" id="eventFrmDatee" name="eventFrmDatee" formControlName="eventFrmDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+              </mat-form-field>
+              <br><br>
+              <section class="example-section">
+                <mat-checkbox [checked]="teachers" [(ngModel)]="teachers" [ngModelOptions]="{standalone: true}" (change)="onUserChange($event,'teachers')" class="example-margin" color="primary">Teachers</mat-checkbox>&nbsp;
+                <mat-checkbox [checked]="students" [(ngModel)]="students" [ngModelOptions]="{standalone: true}" (change)="onUserChange($event,'students')" class="example-margin" color="primary">Students</mat-checkbox>&nbsp;
+                <mat-checkbox [checked]="parents" [(ngModel)]="parents" [ngModelOptions]="{standalone: true}" (change)="onUserChange($event,'parents')" class="example-margin" color="primary">Principal</mat-checkbox>&nbsp;
+                <mat-checkbox [checked]="principal" [(ngModel)]="principal" [ngModelOptions]="{standalone: true}" (change)="onUserChange($event,'principal')" class="example-margin" color="primary">Parents</mat-checkbox>&nbsp;
+                <mat-checkbox [checked]="all" [(ngModel)]="all" [ngModelOptions]="{standalone: true}" (change)="onUserChange($event,'all')" class="example-margin" color="primary">All</mat-checkbox>&nbsp;
+              </section>
+              <br><br>
+
+             <div align="end">
+                <button mat-button matDialogClose="no" >Cancel</button>          
+                <button type="submit"  mat-button="yes" >Add</button>
+             </div>
+             
+        </form>
+        
+    </mat-dialog-actions>
+
+</div>

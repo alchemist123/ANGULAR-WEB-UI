@@ -1,0 +1,78 @@
+<form [formGroup]="questionForm">
+  <div class="form-group">
+    <app-text-editor [id]="'questionArea' + idx" [content]="question.question" (onUpdate)="questionUpdate($event)">
+    </app-text-editor>
+  </div>
+  <div class="form-group">
+    <label>Choose the answer type</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" [attr.name]="'questionType' + idx" [attr.id]="'questionType' + idx"
+        value="multichoice" formControlName="questionType" (change)="optionChanged($event)" />
+      <label class="form-check-label" for="questionType">Multiple choice</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" [attr.name]="'questionType' + idx" [attr.id]="'questionType1' + idx"
+        value="freeflow" formControlName="questionType" (change)="optionChanged($event)" />
+      <label class="form-check-label" for="questionType1">Descriptive/Freeflow</label>
+    </div>
+  </div>
+
+  <div>
+    <div class="row" *ngIf="questionType == 'multichoice'" formArrayName="answerChoices">
+      <!-- <div class="row" *ngIf="questionType == 'multichoice'">
+
+      </div> -->
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group row"  >
+      <div class="col-md-3" *ngFor="let item of answerChoices['controls']; let i = index" >
+
+        <label id="example-radio-group-label"></label>
+       
+          <mat-radio-button class="example-radio-button"  (click)="optionChanged(i)"   [value]="i" (onUpdate)="answerUpdate($event)">
+            Option {{ i + 1 }}
+          </mat-radio-button>
+        
+        
+        <div class="input-group mb-3">
+          <!-- <h6>Optiona {{ i + 1 }}</h6> -->
+          <app-text-editor [id]="'multiChoice' + i + idx" [content]="duplicateAnswers[i]"
+            (onUpdate)="answerMultiChoiceUpdate($event, i)" placeholder="Please enter option {{ i + 1 }}">
+          </app-text-editor>
+          <div class="input-group-append">
+            <button class="btn btn-outline-danger btn-sm" (click)="removeOption(i)" type="button" id="button-addon2">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-radio-group>
+    </div>
+    <div class="row" *ngIf="questionType == 'multichoice'">
+      <div class="col-md-3">
+        <button class="btn btn-primary" (click)="addOption()">
+          Add new option
+        </button>
+      </div>
+    </div>
+    <!-- <div class="row" *ngIf="questionType == 'multichoice'">
+      <div class="col-md-12 mt-3">Please select the answer</div>
+      <div class="col-md-3">
+        <select class="form-control" formControlName="questionAnswer">
+          <option>Please select the answer</option>
+          <option
+            *ngFor="let item of answerChoices['controls']; let j = index"
+            [value]="j"
+          >
+            Option {{ j + 1 }}
+          </option>
+        </select>
+      </div>
+    </div> -->
+    <div class="row" *ngIf="questionType == 'freeflow'">
+      <div class="col-md-12 mt-3">Please enter the answer</div>
+      <div class="form-group">
+        <app-text-editor [id]="'answerArea' + idx" [content]="question.answer" (onUpdate)="answerUpdate($event)">
+        </app-text-editor>
+      </div>
+    </div>
+  </div>
+</form>

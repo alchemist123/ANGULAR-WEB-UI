@@ -1,0 +1,12 @@
+.modal-content{
+    width: 600px;
+    margin-left: -80px;
+}
+
+@media (max-width:767px){
+    .modal-content{
+        width: 300px;
+        margin-left: 0px;
+    }
+    
+}

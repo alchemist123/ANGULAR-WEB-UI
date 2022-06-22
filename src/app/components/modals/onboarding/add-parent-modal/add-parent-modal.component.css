@@ -1,0 +1,23 @@
+/* .datepicker-dropdown {
+  z-index: 1600 !important;
+} */
+
+
+.modal-content{
+  width: 750px;
+  height: 560px;
+  position: absolute;
+  left: -190px;
+}
+
+@media (max-width:767px){
+
+  .modal-content{
+      width: 300px;
+      height: 930px;
+      position: absolute;
+      left: 4px;
+  }
+
+
+}

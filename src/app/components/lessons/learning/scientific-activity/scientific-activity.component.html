@@ -1,0 +1,233 @@
+<div class="row pl-4">
+    <div class="col">
+      <div class="">
+        <img
+        src="assets/images/tool-icons/10.png"
+          style="max-width: 15%"
+        /><br /><br />
+        <h6>{{ activityContents?.lesson[0]?.lessonName }}</h6>
+        <div ></div>
+      
+        <div class="float-left" *ngIf = "status!== '1'">
+          <button
+            class="btn btn-success"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#exampleModals"
+          >
+            Start this activity
+          </button>
+        </div><br><br>
+        <div style="display: flex; justify-content: center; align-items: center;" class="alert alert-success" *ngIf = "status == '1'" role="alert">
+          Accepted this activity.
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;" class="alert alert-success" *ngIf = "status == '0'" role="alert">
+          Pending teacher evaluation.
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;" class="alert alert-success" *ngIf = "status == '2'" role="alert">
+          Your activity is rejected.
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div
+    class="modal fade"
+    id="exampleModals"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div
+    class="modal-dialog modal-dialog-centered modal-lg"
+    style="max-width: 100% !important; width:80% !important;"
+      role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            {{ activityContents?.lesson[0]?.lessonName }}
+          </h5>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-1 text-center">
+              <a
+                class="carousel-control-prev w-100"
+                href="#carouselExampleControlss"
+                role="button"
+                data-slide="prev"
+              >
+                <i class="fas fa-angle-left slide-control"></i>
+              </a>
+            </div>
+            <div class="col-md-10">
+              <div
+                id="carouselExampleControlss"
+                class="carousel slide"
+                data-ride="carousel"
+                data-interval="0"
+              >
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <app-google-slide-view [contentId]="activityContents._id"></app-google-slide-view>
+                  </div>
+                  <div class="carousel-item"
+                  >
+                  <h6>Please enter you observation here</h6>
+                  <app-text-editor
+                    [id]="'activity_observation'"
+                    (onUpdate)="updateObservation($event)"
+                    [content]="observation_"
+                    placeholder="Enter your observation here"
+                  ></app-text-editor>
+                  <br />
+                  <div class="float-right">
+                    <button
+                      class="btn btn-primary"
+                      (click)="addStudentActivities(true)"
+                      data-dismiss="modal"
+                    >
+                      Submit activity
+                    </button>
+                  </div>
+                  <br /><br />
+                  <div class="alert alert-danger" role="alert">
+                    Please note: You cannot edit your activity once it's
+                    submitted.
+                  </div>
+                  </div>
+                  <!-- <div class="carousel-item">
+                    <h5>Your Observations</h5>
+                    <div *ngFor="let observation of observations; let i = index">
+                      <div class="mt-3" [innerHtml]="observation"></div>
+                      <hr />
+                    </div>
+                  </div> -->
+                  <div class="carousel-item">
+                  
+                    <h6>Please enter you measurement here</h6>
+                    <app-text-editor
+                      [id]="'activity_measurement'"
+                      (onUpdate)="updateMeasurement($event)"
+                      [content]="measurement_"
+                      placeholder="Enter your measurement here"
+                    ></app-text-editor>
+                    <br />
+                    <div class="float-right">
+                      <button
+                        class="btn btn-primary"
+                        (click)="addStudentActivities(true)"
+                        data-dismiss="modal"
+                      >
+                        Submit activity
+                      </button>
+                    </div>
+                    <br /><br />
+                    <div class="alert alert-danger" role="alert">
+                      Please note: You cannot edit your activity once it's
+                      submitted.
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                   
+                    <h6>Please enter you analysis here</h6>
+                    <app-text-editor
+                      [id]="'activity_analysis'"
+                      (onUpdate)="updateAnalysis($event)"
+                      [content]="analysis_"
+                      placeholder="Enter your analysis here"
+                    ></app-text-editor>
+                    <br />
+                    <div class="float-right">
+                      <button
+                        class="btn btn-primary"
+                        (click)="addStudentActivities(true)"
+                        data-dismiss="modal"
+                      >
+                        Submit activity
+                      </button>
+                    </div>
+                    <br /><br />
+                    <div class="alert alert-danger" role="alert">
+                      Please note: You cannot edit your activity once it's
+                      submitted.
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                   
+                    <h6>Please enter you interpretation here</h6>
+                    <app-text-editor
+                      [id]="'activity_interpretation'"
+                      (onUpdate)="updateInterpretation($event)"
+                      [content]="interpretation_"
+                      placeholder="Enter your interpretation here"
+                    ></app-text-editor>
+                    <br />
+                    <div class="float-right">
+                      <button
+                        class="btn btn-primary"
+                        (click)="addStudentActivities(true)"
+                        data-dismiss="modal"
+                      >
+                        Submit activity
+                      </button>
+                    </div>
+                    <br /><br />
+                    <div class="alert alert-danger" role="alert">
+                      Please note: You cannot edit your activity once it's
+                      submitted.
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <h5>Please conclude the activity</h5>
+                    <br />
+                    <h6>Please enter you conclusion here</h6>
+                    <app-text-editor
+                      [id]="'activity_conclusions'"
+                      (onUpdate)="updateConclusion($event)"
+                      [content]="conclusion_"
+                      placeholder="Enter your conclusion here"
+                    ></app-text-editor>
+                    <br />
+                    <div class="float-right">
+                      <button
+                        class="btn btn-primary"
+                        (click)="addStudentActivities(true)"
+                        data-dismiss="modal"
+                      >
+                        Submit activity
+                      </button>
+                    </div>
+                    <br /><br />
+                    <div class="alert alert-danger" role="alert">
+                      Please note: You cannot edit your activity once it's
+                      submitted.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <a
+                class="carousel-control-next w-100"
+                href="#carouselExampleControlss"
+                role="button"
+                data-slide="next"
+              >
+                <i class="fas fa-angle-right slide-control"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,9 @@
+.wrapper-page {
+  overflow-y: scroll;
+  width: 500px;
+}
+
+.account-page-full {
+  right: 0;
+  left: unset;
+}

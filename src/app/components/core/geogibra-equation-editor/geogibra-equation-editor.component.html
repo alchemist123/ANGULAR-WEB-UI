@@ -1,0 +1,118 @@
+<div [attr.id]="id" style="width: fit-content">
+  <div
+    class="applet_scaler ggbTransform wrap"
+    style="
+      position: relative;
+      display: block;
+      transform: none;
+      transform-origin: 0% 0%;
+    "
+  >
+    <!-- <article
+      class="notranslate"
+      [attr.data-param-id]="id"
+      data-param-usebrowserforjs="false"
+      data-param-app="false"
+      data-param-appname="evaluator"
+      data-param-scalecontainerclass="wrap"
+      data-param-fontsize="32"
+      data-param-rounding="6"
+      data-param-language="en"
+      data-param-keyboardtype="scientific"
+      data-param-preventfocus="false"
+      data-param-disableautoscale="false"
+      tabindex="0"
+      id="{{ id }}0"
+      data-scalex="1"
+      data-scaley="1"
+      aria-label="Evaluator"
+      style="
+        border-width: 0px;
+        border-style: solid;
+        border-image: initial;
+        display: inline-block;
+        outline-style: none;
+      "
+    >
+      <div
+        class="GeoGebraFrame applet-unfocused jsloaded"
+        style="border-width: 1px; border-style: solid"
+      >
+        <div
+          data-test="mathFieldEditor"
+          class="evaluatorEditor"
+          style="height: 101px; vertical-align: top"
+        >
+          <canvas
+            height="101"
+            width="149"
+            tabindex="0"
+            style="height: 101px; width: 149px"
+          ></canvas>
+          <div
+            class="textAreaClip"
+            style="
+              z-index: -32000;
+              clip: rect(1em, 1em, 1em, 1em);
+              width: 1px;
+              height: 1px;
+              position: relative;
+              top: -100%;
+            "
+          >
+            <textarea
+              id="hiddenCopyPasteLatexArea0"
+              role="application"
+              data-test="mathFieldTextArea"
+              style="
+                opacity: 0;
+                width: 1px;
+                padding: 0px;
+                border: 0px;
+                min-height: 0px;
+                height: 1px;
+              "
+            ></textarea>
+          </div>
+        </div>
+        <div class="kbButtonSpace"></div>
+        <div
+          aria-hidden="true"
+          class="DockGlassPane"
+          style="
+            position: relative;
+            overflow: hidden;
+            display: none;
+            z-index: 5000;
+          "
+        >
+          <div
+            aria-hidden="true"
+            style="
+              border-width: 4px;
+              border-style: solid;
+              border-color: gray;
+              display: none;
+            "
+          ></div>
+        </div>
+      </div>
+      <span class="geogebraweb-dummy-invisible" tabindex="10000"></span>
+      <div
+        id="screenReader1"
+        tabindex="-1"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        aria-relevant="additions text"
+        style="top: -1000px; position: absolute"
+      ></div>
+    </article> -->
+  </div>
+</div>
+<input
+  type="button"
+  class="btn btn-primary"
+  value="Insert equation"
+  (click)="extractEquation()"
+/>

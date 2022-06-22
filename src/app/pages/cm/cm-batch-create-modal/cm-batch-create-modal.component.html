@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2>Create Batch</h2>
+        <span>You can create batches here.</span>
+    </div><br>
+
+    <div class="content">
+        <form action="" [formGroup]="batchForm" (ngSubmit)="createBatch()">
+            <h6>Select Teacher Name</h6>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Select Teacher</mat-label>
+                <mat-select id="mentorId" formControlName="mentorId" >
+                  <mat-option *ngFor = "let data of teachers"   [value]="data.userId">
+                  {{ data.teacher[0].teacherFirstName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <h6>Batch Name</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter batch name</mat-label>
+                    <input matInput id="courseName" name="batchName" formControlName="batchName">
+                  </mat-form-field>
+                  <br><br>
+                  <h6>Batch Description</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter batch description</mat-label>
+                    <input matInput id="courseDescr" name="batchDescr" formControlName="description">
+                  </mat-form-field>
+                  <h6>Batch Limit</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter batch limit</mat-label>
+                    <input matInput id="courseDescr" name="limit" formControlName="limit">
+                  </mat-form-field>
+
+                  <h6>Date</h6>
+                  <mat-form-field appearance="outline">
+                    <mat-label>From</mat-label>
+                    <input required matInput [matDatepicker]="picker1" id="startDate" name="startDate"
+                      formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>&nbsp; &nbsp;
+    
+                  <mat-form-field appearance="outline">
+                    <mat-label>To</mat-label>
+                    <input required matInput [matDatepicker]="picker2" id="endDate" name="endDate"
+                      formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                  </mat-form-field>
+                  <br>
+
+                  <div class="float-right">
+                    <button mat-stroked-button mat-dialog-close mat-button style="letter-spacing: 2px;">Cancel</button>&nbsp;&nbsp;
+                    <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Submit</button>
+                  </div>
+                  
+        </form>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+
+<div>
+  
+    <h2 matDialogTitle>Add a comment</h2>
+    <mat-dialog-actions align="end">
+        <form action="" [formGroup]="remarkForm" (ngSubmit)="reviewActivityReject()">
+             <mat-form-field floatLabel="auto" appearance="outline" class="chapterform" >
+                <mat-label>Comment</mat-label>
+                <input matInput required id="remark" name="remark" formControlName="remark">
+             </mat-form-field>
+              <button mat-button matDialogClose="no">Cancel</button>          
+              <button type="submit"  mat-button="yes">Submit</button>
+        </form>
+        
+    </mat-dialog-actions>
+
+</div>

@@ -1,0 +1,17 @@
+<div>
+  
+    <h2 matDialogTitle>Batch Code</h2>
+    <mat-dialog-actions >
+        <form action="" [formGroup]="batchForm"  (ngSubmit)="joinedUseCode()">
+             <mat-form-field floatLabel="auto" appearance="outline" class="example-full-width" >
+                <mat-label>Enter the batch code</mat-label>
+                <input matInput required id="code" name="code" formControlName="code">
+             </mat-form-field><br>
+              <div class="float-right">
+                <button mat-stroked-button mat-dialog-close mat-button>Close</button>          
+                <button type="submit" class="btn-primary " mat-button="yes">Save</button>
+              </div>
+        </form>
+        
+    </mat-dialog-actions>
+</div>

@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col">
+       <div class="float-left">
+        <h4>
+            Unit assigned to you<br /><small class="text-muted"
+              >You can start preparing your units here.</small
+            >
+          </h4>
+       </div>
+          <app-breadcrumb></app-breadcrumb>
+          <br />
+          <div class="float-right">
+            <button class="btn btn-primary bg-primary" (click)="addUnit()">
+              <i class="fas fa-plus"></i> &nbsp;Create new unit
+            </button>
+          </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        
+    </div>
+</div><br>
+
+<div class="row">
+    <div *ngFor = "let data of unit" class="col-md-3">
+        <app-unit-card
+        (click)="selectUnit(data._id,data.parentLessonId)"
+        [unit] = "data">
+            
+        </app-unit-card>
+    </div>
+</div>

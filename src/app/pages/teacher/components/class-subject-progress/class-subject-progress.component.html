@@ -1,0 +1,23 @@
+<div class="card info-card-yellow">
+    <div class="card-body">
+        <table class="table text-center">
+            <tr>
+                <th>Subject</th>
+                <th>Teacher</th>
+                <th>Lesson Preparation Progress</th>
+                <th>Teaching Progress</th>
+                <th>Students studying on time</th> 
+            </tr>
+            <tr *ngFor="let subject of progressData">
+                <td>{{subject.subject}}</td>
+                <td>{{subject.teacherName}}</td>
+                <td>{{subject.lessonCompletion | number : '1.2-2'}}%
+                <td>{{subject.teachingCompleteion  | number : '1.2-2'}}%</td>    
+                <td>{{subject.studentCompletionOnTime | number : '1.2-2'}}%</td>   
+            </tr>
+            <tr *ngIf="progressData.length==0">
+                <td colspan="5">No Data to display</td>
+            </tr>
+        </table>
+    </div>
+</div>

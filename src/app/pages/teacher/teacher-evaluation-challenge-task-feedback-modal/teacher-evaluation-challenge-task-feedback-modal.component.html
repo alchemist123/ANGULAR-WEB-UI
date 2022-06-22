@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2>Approve this task</h2>
+        <span>If you verified the task please click on approve button. You can also write your feedback and points below.</span>
+    </div><br>
+
+    <div class="content">
+        <form action="" [formGroup] = "feedbackForm" (ngSubmit)="reviewLabTask()">
+                <h6>FeedBack</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter the feedback here</mat-label>
+                    <input matInput id="feedback" name="feedback" formControlName="feedback">
+                  </mat-form-field>
+                  <br><br>
+                  <h6>Point</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter the point here</mat-label>
+                  
+                    <input matInput [maxlength]="2" type="tel"  id="point" name="point" formControlName="point" >
+                    
+                  </mat-form-field><small>max-point:10</small>
+                  <br><br>
+        
+                  <br><br>
+                  <br><br>
+
+                  <div class="float-right">
+                    <button mat-stroked-button mat-dialog-close mat-button style="letter-spacing: 2px;">Cancel</button>&nbsp;&nbsp;
+                    <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Approve</button>
+                  </div>
+                  
+        </form>
+    </div>
+</div>
+
+
+

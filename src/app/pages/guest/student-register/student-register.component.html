@@ -1,0 +1,178 @@
+<div class="account-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5">
+
+        <div class="mt-5 title">
+          <h1>Create account</h1>
+          <h6>You will auto enrolling to <span style="color: blue;">{{standard}} {{division}}</span> of <span style="color: blue;">{{schoolName}}</span></h6>
+        </div>
+
+       
+
+        <div class="form-page">
+          <div class="main">
+            <form action="" [formGroup]="registerForm" (ngSubmit)="registerStudent()">
+              <div class="row">
+                <div class="col-md-4">
+
+                  <h6>First Name</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>First Name</mat-label>
+                    <input matInput id="fname" name="fname" formControlName="fName">
+                    <mat-hint *ngIf="registerForm.get('fName').touched && registerForm.get('fName').errors?.required">First Name is required.</mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+
+                  <h6>Middle Name</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Middle Name</mat-label>
+                    <input matInput id="mname" name="mname" formControlName="mName">
+                    
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <h6>Last Name</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput id="lname" name="lname" formControlName="lName">
+                    <mat-hint *ngIf="registerForm.get('lName').touched && registerForm.get('lName').errors?.required">Last Name is required.</mat-hint>
+                  </mat-form-field>
+                </div>
+
+              </div><br>
+
+              <h6>Email Id</h6>
+              <div class="input">
+                <mat-form-field class="example-full-width">
+                 
+                  <mat-label>Email Id</mat-label><br>
+                  <input matInput id="email" name="emaill" formControlName="email">
+                  <mat-hint  *ngIf="registerForm.get('email').touched && registerForm.get('email').invalid">
+                    <mat-hint *ngIf="registerForm.get('email').touched && registerForm.get('email').errors?.required">Email is required.</mat-hint>  
+                    <mat-hint *ngIf="registerForm.get('email').errors.pattern">Email must be a valid email address.</mat-hint>  
+                  </mat-hint>
+                </mat-form-field>
+               
+                <button type="button" (click)="emailRegistrationStudent()" class="verifybtn" mat-stroked-button color="primary" *ngIf="otpStatus!=='ok'">VERIFY</button>
+                <button  class="verifybtn" mat-stroked-button color="primary" *ngIf = "otpStatus == 'ok'">VERIFIED</button>
+
+              </div>
+
+              <br>
+              <h6>Mobile Number</h6>
+              <mat-form-field class="example-full-width">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput id="mobilenumeber" name="mobilenumeber" formControlName="mobileNumber">
+                <mat-hint  *ngIf="registerForm.get('mobileNumber').touched && registerForm.get('mobileNumber').invalid">
+                    
+                  <mat-hint *ngIf="registerForm.get('mobileNumber').touched && registerForm.get('mobileNumber').errors?.required">Mobile Number is required.</mat-hint>  
+                  <mat-hint *ngIf="registerForm.get('mobileNumber').errors.pattern">Please, Enter 10 digit Mobile Number.</mat-hint>  
+                </mat-hint>
+               
+              </mat-form-field>
+              <br><br>
+
+              <h6>Parent Email Id</h6>
+              <div class="input2">
+                <mat-form-field class="example-full-width">
+                  <br>
+                  <mat-label>Parent Email Id</mat-label>
+                  <input matInput id="parentemaill" name="parentemaill" formControlName="parentemail">
+                  <mat-hint  *ngIf="registerForm.get('parentemail').touched && registerForm.get('parentemail').invalid">
+                    <mat-hint *ngIf="registerForm.get('parentemail').touched && registerForm.get('parentemail').errors?.required">Email is required.</mat-hint>  
+                    <mat-hint *ngIf="registerForm.get('parentemail').errors.pattern">Email must be a valid email address.</mat-hint>  
+                  </mat-hint>
+                </mat-form-field>
+                
+                <button type="button" (click)="emailRegistrationParent()" class="verifybtn2" mat-stroked-button color="primary" *ngIf="otpStatuss!=='ok'">VERIFY</button>
+                <button  class="verifybtn" mat-stroked-button color="primary" *ngIf = "otpStatuss == 'ok'">VERIFIED</button>
+              </div>
+              <br>
+
+              <h6>Gender</h6>
+              <mat-form-field class="example-full-width">
+                <mat-label>Select option</mat-label>
+                <mat-select  id="gender" name="gender" formControlName="gender">
+                  <mat-option value="Male">Male</mat-option>
+                  <mat-option value="Female">Female</mat-option>
+                  <!-- <mat-option value="Others">Others</mat-option> -->
+                </mat-select>
+              </mat-form-field>
+              <br><br>
+
+              <h6>Date of Birth</h6>
+              <mat-form-field class="example-full-width">
+                <mat-label>DD/MM/YYYY</mat-label>
+                <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" id="dob" name="dob" formControlName="dob" >
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                  <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="registerForm.get('dob').hasError('required')">
+                  Date of Birth is required.
+                </mat-error>    
+                
+              </mat-form-field>
+
+              <br><br>
+              <h6>Admission Number</h6>
+              <mat-form-field class="example-full-width">
+                <mat-label>Admission Number</mat-label>
+                <input matInput id="admisnumber" name="admisnumber" formControlName="admissionnumber">
+              </mat-form-field>
+              <br><br>
+
+              <h6>Password</h6>
+              <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <div class="password">
+                  <input matInput id="pswd" id="pswd" formControlName="password" [type]="hide? 'password' : 'text'">
+                <span class="material-icons"  (click)="hide=!hide">
+                  {{hide? 'visibility' : 'visibility_off'}}
+                  </span>
+                </div>
+              </mat-form-field>
+              <br><br>
+
+              <h6>Re enter Password</h6>
+              <mat-form-field class="example-full-width">
+                <mat-label>Re enter Password</mat-label>
+                <div class="password">
+                  <input matInput id="repswd" name="repswd" formControlName="repassword" [type]="hide2? 'password' : 'text'">
+                <span class="material-icons"  (click)="hide2=!hide2">
+                  {{hide2? 'visibility' : 'visibility_off'}}
+                  </span>
+                </div>
+              </mat-form-field>
+              <div class="text-danger mt-1">{{passwordWrongMsg}}</div>
+              <br><br><br>
+
+              <section class="example-section">
+                <mat-checkbox class="example-margin" [(ngModel)]="terms" [ngModelOptions]="{standalone: true}">By
+                  creating account you are accepting the <a href="">terms & conditions</a></mat-checkbox>
+              </section>
+              <br>
+              
+              <section class="example-btn">
+                <button type="submit" mat-raised-button color="primary"
+                  style="letter-spacing: 2PX; width: 80%;">CREATEACCOUNT</button>
+              </section>
+
+            </form>
+
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="col-md-7">
+        <p style="background-color: blue; height: 100%;"></p>
+      </div>
+    </div>
+  </div>
+</div>

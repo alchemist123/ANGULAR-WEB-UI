@@ -1,0 +1,106 @@
+
+  <div class="row">
+    <div class="col-md-12">
+        <h6>Mentor mapping</h6>
+        <small class="text-muted">Assign teachers to a studentpruner mentor.</small>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+        <form action="" [formGroup]="teacherMappingForm" (validSubmit)="assignTeacher()">
+            <mat-form-field appearance="outline">
+                <mat-label>Select Teacher Name</mat-label>
+                <mat-select id="name" formControlName="teacherId">
+                  <mat-form-field>
+                    <input name="query" type="text" [(ngModel)]="query" [ngModelOptions]="{standalone: true}" matInput>
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+                  <mat-option *ngFor="let teacher of teachersList"
+                  [value]="teacher.userId">
+                    {{ teacher.teacherFirstName }} {{ teacher.teacherLastName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>&nbsp;&nbsp;<br>
+              <div>
+                <button type="submit"  class="btn-primary float-right" mat-button="yes" >Save</button>
+                <button  class="float-right"  mat-stroked-button color="primary" mat-button matDialogClose="no" style="position: relative; right: 10px;">Close</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                
+              </div>
+  
+        </form>
+    </div>
+  </div>
+
+
+
+
+
+<!-- <div
+  id="{{ dataTarget }}"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0" id="myModalLabel">
+          Mentor mapping <br /><small class="text-muted"
+            >Assign teachers to a studentpruner mentor.</small
+          >
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+      </div>
+      <form [formGroup]="teacherMappingForm" (validSubmit)="assignTeacher()">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="name">Teacher name</label>
+              <select
+                class="form-control"
+                id="name"
+                formControlName="teacherId"
+              >
+                <option>Select teacher</option>
+                <option
+                  *ngFor="let teacher of teachersList"
+                  [value]="teacher.userId"
+                >
+                  {{ teacher.teacherFirstName }} {{ teacher.teacherLastName }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary waves-effect"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary waves-effect waves-light"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+   
+  </div>
+ 
+</div> -->

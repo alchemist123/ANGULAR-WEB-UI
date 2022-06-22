@@ -1,0 +1,89 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <div class="float-left">
+          <div class="card-title">Upload PDF file</div>
+          <div class="card-sub-title">
+            Browse PDF file and click upload button
+          </div>
+          <div class="card-sub-title mt-3 text-muted">
+            This PDF file will be used in {{ forText }}
+          </div>
+          <app-breadcrumb [lessonId]="lessonId"></app-breadcrumb>
+        </div>
+        <div class="float-right">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle mr-3 ml-2"
+              id="lessonSettings"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-cog"></i> &nbsp; Slide Settings
+            </button>
+            <div class="dropdown-menu" aria-labelledby="lessonSettings">
+              <a class="dropdown-item" (click)="deleteContent()"
+                >Delete this google slide</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <form>
+      <div class="mb-3 col-md-6">
+        <div class="form-group col-md-12">
+          <label for="link" style="text-transform: capitalize;">{{lessonTypes[type]}} number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="link"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="lessonNumber"
+            placeholder="Please enter the number"
+          />
+        </div>
+
+        <div class="form-group col-md-12">
+          <label for="link" style="text-transform: capitalize;">{{lessonTypes[type]}} title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="link"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="lessonName"
+            placeholder="Please enter the title"
+          />
+        </div>
+        <div class="form-group col-md-12">
+          <label class="form-label">Browse PDF file</label><br />
+          <input
+            type="file"
+            accept="application/pdf"
+            (change)="handleUpload($event)"
+            class="filestyle"
+            data-buttonname="btn-secondary"
+            id="filestyle-0"
+            tabindex="-1"
+          />
+        </div>
+      </div>
+    </form>
+    <div class="float-right">
+      <a (click)="uploadFile()" class="btn btn-primary">Upload</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="card preview-pane">
+      <div class="card-body">
+        <ng2-pdfjs-viewer #pdfViewerOnDemand></ng2-pdfjs-viewer>
+      </div>
+    </div>
+  </div>
+</div>

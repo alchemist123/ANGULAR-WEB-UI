@@ -1,0 +1,92 @@
+<div
+  id="{{ dataTarget }}"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0" id="myModalLabel">
+          Student mapping <br /><small class="text-muted"
+            >Assign student to a standard and division below.</small
+          >
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+      </div>
+      <form [formGroup]="studentMappingForm" (validSubmit)="assignStudent()">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="name">Student name</label>
+              <select
+                class="form-control"
+                id="studentId"
+                formControlName="studentId"
+              >
+                <option>Select student</option>
+                <option
+                  *ngFor="let student of studentList"
+                  [value]="student.userId"
+                >
+                  {{ student.studentFirstName }} {{ student.studentLastName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="standard">Select Standard</label>
+              <select
+                class="form-control"
+                id="standardId"
+                formControlName="standardId"
+              >
+                <option *ngFor="let std of stds" [value]="std._id">
+                  {{ std.standards }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="division">Select Division</label>
+              <select
+                class="form-control"
+                id="divisionId"
+                formControlName="divisionId"
+              >
+                <option *ngFor="let div of divs" [value]="div._id">
+                  {{ div.division }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary waves-effect"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary waves-effect waves-light"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

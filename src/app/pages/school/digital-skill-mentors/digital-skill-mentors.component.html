@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col">
+    <h4>
+      Mentor Teacher Mapping for digtialSkills<br /><small class="text-muted"
+        >You can assign teachers who are mentors for digital skills here.</small
+      >
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="float-right">
+      <button
+        type="button"
+        class="btn btn-primary waves-effect waves-light"
+        (click)="addMapping()"
+      >
+        <i class="fas fa-plus mr-2"></i> Add Mapping
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="float-left">
+          <h4 class="card-title mt-0">Teacher mapping</h4>
+          <h6 class="card-subtitle font-14 text-muted"></h6>
+        </div>
+        <div class="float-right">
+          <div class="app-search d-none d-lg-block">
+            <div class="position-relative">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search..."
+              /><span class="fa fa-search"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <th class="text-center">SI</th>
+              <th class="text-center">Teacher name</th>
+              <th class="text-center">Edit</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let teacher of mappingList; let i = index">
+                <td class="text-center">{{ i + 1 }}</td>
+                <td class="text-center">
+                  {{ teacher.teacher[0].teacherFirstName }}
+                  {{ teacher.teacher[0].teacherLastName }}
+                </td>
+                <td class="text-center">
+                  <button
+                    class="btn"
+                    type="button"
+                    (click)="selectDigitalSkill(teacher)"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <app-digital-skill-mentor-mapping
+    [selectedTeacher]="currentMapping"
+    dataTarget="teacherMentorMapingModal"
+    (formSubmitted)="listDigitalSkillMapping()"
+  ></app-digital-skill-mentor-mapping> -->
+
+</div>

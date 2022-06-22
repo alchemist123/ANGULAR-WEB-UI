@@ -1,0 +1,10 @@
+*{
+    font-family:Metropolis ;
+}
+
+.rounded-circle {
+    background-color: grey;
+    width: 51px;
+    height: 51px;
+  }
+

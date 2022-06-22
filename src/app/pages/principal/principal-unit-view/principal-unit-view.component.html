@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col">
+       <div class="float-left">
+        <h4>
+            Unit in the subject
+          </h4>
+       </div>
+          <app-breadcrumb></app-breadcrumb>
+          <br />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        
+    </div>
+</div><br>
+
+<div class="row">
+    <div *ngFor = "let data of unit" class="col-md-3">
+        <app-unit-card
+        (click)="selectUnit(data._id,data.parentLessonId)"
+        [unit] = "data">
+            
+        </app-unit-card>
+    </div>
+</div>
+

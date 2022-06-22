@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h4 style="font-family:Metropolis ;">List of previous year subjects</h4>
+        <span style="font-size: 16px; font-family:Metropolis ;">Select your subject here. </span>
+
+    </div>
+</div><br>
+
+
+    
+      <div class="row">
+        <div *ngFor="let subject of subjectList" class="col-md-3" >
+            <div class="card text-center" routerLink="/student/chapters/{{subject._id}}" style="background-color:#f7f8fc ; height: 125px; width: 200px;">
+                <div class="card-body" style="cursor: pointer;" >
+                    <h4 class="mb-2 mt-3" style="text-transform: uppercase"> {{ subject.subject[0].subject }} </h4>
+                    <h6 style="text-transform: uppercase"> {{ subject.subject[0].type }}</h6>
+                  
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+ 

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col">
+    <h4>Select a subject to continue</h4>
+    <app-parent-breadcrumb></app-parent-breadcrumb>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3"
+  *ngFor="let item of subjectList; let i = index"
+  (click)="selectSubject(i)">
+   
+      <app-student-subject-card
+        [subject]="item.subject[0]" [teacher]="item.teacher[0]"
+      ></app-student-subject-card>
+    
+  </div>
+</div>

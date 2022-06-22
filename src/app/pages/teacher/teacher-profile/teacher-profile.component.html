@@ -1,0 +1,258 @@
+<!-- <div class="row">
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-center">
+          <div>
+            <img class="rounded-circle avatar-xl" />
+            <div class="profile-pic-change">
+              <input type="file" class="filestyle" data-input="false" data-buttonname="btn-secondary" id="filestyle-1"
+                style="position: absolute; clip: rect(0px, 0px, 0px, 0px)" tabindex="-1" />
+              <div class="bootstrap-filestyle text-center">
+                <div name="filedrag" style="
+                        position: absolute;
+                        width: 100%;
+                        height: 35px;
+                        z-index: -1;
+                      "></div>
+                <span class="group-span-filestyle" tabindex="0"><label for="filestyle-1" style="margin-bottom: 0"
+                    class=""><span class="buttonText"><i class="fas fa-camera text-white"></i></span></label></span>
+              </div>
+            </div>
+          </div>
+
+          <h6 class="mt-2">
+
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-9">
+    <div class="card gray-card">
+      <div class="card-header">
+        <h5>Personal Details</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">Name</div>
+          <div class="col">{{teacherInfo[0].details[0].teacherFirstName}} {{teacherInfo[0].details[0].teacherLastName}}
+          </div>
+        </div>
+
+        <hr />
+        <div class="row">
+          <div class="col-md-3">Date of Birth</div>
+          <div class="col">{{teacherInfo[0].details[0].dob}}</div>
+        </div>
+
+        <hr />
+        <div class="row">
+          <div class="col-md-3">Email Id</div>
+          <div class="col">{{teacherInfo[0].email}}</div>
+        </div>
+
+        <hr />
+        <div class="row">
+          <div class="col-md-3">Gender</div>
+          <div class="col">{{teacherInfo[0].details[0].gender}}</div>
+        </div>
+
+        <hr />
+      </div>
+    </div>
+    <div class="card gray-card">
+      <div class="card-header">
+        <h5>Security</h5>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Change password</h4>
+        <form [formGroup]="resetPasswordForm" (validSubmit)="updatePassword()">
+          <div class="row mb-3 mt-4">
+            <label for="example-text-input" class="col-md-3 col-form-label">Current password</label>
+            <div class="col">
+              <input class="form-control" type="password" formControlName="currentPassword"
+                placeholder="Please enter your current password" id="example-text-input" />
+              <div
+                *ngIf="(this.resetPasswordForm.get('currentPassword')?.touched || this.resetPasswordForm.get('currentPassword')?.dirty) && this.resetPasswordForm.get('currentPassword')?.errors">
+                Required Field*</div>
+            </div>
+          </div>
+          <div class="row mb-3 mt-4">
+            <label for="example-text-input" class="col-md-3 col-form-label">New password</label>
+            <div class="col">
+              <input class="form-control" type="password" formControlName="password"
+                placeholder="Please enter your new password" id="example-text-input" />
+              <div
+                *ngIf="(this.resetPasswordForm.get('password')?.touched || this.resetPasswordForm.get('password')?.dirty) && this.resetPasswordForm.get('password')?.errors">
+                Required Field*</div>
+
+              <password-strength-meter [password]="formValue"></password-strength-meter>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="example-text-input" class="col-md-3 col-form-label">Confirm new password</label>
+            <div class="col">
+              <input class="form-control" type="password" formControlName="confirm" placeholder="Confirm new password"
+                id="example-text-input" />
+              <div
+                *ngIf="(this.resetPasswordForm.get('confirm')?.touched || this.resetPasswordForm.get('confirm')?.dirty) && this.resetPasswordForm.get('confirm')?.errors">
+                Required Field*</div>
+
+              <div class="alert alert-info mt-2" role="alert">
+                Password should contain at least 1 upper case letter, 1 lower
+                case letter, 1 number or special character and least 8
+                characters in length
+              </div>
+              <p class="text-danger" *ngIf="
+                    resetPasswordForm.value.password !=
+                    resetPasswordForm.value.confirm
+                  ">
+                Passwords do not match
+              </p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <div class="float-right">
+                <button type="submit" class="buttonText" [disabled]="
+                    resetPasswordForm.invalid ||
+                    resetPasswordForm.value.password !=
+                      resetPasswordForm.value.confirm
+                  " class="btn btn-primary">
+                  Change Password
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+<div class="row">
+    <div class="col1">
+        <div class="wrapper">
+            <input type="file" class="file" >fff
+                <mat-icon class="material-icons-outlined" >photo_camera
+                    
+                </mat-icon>
+                
+            
+        </div>
+    </div>
+    <div class="col2">
+        <div class="container">
+            <div class="card">
+                <mat-card>
+                    <mat-card-title class="head1">
+                        Personal Details
+                    </mat-card-title>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <p>Name</p>
+                        </div>
+                        <div class="col">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Date of Birth</p>
+                        </div>
+                        <div class="col">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Email-ID</p>
+                        </div>
+                        <div class="col">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Gender</p>
+                        </div>
+                        <div class="col">
+                            <p></p>
+                        </div>
+                    </div>
+                </mat-card>
+
+            </div>
+            <div class="input">
+                <mat-card>
+                    <h4 class="head2">Change Password</h4>
+                <br>
+                <br>
+               <form action="">
+                <mat-form-field class="example" appearance="outline">
+                    <mat-label>Current Password</mat-label>
+                    <input matInput required>
+                    <mat-hint align="end">Min 8 characters</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class="example" appearance="outline">
+                    <mat-label>New Password</mat-label>
+                    <input matInput required>
+                    <mat-hint align="end">Min 8 characters</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class="example" appearance="outline">
+                    <mat-label>Confirm New Password</mat-label>
+                    <input matInput required>
+                    <mat-hint align="end">Min 8 characters</mat-hint>
+                </mat-form-field>
+               </form>
+
+               <div class="btn">
+                <button>Change Password</button>
+               </div>
+
+                </mat-card>
+
+                
+            </div>
+        </div>
+    </div>
+</div>  --> -->

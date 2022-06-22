@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2 style="font-family:Metropolis ;">Batch List</h2>
+        <span style="font-size: 16px; font-family:Metropolis ;">Add Batches. </span>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="float-right"><button (click)="addBatch()" class="btn-primary float-right" mat-button
+                    style="letter-spacing: 2px;"><i class="fas fa-plus"></i>Add Batch</button></div>
+        </div>
+    </div>
+</div><br>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="float-left">
+              <h4 class="card-title mt-0"></h4>
+              <h6 class="card-subtitle font-14 text-muted"></h6>
+            </div>
+            <div class="float-right">
+              <div class="app-search d-none d-lg-block">
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="tb">
+                <table class="table table-striped">
+                  <thead>
+                    <th>SI</th>
+                    <th>Batch Name</th>
+                    <th>Teacher Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor = "let data of batches let i=index">
+                      <td>{{ i + 1 }}</td>
+                      <td>
+                       {{ data.batchName }}
+                      </td>
+                      <td >{{ data.teacher[0]?.teacherFirstName }} {{ data.teacher[0]?.teacherLastName }}</td>
+                      <td >{{ data.startDate | date: 'dd/MM/yyyy' }}</td>
+                      <td >{{ data.endDate | date: 'dd/MM/yyyy' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+</div>
+

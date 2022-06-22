@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-md-12">
+        <h4>Select</h4>
+    </div>
+</div><br><br>
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="" [formGroup]="modeForm" (ngSubmit)="updateMode()">
+            <h6>Select Mode</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please choose mode</mat-label>
+                    <mat-select  id="mode" name="mode" formControlName="mode">
+                        <mat-option value="1">Chapter</mat-option>
+                        <mat-option value="0">Unit</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <br><br><br>
+                  <div class="float-right">
+                    <button mat-stroked-button mat-dialog-close mat-button style="letter-spacing: 2px;">Cancel</button>&nbsp;&nbsp;
+                    <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Save</button>
+                  </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-10">
+    <div class="height-after-header text-center" *ngIf="lesson == ''">
+      <div *ngIf="userType == 'student' && reportData">
+        <app-assesmnt-preview *ngIf="reportType == ''" [assesmentType]="questionsPreviewType" [lessonId]="chapterId" ></app-assesmnt-preview>
+        <h4 *ngIf="reportType == 'pre'">
+          Please find your pre-assessment test scores below.
+        </h4>
+        <h4 *ngIf="reportType == 'post'">
+          Please find your post-assessment test scores below.
+        </h4>
+        <h4 *ngIf="reportType == 'self'">
+          Please find your selft assessment test scores below.
+        </h4>
+        <br /><br />
+        <app-student-mark-details
+          *ngIf="reportType == 'pre'"
+          [reportData]="reportData"
+        ></app-student-mark-details>
+        <app-student-mark-details
+          *ngIf="reportType == 'post'"
+          [reportData]="reportData"
+        ></app-student-mark-details>
+        <app-self-assesment-reports
+          *ngIf="reportType == 'self'"
+          [reportData]="reportData"
+        >
+        </app-self-assesment-reports>
+        
+
+      </div>
+      <!-- <div  *ngIf="userType == 'student'" style="float: left;" class="mt-3">
+          <h5>Learning Outcomes</h5>
+          <div *ngFor="let outcome of learningOutcomes" class="ml-2" style="text-align: left;">
+            <div [innerHTML]="outcome['contentData']"></div>
+          </div>
+
+      </div> -->
+      <br /><br /> 
+      <div style="margin-top: 150px;">
+        <br /><br /> <br /><br /> 
+      <img src="/assets/images/characters/5293.jpg" style="width: 30%" />
+      <h4 class="text-muted">Please select a topic to continue! </h4>
+    </div>
+    </div>
+    <div
+      class="flex-grow-1 height-after-header"
+      style="overflow-y: scroll"
+      *ngIf="lesson != ''"
+    >
+      <app-unit-view
+        (onAnswerSubmit)="onAnswerSubmit($event)"
+        (onLessonSelected)="changeActiveLesson($event)"
+        [lesson]="lesson"
+      ></app-unit-view>
+    </div>
+  </div>
+  <div class="col-md-2">
+    
+    <div
+      *ngIf = "chapterId !=''"
+      class="hide-scrollbar flex-grow-1 height-after-header"
+      style="overflow-y: scroll; scrollbar-width: 0px">
+      <app-side-navigation
+        [lessonId]="chapterId"
+        [counter]="counter"
+        (onLessonSelected)="changeActiveLesson($event)"
+        (onReportSelected)="loadReport($event)"
+        (onPreviewSelected)="loadPreview($event)"
+      ></app-side-navigation>
+    </div>
+  </div>
+</div>

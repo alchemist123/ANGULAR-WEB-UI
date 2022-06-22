@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2>Create new course</h2>
+        <span>You can create new course here.</span>
+    </div><br>
+
+    <div class="content">
+        <form action="" [formGroup]="courseForm" (validSubmit)="createCourse()">
+            <h6>Course Name</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter course name</mat-label>
+                    <input matInput id="courseName" name="courseName" formControlName="courseName">
+                  </mat-form-field>
+                  <br><br>
+                  <h6>Course Description</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter course description</mat-label>
+                    <input matInput id="courseDescr" name="courseDescr" formControlName="courseDescr">
+                  </mat-form-field><br><br><br><br>
+
+                  <div class="float-right">
+                    <button mat-stroked-button mat-dialog-close mat-button style="letter-spacing: 2px;">Cancel</button>&nbsp;&nbsp;
+                    <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Save</button>
+                  </div>
+                  
+        </form>
+    </div>
+</div>

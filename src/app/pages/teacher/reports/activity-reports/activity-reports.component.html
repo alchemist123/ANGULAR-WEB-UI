@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col">
+    <h4 style="text-transform: capitalize">
+      Activity Reports
+      <br />
+      <small
+        >Overview of simple activities that students has been working or
+        completed</small
+      >
+    </h4>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-9" *ngIf = "typeValue!=='17'">
+    <table class="table table-striped">
+      <thead>
+        <th class="text-center">SI #</th>
+        <th class="text-center">Student Name</th>
+        <th class="text-center">Total Steps</th>
+        <th class="text-center">Total completed steps</th>
+        <th class="text-center">Completion status</th>
+        <th class="text-center">Approval Status</th>
+        <th class="text-center">Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of answers | orderBy : ['studentFName']; let i = index">
+          <td class="text-center">{{ i + 1 }}</td>
+          <td class="text-center">{{ item.studentFName }} {{ item.studentLName }}</td>
+          <td class="text-center">{{ item.totalSteps }}</td>
+          <td class="text-center">{{ item.completedSteps }}</td>
+          <td class="text-center">{{ item.completionsStatus }}</td>
+          <td class="text-center" *ngIf = "item.status == '0'">Pending</td>
+          <td class="text-center" *ngIf = "item.status == '1'">Accept</td>
+          <td class="text-center" *ngIf = "item.status == '2'">Reject</td>
+         
+          
+          
+          <td class="text-center">
+            <button
+              class="btn btn-link"
+              (click)="setActivityData(item)"
+              routerLink="/teacher/detailed-activity-report/{{ item._id }}/{{ item.ansId }}/{{item.status}}"
+            >
+              View details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-9" *ngIf="typeValue=='17'">
+    <table class="table table-striped">
+      <thead>
+        <th class="text-center">SI #</th>
+        <th class="text-center">Student Name</th>
+        <th class="text-center">Observation</th>
+        <th class="text-center">Measurement</th>
+        <th class="text-center">Analysis</th>
+        <th class="text-center">Interpretation</th>
+        <th class="text-center">Approval Status</th>
+        <th class="text-center">Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of answers | orderBy : ['studentFName']; let i = index">
+          <td class="text-center">{{ i + 1 }}</td>
+          <td class="text-center">{{ item.studentFName }} {{ item.studentLName }}</td>
+          <td class="text-center text-primary" *ngIf="item.observation"><i class="fas fa-check"></i></td>
+          <td class="text-center text-primary" *ngIf="!item.observation"> <i class="fas fa-times"></i></td>
+          <td class="text-center text-primary" *ngIf="item.measurement"><i class="fas fa-check"></i></td>
+          <td class="text-center text-primary" *ngIf="!item.measurement"><i class="fas fa-times"></i></td>
+          <td class="text-center text-primary" *ngIf="item.analysis"><i class="fas fa-check"></i></td>
+          <td class="text-center text-primary" *ngIf="!item.analysis"><i class="fas fa-times"></i></td>
+          <td class="text-center text-primary" *ngIf="item.interpretation"><i class="fas fa-check"></i></td>
+          <td class="text-center text-primary" *ngIf="!item.interpretation"><i class="fas fa-times"></i></td>
+          <td class="text-center" *ngIf = "item.status == '0'">Pending</td>
+          <td class="text-center" *ngIf = "item.status == '1'">Accept</td>
+          <td class="text-center" *ngIf = "item.status == '2'">Reject</td>
+         
+          <td class="text-center">
+            <button
+              class="btn btn-link"
+              (click)="setActivityData(item)"
+              routerLink="/teacher/detailed-activity-report/{{ item._id }}/{{ item.ansId }}/{{item.status}}/{{ typeValue }}"
+            >
+              View details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card gray-card">
+      <div class="card-body text-center">
+        <h4 class="card-title">Overview</h4>
+        <div class="cart-area">
+          <canvas id="pieChart" width="400" height="400"></canvas>
+          <br />
+          <!-- <p>{{ recomendationMessage }}</p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

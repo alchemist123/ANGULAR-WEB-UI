@@ -1,0 +1,14 @@
+<div aria-label="breadcrumb">
+  <ol
+    class="breadcrumb"
+    style="background-color: rgba(0, 0, 0, 0); padding-left: 0px"
+  >
+    <li class="breadcrumb-item" *ngFor="let item of pathName">
+      <a
+        style="cursor: pointer; text-decoration-line: underline"
+        class="text-primary"
+        >{{ item.text }}</a
+      >
+    </li>
+  </ol>
+</div>

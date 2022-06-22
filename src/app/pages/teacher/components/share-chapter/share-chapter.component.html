@@ -1,0 +1,36 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Please select a teacher to share this chapter</label>
+                <select  class="form-control" (change)="onTeacherSelect($event)">
+                    <option >Please select a teacher</option>
+                    <option *ngFor="let teacher of teachers"   [value]="teacher.teacher[0].userId">{{ teacher.teacher[0].teacherFirstName }} {{ teacher.teacher[0].teacherLastName }}</option>
+                </select><br>
+
+                <label>Please select a class to share this chapter</label>
+                <select  class="form-control" (change)="onSelect($event)">
+                    <option >Please select a class</option>
+                    <option *ngFor="let class of classes"   [value]="class._id">{{ class.standard[0]["standards"] }} - {{ class.division[0]["division"] }} - {{class.subject[0]["subject"] }}</option>
+                </select><br>
+    
+               <div *ngIf="type!=='1'">
+                <label>Please select a unit</label>
+                <select  class="form-control" (change)="onUnitSelect($event)">
+                    <option >Select a unit</option>
+                    <option *ngFor="let unit of units" [value]="unit._id">{{ unit.unitNumber }} - {{ unit.unitName }}</option>
+                </select>
+               </div>
+            </div>
+        </div>
+      
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="float-right">
+                <button mat-stroked-button mat-dialog-close mat-button>Close</button>&nbsp;&nbsp;
+                <button  mat-stroked-button class="btn btn-primary" (click)="shareChaptertoUnit()">Share</button>
+            </div>
+        </div>
+    </div>
+</div>

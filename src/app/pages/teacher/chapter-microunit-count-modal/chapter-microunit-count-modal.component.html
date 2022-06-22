@@ -1,0 +1,18 @@
+
+<div>
+  
+    <h2 matDialogTitle>Total number of Micro Units</h2>
+    <mat-dialog-actions align="end">
+        <form action="" [formGroup]="addChapterForm" (validSubmit)="addTotalLessonCount()">
+            <mat-form-field floatLabel="auto" appearance="outline" class="chapterform" >
+                <mat-label>Add Micro Unit</mat-label>
+                <input matInput required id="addchapter" name="addchap" formControlName="chapter">
+                
+              </mat-form-field>
+              <button mat-button matDialogClose="no">Close</button>
+               <button type="submit"  mat-button="yes">Save</button>
+        </form>
+        
+    </mat-dialog-actions>
+
+</div>

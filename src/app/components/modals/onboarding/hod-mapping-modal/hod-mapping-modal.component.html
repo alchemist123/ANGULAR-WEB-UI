@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-12">
+        <h6>HOD Mapping</h6>
+        <small class="text-muted">Assign HOD</small>
+    </div>
+</div>
+<br>
+<div class="ro">
+    <div>
+        <form action="" [formGroup]="hohMappingForm" (validSubmit)="assignHod()">
+            <mat-form-field appearance="outline">
+                <mat-label>Select HOD</mat-label>
+                <mat-select id="name" formControlName="teacherId">
+                  <mat-form-field>
+                    <input name="query" type="text" [(ngModel)]="query" [ngModelOptions]="{standalone: true}" matInput>
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+                  <mat-option *ngFor="let teacher of teachersList | searchfilter:query" [value]="teacher.userId">
+                    {{ teacher.teacherFirstName }} {{ teacher.teacherLastName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>&nbsp;&nbsp;
+
+              <mat-form-field appearance="outline">
+                <mat-label>Select Subject</mat-label>
+                <mat-select  id="subject" formControlName="subjectId" >
+                  <mat-form-field>
+                    <input name="query" type="text" [(ngModel)]="query1" [ngModelOptions]="{standalone: true}" matInput>
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+                  <mat-option  *ngFor="let subject of subjects | searchfilter:query1" [value]="subject._id">
+                    {{ subject.subject }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>&nbsp;&nbsp;
+
+              <mat-form-field appearance="outline">
+                <mat-label>Select Section</mat-label>
+                <mat-select id="section" formControlName="sectionId">
+                  <mat-option *ngFor="let data of section" [value]="data._id">
+                    {{ data.section }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field><br>
+              <div>
+                <button type="submit"  class="btn-primary float-right" mat-button="yes" >Save</button>
+                <button  class="float-right"  mat-stroked-button color="primary" mat-button matDialogClose="no" style="position: relative; right: 10px;">Close</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                
+              </div>
+
+        </form>
+    </div>
+</div>

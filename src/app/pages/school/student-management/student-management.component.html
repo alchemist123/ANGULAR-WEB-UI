@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col">
+    <h4>
+      Manage students<br /><small class="text-muted">You can add or modify student details here.</small>
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="float-right">
+      <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal"
+        data-target="#studentModal">
+        <i class="fas fa-plus mr-2"></i> Add Student
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="float-left">
+          <h4 class="card-title mt-0">List of students</h4>
+          <h6 class="card-subtitle font-14 text-muted"></h6>
+        </div>
+        <div class="float-right">
+          <div class="app-search d-none d-lg-block">
+            <div class="position-relative">
+              <input type="text" [(ngModel)]="query" class="form-control" placeholder="Search..." /><span class="fa fa-search"></span>
+              <div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="tb">
+            <table class="table table-striped">
+              <thead>
+                <th>SI</th>
+                <th>Admission number</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Date of bith</th>
+                <th>Blood Group</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Edit</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of studentsList | orderBy : ['studentFirstName'] | searchfilter:query let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ student.admissionNumber }}</td>
+                  <td>
+                    {{ student.studentFirstName }} {{ student.studentLastName }}
+                  </td>
+                  <td>{{ student.data[0]?.email }}</td>
+                  <td>{{ student.mobileNumber }}</td>
+                  <td>{{ student.dob | date :  "dd/MM/yy"}}</td>
+                  <td>{{ student.bloodGroup }}</td>
+                  <td>{{ student.gender }}</td>
+                  <td>{{ student.studentAddress }}</td>
+                  <td>
+                    <button class="btn" type="button" (click)="selectStudent(student)">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /.modal -->
+  <app-add-student-modal [selectedStudent]="currentStudent" dataTarget="studentModal" (formSubmitted)="refreshList()">
+  </app-add-student-modal>
+</div>

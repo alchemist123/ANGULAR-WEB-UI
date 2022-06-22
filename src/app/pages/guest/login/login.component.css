@@ -1,0 +1,132 @@
+.card {
+  z-index: 100;
+  border-radius: 0.2rem !important;
+}
+
+.sign-up-link {
+  z-index: 100;
+  position: relative;
+}
+
+.account-pages {
+  height: 100vh;
+}
+.bg-image {
+  height: 100vh;
+  background-image: url(/assets/images/backgrounds/login-bg-side.png);
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+}
+
+.bg-gradient {
+  height: 127vh;
+
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+
+  background: #007bbb; /* fallback for old browsers */
+}
+
+.container {
+  top: 50%;
+  /* left: 50%; */
+  position: relative;
+  /* display: -webkit-inline-box; */
+  /* margin-top: -50%; */
+  -webkit-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+
+.form-group .input{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}
+.form-group .input .material-icons{
+  position: absolute;
+  right:43px;
+  cursor: pointer;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 60%;
+}
+
+.codebtn{
+  position: relative;
+  bottom: 54px;
+}
+@media (max-width: 1450px){
+  .example-full-width {
+    width: 100%;
+  }
+  .codebtn{
+    position: relative;
+    bottom: 0px;
+  }
+
+  .sign-up-link{
+    position: relative;
+    top: 50px;
+  }
+}
+
+@media (max-width: 769px){
+  .bg-gradient{
+    display: none;
+  }
+}
+
+/* .bot{
+  position: relative;
+  top: 200px;
+  left: 100px;
+}
+
+button#widgetIcon {
+  right: 112px;
+} */
+
+
+/* .df-messenger-wrapper {
+  background-color: white;
+  border: 0;
+  bottom: 20px;
+  color: rgba(204, 131, 131, 0.87);
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  right: 120px;
+  text-decoration: none;
+  z-index: 100;
+} */

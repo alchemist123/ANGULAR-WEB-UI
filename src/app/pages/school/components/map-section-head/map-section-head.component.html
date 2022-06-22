@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col"><h5>Please select a teacher and standard</h5></div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Teacher</label>
+            <select class="form-control" [(ngModel)]="teacherId">
+                <option value="-1">--Select teacher--</option>
+                <option *ngFor="let teacher of teachers" [value]="teacher.userId">{{teacher.teacherFirstName}} {{teacher.teacherLastName}} ({{teacher.teacherID}})</option> 
+            </select>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Section</label>
+            <select class="form-control" [(ngModel)]="standardId">
+                <option value="-1">--Select Section--</option>
+                <option value="0">Foundational</option>
+                <option value="1">Preparatory</option>
+                <option value="2">Middle</option>
+                <option value="3">Secondary</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-12 ">
+        <button class="btn btn-primary float-right" [mat-dialog-close]="true" (click)="addMapping()">Save</button>
+        <button class="btn btn-secondary float-right ml-2 mr-2" [mat-dialog-close]="true">Cancel</button>
+    </div>
+</div>

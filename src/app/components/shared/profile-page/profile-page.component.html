@@ -1,0 +1,170 @@
+<div class="row" *ngIf="userDetails.length > 0">
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-center">
+          <div>
+            <img
+              class="rounded-circle avatar-xl"
+              [src]="userDetails[0].profilePic"
+            />
+            <div class="profile-pic-change">
+              <input
+                type="file"
+                (change)="updateProfilePicture($event)"
+                class="filestyle"
+                data-input="false"
+                data-buttonname="btn-secondary"
+                id="filestyle-1"
+                style="position: absolute; clip: rect(0px, 0px, 0px, 0px)"
+                tabindex="-1"
+              />
+              <div class="bootstrap-filestyle text-center">
+                <div
+                  name="filedrag"
+                  style="
+                    position: absolute;
+                    width: 100%;
+                    height: 35px;
+                    z-index: -1;
+                  "
+                ></div>
+                <span class="group-span-filestyle" tabindex="0"
+                  ><label for="filestyle-1" style="margin-bottom: 0" class=""
+                    ><span class="buttonText"
+                      ><i class="fas fa-camera text-white"></i></span></label
+                ></span>
+              </div>
+            </div>
+          </div>
+
+          <h6 class="mt-2">
+            {{ nameOfUser }}
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <div class="card gray-card">
+      <div class="card-header">
+        <h5>Personal Details</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">Name</div>
+          <div class="col">{{ nameOfUser }}</div>
+        </div>
+        <div *ngIf="userDetails[0]?.details[0].dob">
+        <hr/>
+      </div>
+        <div class="row" *ngIf="userDetails[0]?.details[0].dob">
+          <div class="col-md-3">Date of Birth</div>
+          <div class="col">{{ userDetails[0].details[0].dob }}</div>
+        </div>
+
+        <hr />
+        <div class="row">
+          <div class="col-md-3">Email Id</div>
+          <div class="col">{{ userDetails[0].email }}</div>
+        </div>
+        <div *ngIf="userDetails[0]?.details[0].gender">
+        <hr />
+      </div>
+        <div class="row" *ngIf="userDetails[0]?.details[0].gender">
+          <div class="col-md-3">Gender</div>
+          <div class="col">{{ userDetails[0].details[0].gender }}</div>
+        </div>
+
+        <hr />
+      </div>
+    </div>
+    <div class="card gray-card">
+      <div class="card-header">
+        <h5>Security</h5>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Change password</h4>
+        <form [formGroup]="resetPasswordForm" (validSubmit)="updatePassword()">
+          <div class="row mb-3 mt-4">
+            <label for="example-text-input" class="col-md-3 col-form-label"
+              >Current password</label
+            >
+            <div class="col">
+              <input
+                class="form-control"
+                type="password"
+                formControlName="currentPassword"
+                placeholder="Please enter your current password"
+                id="example-text-input"
+              />
+            </div>
+          </div>
+          <div class="row mb-3 mt-4">
+            <label for="example-text-input" class="col-md-3 col-form-label"
+              >New password</label
+            >
+            <div class="col">
+              <input
+                class="form-control"
+                type="password"
+                formControlName="password"
+                placeholder="Please enter your new password"
+                id="example-text-input"
+              />
+
+              <password-strength-meter
+                [password]="formValue"
+              ></password-strength-meter>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="example-text-input" class="col-md-3 col-form-label"
+              >Confirm new password</label
+            >
+            <div class="col">
+              <input
+                class="form-control"
+                type="password"
+                formControlName="confirm"
+                placeholder="Confirm new password"
+                id="example-text-input"
+              />
+              <div class="alert alert-info mt-2" role="alert">
+                Password should contain at least 1 upper case letter, 1 lower
+                case letter, 1 number or special character and least 8
+                characters in length
+              </div>
+              <p
+                class="text-danger"
+                *ngIf="
+                  resetPasswordForm.value.password !=
+                  resetPasswordForm.value.confirm
+                "
+              >
+                Passwords do not match
+              </p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <div class="float-right">
+                <button
+                  [disabled]="
+                    resetPasswordForm.invalid ||
+                    resetPasswordForm.value.password !=
+                      resetPasswordForm.value.confirm
+                  "
+                  class="btn btn-primary"
+                >
+                  Change Password
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

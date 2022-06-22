@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col">
+      <h4>
+        List of Removed Teachers<br /><small class="text-muted"
+          >You can re-assign teachers here.</small
+        >
+      </h4>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="float-left">
+            <h4 class="card-title mt-0"> List of Removed Teachers</h4>
+            <h6 class="card-subtitle font-14 text-muted"></h6>
+          </div><br>
+
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <th class="text-center">SI</th>
+                <th class="text-center">Teacher name</th>
+                <th class="text-center">Standards</th>
+                <th class="text-center">Division</th>
+                <th class="text-center">Subject</th>
+                <th class="text-center">Switch Back</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let teacher of mappingList; let i = index">
+                  <td class="text-center">{{ i + 1 }}</td>
+                  <td class="text-center">
+                    {{ teacher.teacher[0]?.teacherFirstName }}
+                    {{ teacher.teacher[0]?.teacherLastName }}
+                  </td>
+                  <td class="text-center">
+                    {{ teacher.standard[0]?.standards }}
+                  </td>
+                  <td class="text-center">
+                    {{ teacher.division[0]?.division }}
+                  </td>
+                  <td class="text-center">{{ teacher.subject[0]?.subject }}</td>
+  
+                  <td class="text-center">
+                    <button class="rmvBtn" type="button" (click)="selectTeacher(teacher)">
+                        <i class="far fa-check-circle"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- /.modal -->
+    <!-- <app-teacher-mapping-modal
+      [selectedTeacher]="currentMapping"
+      dataTarget="teacherMapingModal"
+      (formSubmitted)="refreshList()"
+    ></app-teacher-mapping-modal> -->
+  </div>
+  

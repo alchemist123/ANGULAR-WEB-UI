@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3>Batches Modules</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="float-right">
+            <button routerLink="/teacher/teacher-all-modules/{{ batchId }}" class="btn-primary float-right" mat-button style="letter-spacing: 1px;"><i class="fas fa-plus"></i>Add from library</button>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<div class="row">
+    <div class="col-md-3" *ngFor = "let data of batches">
+        <div class="card info-card-green text-center h-100" >
+            <div class="card-body">
+              <div class="mb-3" style="font-size: 25px; color: #fe6f71"></div>
+              <h4 style="text-transform: capitalize" >
+               {{ data.lessonName | titlecase}}
+              </h4>
+              <h6 class="mb-1 text-muted">Inventory : {{ data.totalLessons }}</h6>
+              
+            </div>
+          </div>
+    </div>
+</div>

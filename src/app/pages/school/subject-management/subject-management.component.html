@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col">
+    <h4>
+      Manage subjects<br /><small class="text-muted"
+        >You can add or modify subject details here.</small
+      >
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="float-right">
+      <button
+        type="button"
+        class="btn btn-primary waves-effect waves-light"
+        (click)="addSubject()"
+      >
+        <i class="fas fa-plus mr-2"></i> Add Subject
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="float-left">
+          <h4 class="card-title mt-0">List of subjects</h4>
+          <h6 class="card-subtitle font-14 text-muted"></h6>
+        </div>
+        <div class="float-right">
+          <div class="app-search d-none d-lg-block">
+            <div class="position-relative">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search..."
+              /><span class="fa fa-search"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <th>SI</th>
+              <th>Subject name</th>
+              <th>Type</th>
+              <th>Edit</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let subject of subjectList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>
+                  {{ subject.subject }}
+                </td>
+                <td>{{ subject.type }}</td>
+                <td>
+                  <button
+                    class="btn"
+                    type="button"
+                    (click)="selectSubject(subject)"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /.modal -->
+  <app-add-subject-modal
+    [selectedSubject]="currentSubject"
+    dataTarget="subjectModal"
+    (formSubmitted)="refreshList()"
+  ></app-add-subject-modal>
+</div>

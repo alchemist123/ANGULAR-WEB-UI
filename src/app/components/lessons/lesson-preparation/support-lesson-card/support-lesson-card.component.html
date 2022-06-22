@@ -1,0 +1,52 @@
+<!-- <div class="card text-center list-group-item">
+  <div class="card-body" >
+   <div class="float-left">
+    <h5 class="mt-1 cut-text" *ngIf="unit.lessonName != 'N/A' && unit.lessonNumber != 'N/A'">
+      {{ unit.lessonNumber | titlecase }}. {{ unit.lessonName | titlecase }}
+    </h5>
+  
+   </div><br><br>
+    
+    <img
+      [src]="
+        'assets/images/tool-icons/1.png'
+      "
+      height="65"
+    />
+
+    <h6 class="mt-1" style="overflow: hidden">
+      {{ unit.typeText | titlecase }}
+    </h6>
+    <h6 class="card-subtitle text-muted">
+      <small> {{ mediaType | titlecase }} </small>
+    </h6><br>
+    
+   
+  </div>
+</div> -->
+
+
+
+
+
+<div class="card text-center list-group-item">
+  <div class="card-body">
+    <img
+      [src]="
+        'assets/images/tool-icons/' + unit.contents[0].contentType + '.png'
+      "
+      height="75"
+    />
+    <p class="mt-4 cut-text" *ngIf="unit.lessonName != 'N/A'">
+      {{ unit.lessonName | titlecase }}
+    </p>
+    <p class="mt-4" *ngIf="unit.lessonName == 'N/A'">&nbsp;</p>
+    <h6 class="mt-1" style="overflow: hidden">
+      {{ unit.typeText | titlecase }}
+    </h6>
+    <h6 class="card-subtitle text-muted">
+      <small> {{ mediaType | titlecase }} </small>
+    </h6>
+  </div>
+</div>
+

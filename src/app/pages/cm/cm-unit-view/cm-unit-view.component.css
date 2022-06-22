@@ -1,0 +1,28 @@
+/* *{
+    font-family:Metropolis ;
+} */
+
+.height-after-header {
+  height: calc(100vh - 100px);
+}
+
+
+/* .sideNav{
+  height: 100vh;
+    background-color: #F7F7F7;
+    width: 113%;
+    position: relative;
+    right:12px;
+    padding-top: 5px;
+} */
+
+.taskbtn{
+    border: transparent;
+    background-color: transparent;
+}
+
+/* .sideMenu{
+    max-height: 120vh;
+    overflow: scroll;
+
+} */

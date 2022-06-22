@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="main-head">
+        <h4>FeedBack</h4>
+    </div>
+    <br>
+
+    <div class="content">
+        <form action="" [formGroup]="feedbackForm" (ngSubmit)="reviewFeedback()">
+            <h6>FeedBack</h6>
+            <mat-form-field class="example-full-width">
+                <mat-label>Please enter the feedback</mat-label>
+                <input matInput id="remark" name="remark" formControlName="remark">
+            </mat-form-field><br><br>
+            <div class="float-right">
+                <button mat-stroked-button mat-dialog-close mat-button
+                    style="letter-spacing: 2px;">Cancel</button>&nbsp;&nbsp;
+                <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

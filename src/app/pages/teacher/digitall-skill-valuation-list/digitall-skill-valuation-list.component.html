@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col">
+    <h4>Please select a skill lesson</h4>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-3" *ngFor="let lesson of digitalLesson">
+    <app-digital-lesson-card
+      [lessonData]="lesson"
+      routerLink="/teacher/digital-skill-evaluation-submissions/{{
+        standardId
+      }}/{{ divisionId }}/{{ lesson._id }}"
+    ></app-digital-lesson-card>
+  </div>
+</div>

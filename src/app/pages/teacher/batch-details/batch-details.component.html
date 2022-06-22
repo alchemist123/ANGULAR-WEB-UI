@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div style="margin-left: 5px;" class="main-head">
+        <h2 >Modules</h2>
+        <span style="font-size: 16px;">Select your modules here.</span>
+    </div>
+    
+</div><br><br><br>
+<!-- <button (click)="enterCode()">Join with batch code</button> -->
+<div class="row "  *ngIf="userType == 'teacher'">
+    
+     <div class="col-md-3" *ngFor="let data of batches">
+      <mat-card class="example-card "  (click)="getInventory(data)" routerLink="/teacher/unit-view/{{data._id}}"  style="margin: 10px; width: 100%; height: 182px; margin-left: 28px;">
+        <br>
+      <div class="lessonName" style="height: 45px; width: 100%; background-color: #007CBB; display: flex; justify-content: flex-start; align-items: center;">
+        <h6 class="ml-2" style="color: white;">{{ data.lessonName | titlecase}}</h6>
+      </div><br>
+       
+        <p >{{ data.description }}</p>
+   
+  </mat-card>
+     </div>
+  
+</div>
+
+<div class="row "  *ngIf="userType == 'student'">
+    
+  <div class="col-md-3" *ngFor="let data of batches">
+   <mat-card class="example-card "  (click)="getInventory(data)" routerLink="/student/unit-view/{{data._id}}"  style="margin: 10px; width: 100%; height: 182px; margin-left: 28px;">
+     <br>
+   <div class="lessonName" style="height: 45px; width: 100%; background-color: #007CBB; display: flex; justify-content: flex-start; align-items: center;">
+     <h6 class="ml-2" style="color: white;">{{ data.lessonName | titlecase}}</h6>
+   </div><br>
+    
+     <p >{{ data.description }}</p>
+
+</mat-card>
+  </div>
+
+</div>
+
+

@@ -1,0 +1,23 @@
+
+
+.main-head{
+    margin: 10px;
+}
+.cards{
+    margin: 12px;
+}
+
+.lessonName{
+    position: absolute;
+    bottom: 138px;
+    right: 0px;
+    left: 0px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px
+}
+
+.lessonName h4{
+   position: relative;
+   left: 15px;
+   top: 8px;
+}

@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col">
+        <h4 style="text-transform: capitalize">
+            Activity Reports
+            <br />
+            <small>Overview of simple activities that students has been working or
+                completed</small>
+        </h4>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card gray-card ">
+        <div class="card-body text-center">
+          <h5>{{overview.totalStudents}}</h5>
+          <p>Total number of students</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card gray-card">
+        <div class="card-body text-center">
+          <h5>{{overview.No_of_stud_attent}}</h5>
+          <p>Total Attendees</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card gray-card">
+        <div class="card-body text-center">
+          <h5>{{overview.No_of_stud_not_attented}}</h5>
+          <p>Yet to attend</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="row mt-4">
+    <div class="col-md-9">
+        <table class="table table-striped">
+            <thead>
+                <th>SI #</th>
+                <th>Student Name</th>
+                <th>Total Steps</th>
+                <th>Total completed steps</th>
+                <th>Completion status</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of answers; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.studentFName }} {{ item.studentLName }}</td>
+                    <td>{{ item.totalSteps }}</td>
+                    <td>{{ item.completedSteps }}</td>
+                    <td>{{ item.completionsStatus }}</td>
+                    <td>
+                        <button class="btn btn-link" (click)="setActivityData(item)"
+                            routerLink="/teacher/detailed-activity-report/{{ item._id }}">
+                            View details
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <div class="card gray-card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Overview</h4>
+                <div class="cart-area">
+                    <canvas id="pieChart" width="400" height="400"></canvas>
+                    <br />
+                    <p>{{ recomendationMessage }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

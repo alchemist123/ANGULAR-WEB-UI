@@ -1,0 +1,184 @@
+/* You can add global styles to this file, and also import other style files
+*/
+.modal-backdrop {
+  z-index: 980 !important;
+}
+
+.modal {
+  z-index: 990 !important;
+}
+
+header {
+  z-index: 960 !important;
+}
+
+.vertical-menu {
+  z-index: 950 !important;
+}
+
+.datepicker {
+  border: 1px solid #ced4da !important;
+}
+
+.ui-datepicker {
+  z-index: 1000 !important;
+}
+
+.card {
+  border-radius: 1.5rem !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.bg-primary {
+  background-color: #007CBB !important;
+}
+
+.btn-primary {
+  background-color: #007CBB !important;
+  border-color: #007CBB !important;
+}
+
+body,
+#page-topbar {
+  background-color: #fff !important;
+}
+
+#sidebar-menu ul li a {
+  color: #393939 !important;
+}
+
+#sidebar-menu ul li a i {
+  color: #393939 !important;
+}
+
+.cut-text {
+  word-wrap: anywhere;
+  word-spacing: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rich-text p {
+  margin-bottom: 5px;
+}
+
+p > img {
+  max-height: 300px;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.gray-card {
+  cursor: pointer;
+  background-color: #f7f8fc !important;
+  box-shadow: none !important;
+}
+
+
+.modal-dialog {
+  width: 360px !important;
+  margin-top: 120px;
+  margin: 30px auto;
+}
+  .modal-content {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  .confirm {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    min-height: 150px;
+  }
+    .content {
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fff !important;
+      font-weight: 700;
+    }
+    .buttons {
+      padding: 10px 15px;
+      float: right;
+    }
+    .buttons > button {
+        margin-right: 10px;
+      }
+
+      .buttons >  .btn-success {
+        color: #fff;
+    background-color: #007CBB;
+    border-color: #007CBB;
+      }
+
+      .buttons > .btn-danger {
+        color: #464646;
+        background-color: #ddd;
+        border-color: #f8f9fa;
+      }
+     
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.info-card-green{
+  background-color: #e0fbe1 !important;
+  border-color: #5cff00 !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+  color: #4e4e4e !important;
+}
+
+.info-card-yellow{
+  background-color: #f8f9cc !important;
+  border-color: #fff100 !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+  color: #4e4e4e !important;
+}
+
+.info-card-blue{
+
+  background-color: #e7ecff !important;
+  border-color: #c7b5f7 !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+  color: #4e4e4e !important;
+}
+
+.info-card-red{
+  background-color: #fdb8b8 !important;
+    border-color: #f35d75 !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    color: #4e4e4e !important;
+}
+
+.feedback-button__container {
+  position: fixed;
+  right: 40px !important;
+  top: calc(100% - 30px) !important;
+  cursor: pointer;
+  -webkit-transform: rotateZ(
+0deg) !important;
+  transform: rotateZ(
+0deg) !important;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  background-color: #3b5560;
+  color: #fff;
+  font-size: 14px;
+  padding: 5px 10px;
+  font-weight: 700;
+  font-family: Verdana;
+  outline: 0;
+}
+

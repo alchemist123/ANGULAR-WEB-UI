@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-9">
+        <h3 style=" font-family:Metropolis ;">List of Classes</h3>
+        <br><br><br>
+       
+        <div class="row">
+            <div *ngFor="let data of classList" class="col-md-3 d-flex" >
+                <div class="card info-card-blue text-center " style="width: 100%">
+                    <div class="card-body" style="cursor: pointer;" (click)="loadChapters(data._id, data.mode)">
+                        <div class="mb-3" style="font-size: 20px; color: #fe6f71">
+                            <i class="fas fa-school pr-3 pt-3 pb-3 pl-3 bg-white rounded"></i>
+                          </div>
+                        <h5 class="mb-1" style="text-transform: uppercase;  font-family:Metropolis ;">
+                             {{ data.standard[0].standards }} - {{ data.division[0].division }}
+                          </h5>
+                        <h6 style="text-transform: capitalize; font-family:Metropolis;" class="text-muted">
+                            {{ data.subject[0].subject }}
+                        </h6>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

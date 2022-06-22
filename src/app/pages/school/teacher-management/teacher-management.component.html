@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col">
+    <h4>
+      Manage teachers<br /><small class="text-muted"
+        >You can add or modify teacher details here.</small
+      >
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="float-right">
+      <button
+        type="button"
+        class="btn btn-primary waves-effect waves-light"
+        data-toggle="modal"
+        data-target="#teacherModal"
+      >
+        <i class="fas fa-plus mr-2"></i> Add teacher
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="float-left">
+          <h4 class="card-title mt-0">List of teachers</h4>
+          <h6 class="card-subtitle font-14 text-muted"></h6>
+        </div>
+        <div class="float-right">
+          <div class="app-search d-none d-lg-block">
+            <div class="position-relative">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search..."
+                [(ngModel)]="query"
+              /><span class="fa fa-search"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="tb">
+            <table class="table table-striped">
+              <thead>
+                <th>SI</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Qualifications</th>
+                <th>Phone number</th>
+                <th>Date of bith</th>
+                <th>Blood Group</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Edit</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let teacher of teachersList | orderBy : ['teacherFirstName'] | searchfilter:query let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>
+                    {{ teacher.teacherFirstName }}
+                    {{ teacher.teacherLastName }}
+                  </td>
+                  <td>{{ teacher.data[0].email }}</td>
+                  <td>{{ teacher.teacherQuli }}</td>
+                  <td>{{ teacher.mobileNumber }}</td>
+                  <td>{{ teacher.dob }}</td>
+                  <td>{{ teacher.bloodGroup }}</td>
+                  <td>{{ teacher.gender }}</td>
+                  <td>{{ teacher.teacherAddress }}</td>
+                  <td>
+                    <button
+                      class="btn"
+                      type="button"
+                      (click)="selectTeacher(teacher)"
+                    >
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /.modal -->
+  <app-add-teacher-modal
+    [selectedTeacher]="currentTeacher"
+    dataTarget="teacherModal"
+    (formSubmitted)="refreshList()"
+  ></app-add-teacher-modal>
+</div>

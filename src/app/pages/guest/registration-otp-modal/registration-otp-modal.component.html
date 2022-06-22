@@ -1,0 +1,26 @@
+<div class="otpmodal">
+    <div class="mt-5">
+        <h3 style="margin-left: 20px;">Verify Email Id</h3>
+        <h6 style="margin-left: 20px;">Please verify the email</h6>
+    </div>
+
+    <div class="content">
+        <h6>We have send an OTP to the email id <a href="">{{email}}</a>. Please enter the otp below to verify the email id.</h6>
+
+    </div>
+    <br>
+    <div class="textfld">
+        <form action="" [formGroup]="otpForm" (ngSubmit)=" emailVerify()">
+            <mat-form-field class="example-full-width" >
+                <mat-label>Please enter the OTP</mat-label>
+                <input matInput id="otp" name="otp" formControlName="otp">
+            </mat-form-field>
+            <br><br>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <button type="submit" class="verifybtn2" mat-raised-button color="primary" style="letter-spacing: 2px; width: 80%;">VERIFY</button>
+             </div>
+        </form>
+    </div>
+    
+     
+</div>

@@ -1,0 +1,170 @@
+<div
+  id="{{ dataTarget }}"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mt-0" id="myModalLabel">
+          Add teachers <br /><small class="text-muted"
+            >Enter the teacher details below.</small
+          >
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+      </div>
+      <form [formGroup]="teacherForm" (validSubmit)="addOrUpdateTeacher()">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="firstName">First name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                formControlName="teacherFirstName"
+                placeholder="Enter first name of the student"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="lastName">Last name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                formControlName="teacherLastName"
+                placeholder="Enter last name of the student"
+              />
+            </div>
+            <div class="form-group">
+              <label>Date of birth</label>
+              <div>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    #dobPicker
+                    [ngModel]="dob"
+                    (blur)="dob = dobPicker.value"
+                    class="form-control"
+                    placeholder="dd/mm/yyyy"
+                    formControlName="dob"
+                    id="datepicker"
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text"
+                      ><i class="mdi mdi-calendar"></i
+                    ></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                placeholder="Enter email id of the student"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="mob">Mobile number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="mob"
+                formControlName="mobileNumber"
+                placeholder="Enter mobile number of the student"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="gender">Gender</label>
+              <select id="gender" formControlName="gender" class="form-control">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="bg">Blood group</label>
+              <select id="bg" formControlName="bloodGroup" class="form-control">
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="O+">O+</option>
+                <option value="AB+">AB+</option>
+                <option value="A-">A-</option>
+                <option value="B-">B-</option>
+                <option value="O-">O-</option>
+                <option value="AB-">AB-</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="qualifications">Qualifications</label>
+              <textarea
+                class="form-control"
+                id="qualifications"
+                formControlName="teacherQuli"
+                placeholder="Teacher qualifications"
+              ></textarea>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="address">Address</label>
+              <textarea
+                id="address"
+                class="form-control"
+                placeholder="Enter the address of the teacher"
+                formControlName="teacherAddress"
+              ></textarea>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  formControlName="permission"
+                  id="contentUploadPermission"
+                  checked
+                />
+                <label class="form-check-label" for="contentUploadPermission">
+                  Has permission for content upload?
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary waves-effect"
+            data-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary waves-effect waves-light"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,91 @@
+<div class="row mt-4 text-center">
+  <div class="col">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4>{{ reportData[0]?.no_Of_Qns }}</h4>
+        <h6 class="text-muted">Total number of questions</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-primary">{{ this.reportData[0]?.attend }}</h4>
+        <h6 class="text-muted">Attempted Questions</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-success">{{ this.reportData[0]?.correct }}</h4>
+        <h6 class="text-muted">Correct Answers</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-danger">{{ this.reportData[0]?.worong }}</h4>
+        <h6 class="text-muted text-danger">Wrong Answers</h6>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row text-center">
+  <div class="col">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-success">
+          {{ this.reportData[0]?.correct_prev }} out of
+          {{ this.reportData[0]?.total_prev_knowledge }}
+        </h4>
+        <h6 class="text-muted text-danger">
+          Correct answers from previous knwoledge
+        </h6>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-danger">
+          {{ this.reportData[0]?.wrong_prev }} out of
+          {{ this.reportData[0]?.total_prev_knowledge }}
+        </h4>
+        <h6 class="text-muted text-danger">
+          Wrong answers from previous knwoledge
+        </h6>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-success">
+          {{ this.reportData[0]?.correct_curr }} out of
+          {{ this.reportData[0]?.total_curr_knowledge }}
+        </h4>
+        <h6 class="text-muted text-danger">
+          Correct answers from current knwoledge
+        </h6>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-danger">
+          {{ this.reportData[0]?.wrong_curr }} out of
+          {{ this.reportData[0]?.total_curr_knowledge }}
+        </h4>
+        <h6 class="text-muted text-danger">
+          Wrong answers from current knwoledge
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>

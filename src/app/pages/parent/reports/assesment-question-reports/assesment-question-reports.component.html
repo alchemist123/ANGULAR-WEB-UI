@@ -1,0 +1,20 @@
+<h4 *ngIf="lessonType == '19'">Pre assessment reports</h4>
+<h4 *ngIf="lessonType == '20'">Post assessment reports</h4>
+<h4 *ngIf="lessonType == '18'">Self assessment reports</h4>
+<app-parent-breadcrumb></app-parent-breadcrumb>
+
+<div *ngIf="reportData.length > 0">
+  <app-student-mark-details
+    *ngIf="lessonType == '19' || lessonType == '20'"
+    [reportData]="reportData"
+  ></app-student-mark-details>
+
+  <app-self-assesment-reports
+    [reportData]="reportData[0]"
+    *ngIf="lessonType == '18'"
+  ></app-self-assesment-reports>
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <h4>{{data}}</h4>
+</div>

@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col">
+    <div class="float-left">
+      <h4>
+        Reports<br /><small class="text-muted"
+          >You can view students answers for your questions/activities
+          here.</small
+        >
+      </h4>
+    </div>
+  </div>
+</div>
+<app-breadcrumb [lessonId]="lessonId"></app-breadcrumb>
+<br /><br />
+
+<div class="row equal">
+  <div class="col-md-3 d-flex">
+    <div
+      class="card gray-card"
+      routerLink="/teacher/overview-marks/{{ lessonId }}/19"
+    >
+      <div class="card-body mt-2 mb-3 text-center">
+        <img
+          class="img-icon"
+          src="assets/images/characters/pre_assesment.svg"
+        />
+
+        <h4 class="card-title mt-3">Pre Assessment</h4>
+        <p>
+          Report shows the level of knowledge of the student about the topics
+          and concepts included in the lesson; before the lesson is being
+          taught. Also looks into the level of knowledge about previous lessons
+          including that of earlier classes.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 d-flex">
+    <div
+      class="card gray-card"
+      routerLink="/teacher/understanding-question-report-overview/{{
+        lessonId
+      }}"
+    >
+      <div class="card-body mt-2 mb-3 text-center">
+        <img
+          class="img-icon"
+          src="assets/images/characters/self_assesment.svg"
+        />
+        <h4 class="card-title mt-3">Self Assessment</h4>
+        <p>
+          Report shows the level of understanding of the topic or concept taught
+          in the lesson. Whether the student is able to answer by himself or
+          takes the help of the teacher is understood here.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 d-flex">
+    <div
+      class="card gray-card"
+      routerLink="/teacher/activity-list/{{ lessonId }}"
+    >
+      <div class="card-body mt-2 mb-3 text-center">
+        <img
+          class="img-icon"
+          src="assets/images/characters/peer_assesment.svg"
+        />
+        <h4 class="card-title mt-3">Activity Assessment</h4>
+        <p>
+          Report shows the engagement of students in an activity. Also
+          understands if he is a peer able to assess others or not.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 d-flex">
+    <div
+      class="card gray-card"
+      routerLink="/teacher/overview-marks/{{ lessonId }}/20"
+    >
+      <div class="card-body mt-2 mb-3 text-center">
+        <img
+          class="img-icon"
+          src="assets/images/characters/post_assesmnt.svg"
+        />
+        <h4 class="card-title mt-3">Post Assessment</h4>
+        <p>
+          Report shows the level of knowledge acquired after completing the
+          lesson including activities. This is the final report on the lesson.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

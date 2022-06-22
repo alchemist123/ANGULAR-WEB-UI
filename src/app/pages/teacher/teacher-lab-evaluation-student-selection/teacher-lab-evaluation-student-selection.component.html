@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2 >{{taskName | titlecase}}</h2>
+        
+        <span style="font-size: 16px;">Please select a student from the list to evaluate.</span>
+    </div>
+</div><br><br><br><br>
+
+
+<div class="row">
+    <div class="col-md-12">
+         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="No">
+              <th mat-header-cell *matHeaderCellDef> No </th>
+              <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
+            </ng-container>
+          
+
+            <ng-container matColumnDef="Name">
+              <th mat-header-cell *matHeaderCellDef class="text-center"> Student Name </th>
+              <td mat-cell *matCellDef="let element" class="text-center" style="text-transform: capitalize"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="completed challenges">
+              <th mat-header-cell *matHeaderCellDef class="text-center"> Completed Task </th>
+              <td mat-cell *matCellDef="let element" class="text-center"> {{element.completedTask}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="pending challenges">
+              <th mat-header-cell *matHeaderCellDef class="text-center"> Pending Review </th>
+              <td mat-cell *matCellDef="let element" class="text-center"> {{element.pending}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="total challenges">
+                <th mat-header-cell *matHeaderCellDef class="text-center"> Total Task </th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.totalTask}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status" >
+                <th mat-header-cell *matHeaderCellDef class="text-center"> Status/Action </th>
+                <td mat-cell *matCellDef="let element" class="text-center" style="text-transform: capitalize"  > <p (click)="student(element)" routerLink="/teacher/teacher-evaluation-task-content/{{ courseId }}/{{ element.studentId }}"  style="color: #007CBB; cursor: pointer;">Review</p> </td>
+                <td mat-cell *matCellDef="let element" class="text-center" style="text-transform: capitalize" > <p  (click)="student(element)"routerLink="/teacher/teacher-evaluation-task-content/{{ courseId }}/{{ element.studentId }}" *ngIf="element.status" style="color:#06982F; cursor: pointer;"> Reviewed and Accepted</p> </td>
+
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-9">
+        <h3>List of Lessons</h3>
+        <br>
+        
+    </div>
+</div>
+
+<div class="row">
+    <div *ngFor="let lesson of chapterList | sortBy: 'asc':'lessonNumber' as result;" class="col-md-3" >
+        <div class="card text-center" style="background-color: rgb(240, 237, 234);">
+            <div class="card-body" style="cursor: pointer;" routerLink="/teacher/bookView/{{lesson._id}}">
+                <div class="mb-3" style="font-size: 25px; color: #b44143"></div>
+                <h6 class="mb-1" style="text-transform: uppercase"> {{lesson.lessonName}}
+              </h6>
+                <h6 style="text-transform: capitalize" class="text-muted"> {{lesson.lessonNumber}}
+
+                </h6>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

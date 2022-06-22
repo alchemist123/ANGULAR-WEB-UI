@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col">
+    <h4>Detailed Activity Report</h4>
+    <div *ngIf = "status == '2'">
+      <button (click)="reviewActivityReject()" mat-raised-button color="warn" class="float-right">Reject</button>
+      <button (click)="reviewActivityAccept()" mat-raised-button color="primary" class="float-right" style="position: relative; right: 10px;">Accept</button>
+    </div>
+    <div  class="alert alert-success" role="alert" *ngIf = "status == '1' || status == 'ok'">
+     You have accepted this activity.
+    </div>
+
+    <div  class="alert alert-danger" role="alert" *ngIf = "status == '2'">
+      You have rejected this activity.
+     </div>
+   
+    <div *ngIf = "status == '0'">
+      <button (click)="reviewActivityReject()" mat-raised-button color="warn" class="float-right">Reject</button>
+      <button (click)="reviewActivityAccept()" mat-raised-button color="primary" class="float-right" style="position: relative; right: 10px;">Accept</button>
+    </div>
+
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-12" *ngIf="type!=='17'">
+    <b>Description</b>:
+    <span [innerHTML]="activityDetails?.actQns?.description"></span>
+    <br />
+    <b>Materials</b>:
+    <span [innerHTML]="activityDetails?.actQns?.materials"></span>
+    <br />
+    <b>Objective</b>:
+    <span [innerHTML]="activityDetails?.actQns?.objective"></span>
+  </div>
+  <div class="col-12"  *ngIf="type!=='17'">
+    <h6>Steps</h6>
+    <table class="table table-striped">
+      <thead>
+        <th># SI</th>
+        <th>Step</th>
+        <th>Your Instructions</th>
+        <th>Student's Input</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let steps of activityDetails?.actQns?.steps; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ i + 1 }}</td>
+          <td><div [innerHtml]="steps"></div></td>
+          <td><div [innerHtml]="activityDetails.ans.observations"></div></td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 mt-4">
+    <h6>Observation by student:</h6>
+    <span [innerHTML]="activityDetails.ans.observations"></span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 mt-4">
+    <h6>Interpretation by student:</h6>
+    <span [innerHTML]="activityDetails.ans.interpretation"></span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 mt-4">
+    <h6>Measurement by student:</h6>
+    <span [innerHTML]="activityDetails.ans.measurement"></span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 mt-4">
+    <h6>Analysis by student:</h6>
+    <span [innerHTML]="activityDetails.ans.analysis"></span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 mt-4">
+    <h6>Conclusion by student:</h6>
+    <span [innerHTML]="activityDetails.ans.conclusion"></span>
+  </div>
+</div>

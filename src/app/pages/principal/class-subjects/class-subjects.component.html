@@ -1,0 +1,15 @@
+<div class="row mb-3">
+    <div class="col"><h4>Subjects in the class</h4></div>
+</div>
+
+<div class="row">
+    <div class="col-md-3" *ngFor="let subject of subjects">
+        <div class="card gray-card" (click)="onSubjectSelected(subject._id, subject.mode)">
+            <div class="card-body text-center">
+                <h4 style="text-transform: uppercase;">{{subject['subject'][0].subject}}</h4>
+                <h5 style="text-transform: uppercase;" class="text-muted">{{subject['subject'][0].type}}</h5>
+                <p  style="text-transform: uppercase; font-weight: 500;"> {{subject['teacher'][0].teacherFirstName}} {{subject['teacher'][0].teacherLastName}}</p>
+            </div>
+        </div>
+    </div>
+</div>

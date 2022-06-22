@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col">
+    <h4>Detailed Report</h4>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col">
+    <table class="table table-striped">
+      <thead>
+        <th># SI</th>
+        <th>Question</th>
+        <th>Question Type</th>
+        <th>Student's Answer</th>
+        <th>Correct Answer</th>
+        <th>Status</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ans of detailedAnswers; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td><div [innerHtml]="ans.Question"></div></td>
+          <td>{{ ans.Qtype }}</td>
+          <td><div [innerHtml]="ans.studentAns"></div></td>
+          <td><div [innerHtml]="ans.correctAns"></div></td>
+          <td>{{ ans.status }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

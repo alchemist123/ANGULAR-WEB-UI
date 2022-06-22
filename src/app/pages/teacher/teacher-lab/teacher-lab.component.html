@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div style="margin-left: 5px;" class="main-head">
+        <h2 >Batches</h2>
+        
+        <span style="font-size: 16px;">Select your batch here.</span>
+    </div>
+    
+</div><br>
+<div class="float-right">
+          
+  <div>
+    <button *ngIf = "labMentor"  mat-flat-button color="accent" routerLink="/teacher/teacher-lab-evaluation">Course Evaluation</button>&nbsp;&nbsp;
+    <button *ngIf = "labMentor"  mat-flat-button color="primary" routerLink="/teacher/teacher-batch-manage">Batch Manage</button>&nbsp;&nbsp;
+  </div>
+</div>
+<br><br><br>
+
+<div class="row " *ngIf="userType == 'teacher'">
+    
+  <div class="col-md-3" *ngFor="let course of courseList">
+    <mat-card class="example-card "   routerLink="/teacher/teacher-batch/{{course._id}}" style="margin: 10px; width: 100%; height: 182px; margin-left: 28px;">
+      <br>
+    <div class="lessonName" style="height: 45px; width: 100%; background-color: #007CBB; display: flex; justify-content: flex-start; align-items: center;">
+      <h6 class="ml-2" style="color: white; ">{{ course.batchName | titlecase}}</h6>
+    </div><br>
+     
+      <p >{{ course.description }}</p>
+ 
+</mat-card>
+  </div>
+  
+</div>
+
+<div class="row " *ngIf="userType == 'student'">
+    
+  <div class="col-md-3" *ngFor="let course of courseList">
+    <mat-card class="example-card "   routerLink="/student/student-batch/{{course._id}}" style="margin: 10px; width: 100%; height: 182px; margin-left: 28px;">
+      <br>
+    <div class="lessonName" style="height: 45px; width: 100%; background-color: #007CBB; display: flex; justify-content: flex-start; align-items: center;">
+      <h6 class="ml-2" style="color: white; ">{{ course.batchName | titlecase}}</h6>
+    </div><br>
+     
+      <p >{{ course.description }}</p>
+ 
+</mat-card>
+  </div>
+  
+</div>
+
+

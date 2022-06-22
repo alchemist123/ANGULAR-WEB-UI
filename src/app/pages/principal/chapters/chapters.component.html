@@ -1,0 +1,16 @@
+<div class="row mb-3">
+    <div class="col"><h4>Please select a chapter to view its contents</h4></div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 d-flex"  *ngFor="let chapter of lessons ">
+        <div class="card info-card-blue" style="cursor: pointer;">
+            <div class="card-body text-center"  routerLink="/principal/bookView/{{chapter.lessonId}}">
+                <h5>{{chapter.lesson[0].lessonName}}</h5>
+                <p>Chapter - {{chapter.lesson[0].lessonNumber}}</p>
+                <p *ngIf="chapter.lesson[0].status" class="text-success">Published</p>
+                <p *ngIf="!chapter.lesson[0].status" class="text-danger">Yet to Publish</p>
+            </div>
+        </div>
+    </div>
+</div>

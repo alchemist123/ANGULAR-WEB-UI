@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col">
+    <h4>Please select a chapter to continue</h4>
+    <app-parent-breadcrumb></app-parent-breadcrumb>
+  </div>
+</div>
+<div class="row">
+  <div
+    class="col-md-3"
+    *ngFor="let chapter of lessonList | sortBy: 'asc':'lessonNumber' as result; let i = index"
+    (click)="selectLesson(i)"
+  >
+    <app-chapter-card [chapter]="chapter"></app-chapter-card>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2>Reject this task</h2>
+        
+    </div><br>
+
+    <div class="content">
+        <form action="" [formGroup] = "feedbackForm" (ngSubmit)="reviewLabTaskReject()">
+                <h6>FeedBack</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter the feedback here</mat-label>
+                    <input matInput id="feedback" name="feedback" formControlName="feedback">
+                  </mat-form-field>
+                  <br><br>
+                  <div class="float-right">
+                    <button mat-stroked-button mat-dialog-close mat-button style="letter-spacing: 2px;">Cancel</button>&nbsp;&nbsp;
+                    <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Reject</button>
+                  </div>
+                  
+        </form>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12">
+        <h6>Teacher Level Up</h6>
+        <small class="text-muted"></small>
+    </div>
+</div>
+<br>
+<div class="ro">
+    <div>
+        <form action="" [formGroup]="levelUPForm" (ngSubmit)="assignLevels()">
+            <mat-form-field appearance="outline">
+                <mat-label>Select school</mat-label>
+                <mat-select id="school" formControlName="school" (selectionChange)="onSelect($event.value)">
+                  <mat-option  *ngFor = "let data of school"  [value]="data.userId">
+                   {{ data.schoolName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>&nbsp;&nbsp;
+                   
+              <mat-form-field appearance="outline">
+                <mat-label>Select teacher</mat-label>
+                <mat-select id="teacher" formControlName="teacher">
+                  <mat-option *ngFor = "let data of teachers" [value]="data.userId">
+                   {{ data.teacherFirstName }} {{ data.teacherLastName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>&nbsp;&nbsp;
+
+              <mat-form-field appearance="outline">
+                <mat-label>Select level</mat-label>
+                <mat-select id="level" formControlName="level">
+                  <mat-option   [value]="2">Gold</mat-option> 
+                  <mat-option   [value]="1">Silver</mat-option> 
+                  <mat-option   [value]="0">Bronze</mat-option> 
+                  
+                </mat-select>
+              </mat-form-field>&nbsp;&nbsp;
+              <!-- <mat-form-field appearance="outline">
+                <mat-label>Select Ambassador</mat-label>
+                <mat-select id="type" formControlName="type">
+                  <mat-option   [value]="0">Teacher </mat-option>
+                  <mat-option   [value]="1">Student </mat-option>
+                 
+                </mat-select>
+              </mat-form-field> -->
+              <br>
+              <div>
+                <button type="submit"  class="btn-primary float-right" mat-button="yes" >Submit</button>
+                <button  class="float-right"  mat-stroked-button color="primary" mat-button matDialogClose="no" style="position: relative; right: 10px;">Close</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                
+              </div>
+
+        </form>
+    </div>
+</div>
+

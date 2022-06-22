@@ -1,0 +1,119 @@
+<div class="row">
+    <div class="col-8">
+      <h4>Create/ Edit Experiential Activities</h4>
+    </div>
+  <div class="col-4">
+            <button class="btn btn-danger" *ngIf="contentId!=undefined" (click)="deleteContent()">Delete this activity</button>
+  </div> 
+  </div>
+
+
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="form-group mt-4 mb-4">
+        <h5>Activity title</h5>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="activityTitle"
+          placeholder="Please enter activity title"
+        />
+      </div>
+      <br />
+      <div class="form-group">
+        <h5>Concept</h5>
+        <p>Explain the concept which will be used in this activity</p>
+
+        <app-text-editor
+          [id]="'activityObjective'"
+          (onUpdate)="setActivityConcept($event)"
+          [content]="concept_"
+        ></app-text-editor>
+      </div>
+      <br/>
+      <h4>Stages</h4>
+      <section class="mt-5">
+          <h5>Stage 1: Experiencing</h5>
+          <p>Students try to experience the understanding of the concept in real life. <br/>Lists out what went wrong and what was practiced in the correct manner.</p>
+          <label>Your Instructions</label>
+          <div *ngFor="let step of stages_['stage_1']; let i = index">
+              <label>State 1: Instruction {{i+1}}</label>
+              <app-text-editor
+              id="stage_1_{{i}}"
+              (onUpdate)="updateInstruction('stage_1', i, $event)"
+              [content]="stages_['stage_1'][i]"
+            ></app-text-editor>
+              <br/>
+          </div>
+          <button type="button" (click)="addInstruction('stage_1')" class="btn btn-primary">Add new Instruction</button>
+  
+      </section>
+
+      <section class="mt-5">
+        <h5>Stage 2: Reflecting</h5>
+        <p>Students reflect (think) to find out the reasons for the wrong practices and observe them. <br/>Reflects on the concept. <br/> Lists down measurements to correct them.</p>
+        <label>Your Instructions</label>
+        <div *ngFor="let step of stages_['stage_2']; let i = index">
+            <label>State 2: Instruction {{i+1}}</label>
+            <app-text-editor
+              id="stage_2_{{i}}"
+              (onUpdate)="updateInstruction('stage_2', i, $event)"
+              [content]="stages_['stage_2'][i]"
+            ></app-text-editor>
+            <br/>
+        </div>
+        <button type="button" (click)="addInstruction('stage_2')" class="btn btn-primary">Add new Instruction</button>
+
+    </section>
+
+    <section class="mt-5">
+        <h5>Stage 3: Thinking ( Abstract Conceptualisation)</h5>
+        <p>Students Tries to repeat the activity with proper corrections. <br/>Observes the results due to correction.
+            <br/>Understand the real application of the concept.</p>
+            <label>Your Instructions</label>
+            <div *ngFor="let step of stages_['stage_3']; let i = index">
+                <label>State 3: Instruction {{i+1}}</label>
+                <app-text-editor
+                id="stage_3_{{i}}"
+                (onUpdate)="updateInstruction('stage_3', i, $event)"
+                [content]="stages_['stage_3'][i]"
+              ></app-text-editor>
+                <br/>
+            </div>
+            <button type="button" (click)="addInstruction('stage_3')" class="btn btn-primary">Add new Instruction</button>
+    
+    </section>
+
+    <section class="mt-5">
+        <h5>Stage 4: Practicing</h5>
+        <p>Practice the concept in the right manner in real life.
+            <br/>
+            Observes the real outcome. <br/>
+            Understands the application of the concept. <br/>
+            Able to answer any question related to the concept.
+        </p>
+        <label>Your Instructions</label>
+        <div *ngFor="let step of stages_['stage_4']; let i = index">
+            <label>State 4: Instruction {{i+1}}</label>
+            <app-text-editor
+            id="stage_4_{{i}}"
+            (onUpdate)="updateInstruction('stage_4', i, $event)"
+            [content]="stages_['stage_4'][i]"
+          ></app-text-editor>
+            <br/>
+        </div>
+        <button type="button" (click)="addInstruction('stage_4')" class="btn btn-primary">Add new Instruction</button>
+    </section>
+    </div>
+</div> 
+
+<div class="row mt-3">
+    <div class="col-12"> 
+        <div class="">
+        <button class="btn btn-lg btn-block btn-success" (click)="saveActivity()">Save activity</button>
+        <br/>
+        <br/>
+    </div>
+    </div>
+</div>

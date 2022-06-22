@@ -1,0 +1,288 @@
+
+<div class="account-pages">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div
+          class="row justify-content-center align-items-center"
+          style="height: 100vh">
+          
+          <div class="col-8">
+            <div class="">
+              <div class="logo-section">
+                <!-- <img
+                  src="assets/images/characters/login_chr.svg"
+                  style="width: 120px"
+                /> -->
+              </div>
+              <br /><br /><br />
+              <div class="sign-in-title mb-4">
+                <h4>
+                  Sign in <br />
+                  <small class="text-muted"
+                    >Please sign in to continue with stemclass.</small
+                  >
+                </h4>
+              </div>
+              <div class="mt-5">
+                <div class="">
+                  <form
+                    class="form-horizontal mt-4"
+                    [formGroup]="loginForm"
+                    (validSubmit)="login()">
+                    
+                    <div class="form-group">
+                      <label for="username">Email</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="username"
+                        formControlName="email"
+                        placeholder="Enter email id"
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="userpassword">Password</label>
+                      <div class="input">
+                        <input
+                        type="password"
+                        class="form-control"
+                        id="userpassword"
+                        formControlName="password"
+                        placeholder="Enter password"
+                        [type]="hide? 'password' : 'text'" />
+
+                      <span class="material-icons"  (click)="hide=!hide">
+                        {{hide? 'visibility' : 'visibility_off'}}
+                        </span>
+                      </div>
+                      
+                    </div>
+                    <div class="form-group">
+                      <small class="text-danger">{{ sererResponse }}</small>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-6">
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            id="customControlInline"
+                          />
+                          <label
+                            class="custom-control-label"
+                            for="customControlInline"
+                            >Remember me</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-sm-6 text-right">
+                        <button
+                          class="
+                            btn btn-primary
+                            w-md
+                            waves-effect waves-light
+                            btn-block
+                          "
+                          type="submit"
+                        >
+                          Log In
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="form-group mt-2 mb-0 row">
+                      <div class="col-12 mt-4">
+                        <a routerLink="./forgot-password"
+                          ><i class="mdi mdi-lock"></i> Forgot your password?</a
+                        >
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+             <hr/>
+            <br><br>
+            <div class="row">
+              <div class="col-md-12">
+                <h4>Sign Up Here</h4>
+              </div>
+          
+            </div>
+            <br>
+              
+                <div>
+                  <h5>Create a student account using class code </h5>
+                </div>
+                <form class="example-form" [formGroup]="classCodeForm" (validSubmit)="classCode()">
+                  <div>
+                    <h6 class="text-muted">Join With Class Code</h6>
+                    <mat-form-field class="example-full-width" >
+                      <mat-label>6 digit joining code</mat-label>
+                      <input matInput id="classCode" formControlName="classCode">
+                    </mat-form-field>
+                  </div>
+                  <div class="codebtn">
+                    <button type="submit"  class="btn-primary float-right" mat-button style="letter-spacing: 2px;">CONTINUE</button>
+                  </div>
+                </form>
+                
+              <br>
+
+            <div class="sign-up-link">
+              <h4>
+                Sign up <br />
+                <small class="text-muted"
+                  >Create an account for your school.</small
+                >
+              </h4>
+              <p class="text-dark">
+                <a
+                  routerLink="/school-register"
+                  class="font-weight-medium text-white btn btn-success btn-block"
+                >
+                  Register
+                </a>
+              </p>
+              <br/>
+              <br/>
+              <p class="mb-0 mt-4 text-dark">©2022 steamcube.in</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7" >
+        <!-- <div class="bot" style="height: 110px; width: 300px;">
+           <df-messenger
+            chat-icon="assets/images/chatbot.png"
+            intent="WELCOME"
+            chat-title="Ask me"
+            agent-id="a7be7e37-a5e7-4622-89b2-7966185c523c"
+            language-code="en">
+           </df-messenger>
+          </div> -->
+        <div class="bg-gradient"></div>
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <img src="assets/images/steam-cube-logo-white.png" style="width:15%" />
+          </div>
+          <div class="col-12 text-center">
+            <img src="assets/images/StemClass-text.svg" style="width:40%" />
+            <br/>
+            <h6 class="text-white">Preparing for Second machine Age</h6>
+          </div>
+          <div class="col-12 text-center mt-5">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="img-fluid" src="/assets/images/login-images/science.svg" alt="First slide">
+                  
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+        
+                  <div class="carousel-caption d-none d-md-block">
+                  
+                    <h4>Science</h4>
+                    <p>Fostering Scientific Temperament in Learners</p>
+                  </div>
+                </div>
+          <div class="carousel-item ">
+                  <img class="img-fluid" src="/assets/images/login-images/technology.svg" alt="First slide">
+                  
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+        
+                  <div class="carousel-caption d-none d-md-block">
+                  
+                    <h4>Technology</h4>
+                    <p>Practicing 4.0 technologies while learning</p>
+                  </div>
+          
+          
+                </div>
+                <div class="carousel-item ">
+                  <img class="img-fluid" src="/assets/images/login-images/engineering.svg" alt="First slide">
+                  
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+        
+                  <div class="carousel-caption d-none d-md-block">
+                  
+                    <h4>Engineering</h4>
+                    <p>Practicing Computational and designing skills along with coding
+                    </p>
+                  </div>
+          
+          
+                </div> 
+                
+                
+                <div class="carousel-item ">
+                  <img class="img-fluid" src="/assets/images/login-images/arts.svg" alt="First slide">
+                  
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+        
+                  <div class="carousel-caption d-none d-md-block">
+                  
+                    <h4>Arts</h4>
+                    <p>Integrating Arts with Design Tools</p>
+                  </div>
+                </div>
+                <div class="carousel-item ">
+                  <img class="img-fluid" src="/assets/images/login-images/maths.svg" alt="First slide">
+                  
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+        
+                  <div class="carousel-caption d-none d-md-block">
+                  
+                    <h4>Maths</h4>
+                    <p>Learning Maths with tools and integrating with other disciplines</p>
+                  </div>
+                </div>
+              </div>
+              <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

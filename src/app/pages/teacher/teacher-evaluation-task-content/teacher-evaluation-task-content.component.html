@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2>{{ taskName | titlecase}}</h2>
+
+        <span style="font-size: 16px;"></span>
+    </div>
+</div><br><br><br><br>
+
+<div class="row">
+    <div class="col-md-4">
+        <div style="padding-left: 40px; padding-right: 40px;">
+            <app-teacher-evaluation-student-data (click)="liststudSubmissions()">
+
+            </app-teacher-evaluation-student-data>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div style="padding-left: 40px; padding-right: 40px;">
+            <mat-card *ngFor="let data of task" style="background-color: #F5F5F5;">
+                <div style="padding: 30px; ">
+                    <div *ngFor="let task of data['task']">
+                        <h4>{{ task.taskName | titlecase}}</h4>
+                        <p>{{ task.instruction }}</p>
+                    </div>
+                    <div>
+                        <a  > <button (click)="openFile()" mat-button
+                                style=" border: transparent; background-color: transparent; color: #007CBB;">View the
+                                file</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a> <button (click)="openSourceCode()" mat-button
+                                style=" border: transparent; background-color: transparent; color: #007CBB;">View source
+                                code</button>
+                        </a>
+                    </div><br>
+                    <div>
+                        <h6>{{ StudentName }}'s Comment</h6>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.comment }}</p>
+                    </div>
+                    <br>
+                    <div class="float-right"  *ngIf="status=='0'">
+                        <button mat-stroked-button  (click)="taskData2(data)"
+                            style="letter-spacing: 2px;">Reject</button>&nbsp;&nbsp;
+                        <button (click)="taskData(data)" type="submit" class="btn-primary " mat-button
+                            style="letter-spacing: 2px;">Approve</button>
+                    </div>
+                    <div style="display: flex; justify-content: center;align-items: center; color: rgba(104, 63, 14, 0.675);" *ngIf="status=='2'">
+                        <h5>Content is Rejected</h5>
+                    </div>
+                    <div style="display: flex; justify-content: center;align-items: center; color: rgba(104, 63, 14, 0.675);" *ngIf="status=='0'">
+                        <h5>Content is Pending</h5>
+                    </div>
+                    <div style="display: flex; justify-content: center;align-items: center; color: rgb(236, 136, 15);" *ngIf="status=='1'">
+                        <h5>Content is reviwed</h5>
+                    </div>
+                   
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

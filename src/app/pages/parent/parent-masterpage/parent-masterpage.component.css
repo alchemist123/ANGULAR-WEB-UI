@@ -1,0 +1,11 @@
+.vertical-menu,
+.navbar-brand-box {
+  background-color: #fff !important;
+}
+
+li:active{
+  background-color: #8e97d5;
+}
+.active{
+  background-color: #8e97d5;
+}

@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col">
+    <h3>Digital board</h3>
+    <p>
+      You can choose any one of the following tools to add new
+      <b> {{ forText }} </b>
+    </p>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-3">
+    <div
+      class="card border"
+      [routerLink]="'/teacher/google-slide-create/' + lessonId + '/' + type"
+    >
+      <div class="card-body">
+        <img height="80" class="mb-3" src="assets/images/tool-icons/1.png" />
+        <h5>Google slide</h5>
+        <p>
+          You can create slide with google and paste the google slide link here
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div
+      class="card border"
+      [routerLink]="'/teacher/rich-text-editor/' + lessonId + '/' + type"
+    >
+      <div class="card-body">
+        <img height="80" class="mb-3" src="assets/images/tool-icons/3.png" />
+        <h5>Wordpad</h5>
+        <p>
+          You can create articles with out inbuilt notepad here. You can add
+          images, tables, etc..
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3" *ngIf="type!=='17'">
+    <div
+      class="card border"
+      [routerLink]="'/teacher/pdf-file-uploader/' + lessonId + '/' + type"
+    >
+      <div class="card-body">
+        <img height="80" class="mb-3" src="assets/images/tool-icons/2.png" />
+        <h5>PDF file</h5>
+        <p>
+          You can upload PDF file here. You can create PDF file using any PDF
+          tools available.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col-md-3">
+    <div
+      class="card border"
+      [routerLink]="'/teacher/q-and-a/' + lessonId + '/' + type"
+    >
+      <div class="card-body">
+        <img height="80" class="mb-3" src="assets/images/tool-icons/7.png" />
+        <h5>Q & A</h5>
+        <p>You can create questionnaire.</p>
+      </div>
+    </div>
+  </div> -->
+  <div class="col-md-3" *ngIf="type!=='17'">
+    <div
+      class="card border"
+      [routerLink]="'/teacher/adobe-spark/' + lessonId + '/' + type"
+    >
+      <div class="card-body">
+        <img height="80" class="mb-3" src="assets/images/tool-icons/0.png" />
+        <h5>Adobe Spark</h5>
+        <p>You can add adobe spark presentations here.</p>
+      </div>
+    </div>
+  </div>
+</div>

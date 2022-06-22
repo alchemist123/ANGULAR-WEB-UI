@@ -1,0 +1,18 @@
+.modal-content{
+    width: 750px;
+    height: 455px;
+    position: absolute;
+    left: -190px;
+  }
+  
+  @media (max-width:767px){
+  
+    .modal-content{
+        width: 300px;
+        height: 930px;
+        position: absolute;
+        left: 4px;
+    }
+
+
+  }

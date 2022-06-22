@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-12">
+    <h4>
+      Digital skills<br /><small
+        >List of digital skills added by yourself.</small
+      >
+    </h4>
+  </div>
+  <div class="col-12">
+    <button
+      class="btn btn-primary float-right"
+      routerLink="/cm/create-new-skill"
+    >
+      Add new skill
+    </button>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-3" *ngFor="let skill of digtialSkills">
+    <app-digital-lesson-card
+      [lessonData]="skill"
+      routerLink="/cm/skill-content-list/{{ skill._id }}"
+    ></app-digital-lesson-card>
+  </div>
+</div>

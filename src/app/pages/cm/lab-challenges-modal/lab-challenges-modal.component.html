@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2>Create new challenge</h2>
+        <span>You can create new challenge here.</span>
+    </div><br>
+
+    <div class="content">
+        <form action="" [formGroup]="challengeForm" (ngSubmit)="createChallenge()">
+            <h6>Challenge Name</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter challenge name</mat-label>
+                    <input matInput id="challengeName" name="challengeName" formControlName="challengeName">
+                  </mat-form-field>
+                  <br><br>
+                  <h6>Challenge Instruction</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter challenge instruction</mat-label>
+                    <input matInput id="instruction" name="instruction" formControlName="instruction">
+                  </mat-form-field><br><br><br><br>
+
+                  <div class="float-right">
+                    <button mat-stroked-button mat-dialog-close mat-button style="letter-spacing: 2px;">Cancel</button>&nbsp;&nbsp;
+                    <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Save</button>
+                  </div>
+                  
+        </form>
+    </div>
+</div>
+

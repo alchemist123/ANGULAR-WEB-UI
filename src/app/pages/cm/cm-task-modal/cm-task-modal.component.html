@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2>Create new Task</h2>
+        <span>You can create new task here.</span>
+    </div><br>
+
+    <div class="content">
+        <form action="" [formGroup]="taskForm" (ngSubmit)="createTask()">
+                <h6>Task Name</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter task name</mat-label>
+                    <input matInput id="taskName" name="taskName" formControlName="taskName">
+                  </mat-form-field>
+                  <br><br>
+                  <h6>Task Instruction</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter task instruction</mat-label>
+                    <input matInput id="taskInstruction" name="taskInstruction" formControlName="instruction">
+                  </mat-form-field><br><br>
+                  <h6>Task Point</h6>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Please enter task point</mat-label>
+                    <input matInput id="taskPoint" name="taskPoint" formControlName="point">
+                  </mat-form-field>
+                  
+                  <br><br>
+                  <br><br>
+
+                  <div class="float-right">
+                    <button mat-stroked-button mat-dialog-close mat-button style="letter-spacing: 2px;">Cancel</button>&nbsp;&nbsp;
+                    <button type="submit" class="btn-primary " mat-button style="letter-spacing: 2px;">Save</button>
+                  </div>
+                  
+        </form>
+    </div>
+</div>
+
+

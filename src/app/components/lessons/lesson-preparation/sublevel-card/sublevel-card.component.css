@@ -1,0 +1,19 @@
+.card {
+  cursor: pointer;
+  box-shadow: none !important;
+}
+
+.card {
+  min-height: 200px;
+}
+
+.card-footer {
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+.rounded {
+  border-radius: 1rem !important;
+}
+h5 {
+  font-size: 15px !important;
+}

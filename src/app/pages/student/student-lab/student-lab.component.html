@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div style="margin-left: 5px;" class="main-head">
+        <h2 >LAB</h2>
+        
+        <span style="font-size: 16px;">Select your course here.</span>
+    </div>
+    
+</div><br><br><br>
+
+<div class="row ">
+  <div style="margin-left: 15px;" *ngFor="let course of courseList">
+    <mat-card class="example-card "  routerLink="/student/unit-view/{{course._id}}" style="margin: 10px; width: 220px; height: 140px; margin-left: 25px;">
+      <br>
+    <div class="lessonName" style="height: 45px; width: 100%; background-color: #007CBB;">
+      <h4 style="color: white;">{{ course.lessonName }}</h4>
+    </div><br>
+     
+      <p >{{ course.description }}</p>
+ 
+</mat-card>
+  </div>
+    
+</div>
+

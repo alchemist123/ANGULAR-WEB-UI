@@ -1,0 +1,21 @@
+.card {
+    cursor: pointer;
+    box-shadow: none !important;
+    min-height: 200px;
+  }
+  
+  .card-footer {
+    border-bottom-left-radius: 1.25rem;
+    border-bottom-right-radius: 1.25rem;
+  }
+  .rounded {
+    border-radius: 1rem !important;
+  } 
+  
+  .addchapter{
+    border: none;
+    background-color: transparent;
+    color: blue;
+    float: right;
+   
+}

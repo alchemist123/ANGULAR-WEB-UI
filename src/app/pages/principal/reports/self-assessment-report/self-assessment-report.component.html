@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col">
+      <h4 style="text-transform: capitalize">
+        Self Assesment Reports
+        <br />
+        <small style="text-transform: none !important"
+          >Overview of self assesment question and answers that student
+          submitted</small
+        >
+      </h4>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card gray-card ">
+        <div class="card-body text-center">
+          <h5>{{overview?.totalStudents}}</h5>
+          <p>Total number of students</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card gray-card">
+        <div class="card-body text-center">
+          <h5>{{overview?.No_of_stud_attent}}</h5>
+          <p>Total Attendees</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card gray-card">
+        <div class="card-body text-center">
+          <h5>{{overview?.No_of_stud_not_attented}}</h5>
+          <p>Yet to attend</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-9">
+      <table class="table table-striped">
+        <thead>
+          <th>SI #</th>
+          <th>Student Name</th>
+          <th>Total questions</th>
+          <th>Total questions attended</th>
+          <th>Total Answered</th>
+          <th>Total Corrected</th>
+          <th>Pending for self assesment</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of summary; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.studentFName }} {{ item.studentLName }}</td>
+            <td>{{ item.no_Of_Qns }}</td>
+            <td>{{ item.attend }}</td>
+            <td class="bg-success text-white">{{ item.correct }}</td>
+            <td class="bg-danger text-white">{{ item.corrected }}</td>
+            <td class="">{{ item.ans_for_review }}</td>
+            <td>
+              <button
+                class="btn btn-link"
+                routerLink="/teacher/detailed-answers/{{ lessonId }}/{{ type }}/{{
+                  item.studentId
+                }}"
+              >
+                View details
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <div class="card gray-card">
+        <div class="card-body text-center">
+          <h4 class="card-title">Overview</h4>
+          <div class="cart-area">
+            <canvas id="pieChart" width="400" height="400"></canvas>
+            <br />
+            <p>{{ recomendationMessage }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+ 
+  

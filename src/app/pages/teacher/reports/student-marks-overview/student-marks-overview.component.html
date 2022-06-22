@@ -1,0 +1,87 @@
+<div class="row">
+  <div class="col">
+    <h4 style="text-transform: capitalize">
+      {{ lessonStandards[type].replace("question", "") }} Reports
+      <br />
+      <small
+        >Overview of {{ lessonStandards[type] }} and answers that student
+        submitted</small
+      >
+    </h4>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-4">
+    <div class="card gray-card ">
+      <div class="card-body text-center">
+        <h5>{{overview.totalStudents}}</h5>
+        <p>Total number of students</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card gray-card">
+      <div class="card-body text-center">
+        <h5>{{overview.No_of_stud_attent}}</h5>
+        <p>Total Attendees</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card gray-card">
+      <div class="card-body text-center" (click)="studentModal()">
+        <h5>{{overview.No_of_stud_not_attented}}</h5>
+        <p>Yet to attend</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-9">
+    <table  class="table table-striped">
+      <thead>
+        <th>SI #</th>
+        <th>Student Name</th>
+        <th>Total questions</th>
+        <th>Total attended questions</th>
+        <th>Total correct answers</th>
+        <th>Total wrong answers</th>
+        <th>Total answers for review</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of answers | orderBy : ['studentFName'];  let i = index">
+          <td>{{ i + 1 }}</td>
+          <td style="text-transform: capitalize;">{{ item.studentFName }} {{ item.studentLName }}</td>
+          <td>{{ item.no_Of_Qns }}</td>
+          <td>{{ item.attend }}</td>
+          <td class="bg-success text-white">{{ item.correct }}</td>
+          <td class="bg-danger text-white">{{ item.worong }}</td>
+          <td class="text-white bg-warning">{{ item.ans_for_review }}</td>
+          <td>
+            <button
+              class="btn btn-link"
+              routerLink="/teacher/detailed-answers/{{ lessonId }}/{{ type }}/{{
+                item.studentId
+              }}"
+            >
+              View details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3">
+    <div class="card gray-card">
+      <div class="card-body text-center">
+        <h4 class="card-title">Overview</h4>
+        <div class="cart-area">
+          <canvas id="pieChart" width="400" height="400"></canvas>
+          <br />
+          <p>{{ recomendationMessage }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

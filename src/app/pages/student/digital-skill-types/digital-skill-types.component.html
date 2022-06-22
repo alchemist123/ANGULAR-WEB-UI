@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col">
+    <h4>Please select one catagory</h4>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-4">
+    <div
+      class="card gray-card"
+      routerLink="/{{ activeUser }}/digital-skill-list/0"
+    >
+      <div class="card-body text-center">
+        <img src="/assets/images/characters/easy.svg" class="img-fluid" />
+        <h4 class="mt-4">Beginner</h4>
+        <p>
+          These are skills that are easy to understand and can be acquired in
+          less than an hour.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div
+      class="card gray-card"
+      routerLink="/{{ activeUser }}/digital-skill-list/1"
+    >
+      <div class="card-body text-center">
+        <img
+          src="/assets/images/characters/intermediate.svg"
+          class="img-fluid"
+        />
+        <h4 class="mt-4">Intermediate</h4>
+        <p>
+          These are skills with more complexity and would need more time to
+          understand and can be acquired spending nearly 2 hours.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div
+      class="card gray-card"
+      routerLink="/{{ activeUser }}/digital-skill-list/2"
+    >
+      <div class="card-body text-center">
+        <img src="/assets/images/characters/advanced.svg" class="img-fluid" />
+        <h4 class="mt-4">Advanced</h4>
+        <p>
+          These are skills with high difficulty and need greater attention and
+          would require 3 to 4 hours to acquire.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

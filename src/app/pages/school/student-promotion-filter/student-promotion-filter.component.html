@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-12">
+        <h6>Student Filter</h6>
+        <small class="text-muted">Please select standard and division.</small>
+    </div>
+</div>
+<br>
+<div class="ro">
+    <div>
+        <form action="" [formGroup]="studentForm" (ngSubmit)="studentFilter()">
+            <mat-form-field appearance="outline">
+                <mat-label>Select Standard</mat-label>
+                <mat-select id="standard" formControlName="standard">
+                  <mat-option *ngFor="let data of standard"  [value]="data.standards">
+                    {{ data.standards }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>&nbsp;&nbsp;
+                   
+              <mat-form-field appearance="outline">
+                <mat-label>Select Division</mat-label>
+                <mat-select id="division" formControlName="division">
+                  <mat-option *ngFor="let data of division"  [value]="data.division">
+                   {{ data.division }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field><br>
+              <div>
+                <button type="submit"  class="btn-primary float-right" mat-button="yes" >Submit</button>
+                <button  class="float-right"  mat-stroked-button color="primary" mat-button matDialogClose="no" style="position: relative; right: 10px;">Close</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                
+              </div>
+
+        </form>
+    </div>
+</div>
+

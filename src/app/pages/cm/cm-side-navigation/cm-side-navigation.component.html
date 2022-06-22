@@ -1,0 +1,45 @@
+<h3 class="text-center" style="font-family: Metropolis;">Inventory</h3><br>
+<div class="row" *ngIf="userType == 'teacher'">
+  <div class="col-md-12 d-flex" *ngFor="let data of inventory; let i = index">
+    <div class="card text-center"  style="width: 100%;">
+      <div class="card-body"  routerLink="/teacher/unit-view/{{data._id}}" >
+       
+        <h6 style="text-transform: capitalize" class="text-muted">
+          {{ data.lessonName }}
+        </h6>
+       
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row" *ngIf="userType == 'student'">
+  <div class="col-md-12 d-flex" *ngFor="let data of inventory; let i = index">
+    <div class="card text-center"  style="width: 100%;">
+      <div class="card-body"  routerLink="/student/unit-view/{{data._id}}" >
+        
+        <h6 style="text-transform: capitalize" class="text-muted">
+          {{ data.lessonName }}
+        </h6>
+       
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngIf="userType == 'student'" style="cursor: pointer;">
+  <div *ngFor="let data of inventory; let i = index" routerLink="/student/unit-view/{{data._id}}">
+   
+    <div class="sideNav">
+
+      <h5 style="position: relative; left: 15px; font-family: Roboto;">{{i+1}}.&nbsp;{{ data.lessonName }}</h5>
+     
+
+    </div>
+
+  </div>
+
+</div> -->

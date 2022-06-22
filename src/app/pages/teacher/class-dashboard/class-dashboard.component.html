@@ -1,0 +1,226 @@
+
+ <h3 class="mb-5">Summary of your classes</h3>
+ <h5>Your Classe(s) and classcode(s) </h5>
+<div class="row mt-3">
+    <div class="col-md-4">
+        <table  class="table table-striped text-center" >
+            <thead>
+              <th>SI</th>
+              <th>Your Classes</th>
+              <th>Class Codes</th>
+              <th>Action</th>
+              
+            </thead>
+            <tbody class="text">
+              <tr *ngFor="let data of classCode  let i = index">
+                <td>{{ i + 1 }}</td>
+                <td style="text-transform: capitalize;">{{data?.standard[0]?.standards}} - {{data?.division[0]?.division}}</td>
+                <td>{{data?.classCode}}</td>
+                <td  [(ngModel)]="data.classCode" (click)="copiedMsg()"><button  [cdkCopyToClipboard]="data.classCode" style="border: transparent; background-color: transparent; color: blue;">Copy</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+ <!-- <h6 class="mb-3" [(ngModel)]="classCode">Your Class Code : {{classCode}} <button [cdkCopyToClipboard]="classCode" style="border: transparent; background-color: transparent; color: blue;">Copy</button></h6> -->
+ <div class="row">
+    <div class="col-md-12 mb-3">
+        <h5>Student Learning</h5>
+    </div>
+ </div>
+
+  <div class="row">
+    <div class="col-md-3  d-flex">
+        <div class="card info-card-blue">
+            <div class="pie">
+                <div class="card-body text-center" >
+                    <div class="pie">
+                        <ngx-charts-pie-chart
+                         [scheme]="colorScheme" 
+                         [results]="preAssesmentIntegratedData">
+                        </ngx-charts-pie-chart>
+                        <div class="row">
+                            <div class="lg1"></div>&nbsp;&nbsp;
+                            <div class="lg">Correct Answers</div>&nbsp;&nbsp;&nbsp;
+                            <div class="lg2"></div>&nbsp;&nbsp;
+                            <div class="lg">Wrong Answers</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="lg3" style="visibility: hidden;"></div>&nbsp;&nbsp;
+                            <div class="lg" style="visibility: hidden;">Pending Self Review</div>
+                        </div>
+                        <h5>Pre Assesment</h5>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-green">
+            <div class="card-body text-center ">
+
+                <div class="pie">
+                    <ngx-charts-pie-chart 
+                    [scheme]="colorScheme"
+                     [results]="understandingIntegratedData">
+                    </ngx-charts-pie-chart>
+                    <div class="row">
+                        <div class="lg1"></div>&nbsp;&nbsp;
+                        <div class="lg">Correct Answers</div>&nbsp;&nbsp;&nbsp;
+                        <div class="lg2"></div>&nbsp;&nbsp;
+                        <div class="lg">Wrong Answers</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="lg3"></div>&nbsp;&nbsp;
+                        <div class="lg">Pending Self Review</div>
+                    </div>
+
+                    <h5>Self Assesment</h5>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3  d-flex">
+        <div class="card info-card-yellow">
+            <div class="card-body text-center ">
+                <div class="pie">
+                    <p *ngIf="activityIntegratedData[0]?.value==0">No data to display</p>
+                    <ngx-charts-pie-chart
+                     [scheme]="colorScheme" 
+                     [results]="activityIntegratedData" >
+                   
+                    </ngx-charts-pie-chart>
+                  
+                    <div class="row">
+                        <div class="lg1"></div>&nbsp;&nbsp;
+                        <div class="lg">Total Activity</div>&nbsp;&nbsp;&nbsp;
+                        <div class="lg2"></div>&nbsp;&nbsp;
+                        <div class="lg">Completed Activity</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="lg3" style="visibility: hidden;"></div>&nbsp;&nbsp;
+                        <div class="lg" style="visibility: hidden;">Pending Self Review</div>
+                    </div>
+
+                    <h5>Activities</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3  d-flex">
+        <div class="card info-card-green">
+            <div class="card-body text-center">
+
+                <div class="pie">
+                    <ngx-charts-pie-chart 
+                    [scheme]="colorScheme"
+                    [results]="postAssementIntegratedData">
+
+                    </ngx-charts-pie-chart>
+                    <div class="row">
+                        <div class="lg1"></div>&nbsp;&nbsp;
+                        <div class="lg">Correct Answers</div>&nbsp;&nbsp;&nbsp;
+                        <div class="lg2"></div>&nbsp;&nbsp;
+                        <div class="lg">Wrong Answers</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="lg3" style="visibility: hidden;"></div>&nbsp;&nbsp;
+                        <div class="lg" style="visibility: hidden;">Pending Self Review</div>
+                    </div>
+
+                    <h5>Post Assesment</h5>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<h5 class="mb-4">Porgress of each subject in your class</h5>
+<app-class-subject-progress></app-class-subject-progress>
+
+
+<br/><br/>
+<app-class-subjects [user]="'classTeacher'"></app-class-subjects>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <h5>List of students in your class</h5>
+    </div>
+</div><br>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <table  class="table table-striped text-center" >
+            <thead>
+              <th>SI</th>
+              <th>Student Name</th>
+              <th>Admission Number</th>
+              <th>Date of Birth</th>
+              <th>Mobile Number</th>
+              <th>Deactivate</th>
+              
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dataSource | orderBy : ['studentFirstName'];  let i = index">
+                <td>{{ i + 1 }}</td>
+                <td style="text-transform: capitalize;">{{ item.studentFirstName  }} {{ item.studentLastName  }}</td>
+                <td>{{ item.admissionNumber }}</td>
+                <td>{{ item.dob | date :  "dd/MM/yy" }}</td>
+                <td>{{ item.mobileNumber }}</td>
+                
+                <td>
+                  <button (click)="selectStudent(item)"  style="background-color: transparent; border: transparent;">
+                    <i class="far fa-window-close"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+         <!-- <table mat-table [dataSource]="dataSource"   class="mat-elevation-z8">
+
+            <ng-container matColumnDef="No">
+              <th mat-header-cell *matHeaderCellDef> No </th>
+              <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
+            </ng-container>
+          
+
+            <ng-container matColumnDef="studentFirstName">
+              <th mat-header-cell *matHeaderCellDef class="text-center" > Student Name </th>
+              <td mat-cell *matCellDef="let element " class="text-center" style="text-transform: capitalize"> {{element.studentFirstName }} {{element.studentLastName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="admissionNumber">
+              <th mat-header-cell *matHeaderCellDef class="text-center"> Admission Number </th>
+              <td mat-cell *matCellDef="let element" class="text-center"> {{element.admissionNumber}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dob">
+                <th mat-header-cell *matHeaderCellDef class="text-center"> Date of Birth </th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.dob | date :  "dd/MM/yy"}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="mobileNumber" >
+                <th mat-header-cell *matHeaderCellDef class="text-center"> Mobile Number </th>
+                <td mat-cell *matCellDef="let element" class="text-center" style="text-transform: capitalize"  >{{element.mobileNumber}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Deactivate" >
+                <th mat-header-cell *matHeaderCellDef class="text-center">Deactivate</th>
+                <td mat-cell *matCellDef="let element" class="text-center" style="text-transform: capitalize" ><button (click)="selectStudent(element)"  style="background-color: transparent; border: transparent;"><i class="far fa-window-close"></i></button></td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table> -->
+          
+    </div>
+</div>

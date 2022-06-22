@@ -1,0 +1,11 @@
+<div class="row d-flex">
+    <div class="col-md-3 " *ngFor="let class of classList">
+        <div class="card info-card-blue" (click)="selectedClass(class.standardId, class.divisionId)">
+            <div class="card-body text-center" style="cursor: pointer;">
+                <h5>{{class.standard[0].standards}} - {{class.division[0].division}}</h5>
+                <!-- <p>Student Strength: {{class.totalCount}}</p> -->
+                <p class="text-success" *ngIf="class.classTeacher[0]">{{class.classTeacher[0].teacherFirstName}} {{class.classTeacher[0]!.teacherLastName}} </p>
+            </div>
+        </div>
+    </div>
+</div>

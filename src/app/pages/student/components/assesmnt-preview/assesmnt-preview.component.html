@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col">
+        <h5 *ngIf="assesmentType==19">Pre Assesment Questions & Answers</h5>
+        <h5 *ngIf="assesmentType==20">Post Assesment Questions & Answers</h5>
+    </div>
+</div>
+
+
+<div class="row" style="overflow:scroll; height:70vh">
+    <div class="col">
+        <div class="list-group">
+        <a *ngFor="let qstn of lessonData; let i= index"   class="list-group-item list-group-item-action flex-column align-items-start text-left">
+            <div class="d-flex w-100 justify-content-between">
+              <h6 class="mb-3">Question {{i+1}}</h6>
+            </div>
+            <div class="mb-1 text-left"  [innerHTML]="qstn.question"></div>
+            <p class="text-left">Teacher's Answer: <br/><span class="text-success" [innerHTML]=" qstn.teacherAnswer"></span></p>
+            <p class="text-muted  text-left">Your Answer: <br/><span [innerHTML]=" qstn.studentAnswer"></span></p>
+          </a>
+        </div>
+    </div>
+</div>

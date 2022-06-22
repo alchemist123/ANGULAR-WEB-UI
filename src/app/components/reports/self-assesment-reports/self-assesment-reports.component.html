@@ -1,0 +1,45 @@
+<div class="row mt-4 text-center equal">
+  <div class="col-md-4 d-flex">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4>{{ reportData.no_Of_Qns }}</h4>
+        <h6 class="text-muted">Total number of questions</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 d-flex">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-primary">{{ this.reportData.attend }}</h4>
+        <h6 class="text-muted">Attempted Questions</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 d-flex">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-success">{{ this.reportData.correct }}</h4>
+        <h6 class="text-muted">Total Answered</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="col d-flex">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-danger">{{ this.reportData.corrected }}</h4>
+        <h6 class="text-muted text-danger">Total Corrected</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col d-flex">
+    <div class="card gray-card">
+      <div class="card-body">
+        <h4 class="text-warning">{{ this.reportData.ans_for_review }}</h4>
+        <h6 class="text-muted">Answers pending with student for review</h6>
+      </div>
+    </div>
+  </div>
+</div>

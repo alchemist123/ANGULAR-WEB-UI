@@ -1,0 +1,32 @@
+<table class="table table-hover table-striped">
+  <thead>
+    <th>#</th>
+    <th>Your comments</th>
+    <th>Reviewer comments</th>
+    <th>Status</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of assignmentHistoryData; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ data.description }}</td>
+      <td>
+        <div *ngIf="data.status.length > 0">
+          {{ data.status[0].remark }}
+        </div>
+        <div *ngIf="data.status.length == 0">Yet to review</div>
+      </td>
+      <td>
+        <div *ngIf="data.status.length > 0">
+          <div *ngIf="data.status[0].status == '0'" class="text-danger">
+            Rejected
+          </div>
+        </div>
+        <div *ngIf="data.status.length > 0">
+          <div *ngIf="data.status[0].status == '1'" class="text-success">
+            Accepted
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

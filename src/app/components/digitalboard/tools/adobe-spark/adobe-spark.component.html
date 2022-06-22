@@ -1,0 +1,99 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <div class="float-left">
+          <div class="card-title">Add Adobe Spark Presentation</div>
+          <div class="card-sub-title">
+            Create and add contents created with adobe spark here.
+          </div>
+          <div class="card-sub-title mt-3 text-muted">
+            This presentation will be used in {{ forText }}
+          </div>
+          <app-breadcrumb [lessonId]="lessonId"></app-breadcrumb>
+        </div>
+        <div class="float-right">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle mr-3 ml-2"
+              id="lessonSettings"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-cog"></i> &nbsp; Spark Settings
+            </button>
+            <div class="dropdown-menu" aria-labelledby="lessonSettings">
+              <a class="dropdown-item" (click)="deleteContent()"
+                >Delete this Adobe Spark</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <div class="row mt-3">
+      <div class="col">
+        <h5>Instructions</h5>
+        <h6>
+          1. Goto
+          <a target="_blank" href="https://spark.adobe.com/sp/"
+            >spark.adobe.com</a
+          >
+        </h6>
+        <h6>2. Create presentation and copy the link to share the slide.</h6>
+        <h6>3. Paste the link below.</h6>
+        <br />
+        <form [formGroup]="slideForm" (validSubmit)="addGoogleSlide()">
+          <div class="form-group col-md-12">
+            <label for="link" style="text-transform: capitalize;">{{lessonTypes[type]}} number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="link"
+              formControlName="lessonNumber"
+              placeholder="Please enter the number"
+            />
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="link" style="text-transform: capitalize;">{{lessonTypes[type]}} title<title></title></label>
+            <input
+              type="text"
+              class="form-control"
+              id="link"
+              formControlName="lessonName"
+              placeholder="Please enter the title"
+            />
+          </div>
+          <div class="form-group col-md-12">
+            <label for="link">Paste adobe spark link here</label>
+            <input
+              type="text"
+              class="form-control"
+              id="link"
+              formControlName="slideLink"
+              placeholder="Copy and paste adobe spark link here."
+            />
+          </div>
+          <br />
+          <div class="float-right">
+            <button class="btn btn-primary" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card" class="preview-card">
+      <div class="card-body">
+        <iframe [src]="safeUrl" style="width: 100%; height: 100vh"></iframe>
+      </div>
+    </div>
+  </div>
+</div>

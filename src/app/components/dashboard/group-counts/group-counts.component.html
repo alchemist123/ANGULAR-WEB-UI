@@ -1,0 +1,191 @@
+ 
+
+ <div class="row">
+    <div class="col-md-12 mb-3">
+        <h5>Student Learning</h5>
+    </div>
+ </div>
+
+  <div class="row">
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-blue">
+            <div class="pie">
+                <div class="card-body text-center" style="cursor: pointer;">
+                    <div class="pie">
+                        <ngx-charts-pie-chart
+                         [doughnut]="true"
+                         [scheme]="colorScheme" 
+                         [results]="preAssesmentIntegratedData">
+                        </ngx-charts-pie-chart>
+                         
+                        <div class="row">
+                            <div class="lg1"></div>&nbsp;&nbsp;
+                            <div class="lg">Correct Answers</div>&nbsp;&nbsp;&nbsp;
+                            <div class="lg2"></div>&nbsp;&nbsp;
+                            <div class="lg">Wrong Answers</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="lg3" style="visibility: hidden;"></div>&nbsp;&nbsp;
+                            <div class="lg" style="visibility: hidden;">Pending Self Review</div>
+                        </div>
+                        <h5>Pre Assesment</h5>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-green">
+            <div class="card-body text-center " style="cursor: pointer;">
+
+                <div class="pie">
+                    <ngx-charts-pie-chart 
+                     [doughnut]="true"
+                     [scheme]="colorScheme"
+                     [results]="understandingIntegratedData">
+                    </ngx-charts-pie-chart>
+                  
+                    <div class="row">
+                        <div class="lg1"></div>&nbsp;&nbsp;
+                        <div class="lg">Correct Answers</div>&nbsp;&nbsp;&nbsp;
+                        <div class="lg2"></div>&nbsp;&nbsp;
+                        <div class="lg">Wrong Answers</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="lg3"></div>&nbsp;&nbsp;
+                        <div class="lg">Pending Self Review</div>
+                    </div>
+
+                    <h5>Self Assesment</h5>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-yellow">
+            <div class="card-body text-center " style="cursor: pointer;">
+                <div class="pie">
+                    <ngx-charts-pie-chart
+                     [doughnut]="true"
+                     [scheme]="colorScheme" 
+                     [results]="activityIntegratedData" >
+                    </ngx-charts-pie-chart>
+                  <p *ngIf="activityIntegratedData[0]?.value==0">No data to display</p>
+                    <div class="row">
+                        <div class="lg1"></div>&nbsp;&nbsp;
+                        <div class="lg">Total Activity</div>&nbsp;&nbsp;&nbsp;
+                        <div class="lg2"></div>&nbsp;&nbsp;
+                        <div class="lg">Completed Activity</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="lg3" style="visibility: hidden;"></div>&nbsp;&nbsp;
+                        <div class="lg" style="visibility: hidden;">Pending Self Review</div>
+                    </div>
+
+                    <h5>Activities</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 d-flex">
+        <div class="card info-card-green">
+            <div class="card-body text-center" style="cursor: pointer;">
+
+                <div class="pie">
+                    <ngx-charts-pie-chart 
+                    [doughnut]="true"
+                    [scheme]="colorScheme"
+                    [results]="postAssementIntegratedData">
+
+                    </ngx-charts-pie-chart>
+                 
+                    <div class="row">
+                        <div class="lg1"></div>&nbsp;&nbsp;
+                        <div class="lg">Correct Answers</div>&nbsp;&nbsp;&nbsp;
+                        <div class="lg2"></div>&nbsp;&nbsp;
+                        <div class="lg">Wrong Answers</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="lg3" style="visibility: hidden;"></div>&nbsp;&nbsp;
+                        <div class="lg" style="visibility: hidden;">Pending Self Review</div>
+                    </div>
+
+                    <h5>Post Assesment</h5>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- <div class="row">
+    <div class="col-md-12 mb-1 mt-3">
+        <h5>Aggrigated performance</h5>
+        <p>Aggrigated performance of the students on the various assesments.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card info-card-green">
+            <div class="card-body">
+                <h5>Pre Assesments</h5>
+                <ngx-charts-advanced-pie-chart
+              
+                [scheme]="colorScheme"
+                [results]="preAssesmentIntegratedData"
+          >
+        </ngx-charts-advanced-pie-chart>
+            </div>
+        </div>
+    
+    </div>
+    <div class="col-md-4">
+        <div class="card info-card-green">
+            <div class="card-body">
+                <h5>Understanding Questions</h5>
+                <ngx-charts-advanced-pie-chart
+              
+                [scheme]="colorScheme"
+                [results]="understandingIntegratedData"
+          >
+        </ngx-charts-advanced-pie-chart>
+            </div>
+        </div>
+    
+    </div>
+
+        <div class="col-md-4">
+            <div class="card info-card-green">
+                <div class="card-body">
+                    <h5>Post Assesments</h5>
+                    <ngx-charts-advanced-pie-chart
+                  
+                    [scheme]="colorScheme"
+                    [results]="postAssementIntegratedData"
+              >
+            </ngx-charts-advanced-pie-chart>
+                </div>
+            </div>
+        
+        </div>
+</div> -->
+
+<!-- <div class="row mt-5">
+    <div class="col-12 mb-2 ">
+        <h5>Total number of students</h5>
+    </div>
+    <div class="col-md-2" *ngFor="let class of studentsCounts">
+        <div class="card bg-warning">
+            <div class="card-body text-center text-white">
+                <h4>{{class.total_no_of_student}}</h4>
+                <h6>{{class.standard}} - {{class.division}}</h6>
+            </div>
+        </div>
+    </div>
+</div> -->

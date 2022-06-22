@@ -1,0 +1,15 @@
+<div aria-label="breadcrumb">
+  <ol
+    class="breadcrumb"
+    style="background-color: rgba(0, 0, 0, 0); padding-left: 0px"
+  >
+    <li class="breadcrumb-item" *ngFor="let item of trials">
+      <a
+        style="cursor: pointer; text-decoration-line: underline"
+        (click)="loadPage(item.id, item.type)"
+        class="text-primary"
+        >{{ item.text }}</a
+      >
+    </li>
+  </ol>
+</div>

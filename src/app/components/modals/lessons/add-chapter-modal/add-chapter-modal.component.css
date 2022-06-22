@@ -1,0 +1,14 @@
+.modal-lg{
+    width:80% !important;
+}
+
+.container{
+    width: 90px;
+    overflow: hidden;
+    border: 1px solid black;
+  }
+  .date{
+    width: 125px;
+    
+  }
+  

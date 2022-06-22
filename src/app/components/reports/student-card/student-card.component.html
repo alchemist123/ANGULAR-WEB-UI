@@ -1,0 +1,12 @@
+<div class="card gray-card">
+  <div class="card-body text-center">
+    <img
+      class="rounded-circle header-profile-user"
+      style="height: 80px; width: 80px"
+      [src]="student.profilePic"
+    />
+    <h6 class="mt-4">{{ student.firstName }} {{ student.lastName }}</h6>
+    <p>{{ student.email }}</p>
+    <p>{{ student.standard }} - {{ student.division }}</p>
+  </div>
+</div>

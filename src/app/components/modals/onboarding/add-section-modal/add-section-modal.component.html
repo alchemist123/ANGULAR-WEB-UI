@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-12">
+        <h6>Section Mapping</h6>
+        <small class="text-muted">Assign Section</small>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div>
+        <form action="" [formGroup]="sectionForm" (ngSubmit)="mapSections()">
+            <mat-form-field appearance="outline">
+                <mat-label>Select Section</mat-label>
+                <mat-select id="section" formControlName="section">
+                  <mat-option *ngFor = "let data of section"  [value]="data._id">
+                    {{ data.section }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>&nbsp;&nbsp;
+
+              <mat-form-field appearance="outline">
+                <mat-label>Select Standard</mat-label>
+                <mat-select id="standard" formControlName="standard">
+                 
+                    <mat-form-field>
+                      <input name="query" type="text" [(ngModel)]="query" [ngModelOptions]="{standalone: true}" matInput>
+                      <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                 
+                  <mat-option *ngFor = "let data of standard | searchfilter:query" [value]="data._id">
+                   {{ data.standards }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>&nbsp;&nbsp;<br>
+              <div>
+                <button type="submit"  class="btn-primary float-right" mat-button="yes" >Save</button>
+                <button  class="float-right"  mat-stroked-button color="primary" mat-button matDialogClose="no" style="position: relative; right: 10px;">Close</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                
+              </div>
+
+        </form>
+    </div>
+</div>

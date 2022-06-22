@@ -1,0 +1,480 @@
+<div class="card gray-card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h4>
+          {{ lesson.lessonNumber }} {{ lesson.lessonName }} <br />
+          <small class="text-muted"></small>
+        </h4>
+      </div>
+    </div>
+
+
+    <!-- Pre assement questions (for teachers only) -->
+    <div class="row mt-4" *ngIf="preAssesmentQns.length>0 && usersTypes=='teacher' || usersTypes=='staff'">
+      <div class="col">
+        <h5>
+          <span class="fas fa-question-circle text-danger"></span> Pre Assessment Questions
+        </h5>
+        <div class="mt-3 ml-3 pl-3 pr-3 pb-1 pt-1 rounded">
+          <div *ngFor="let lesson of preAssesmentQns" class="ml-2">
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '7' 
+              ">
+              <app-qand-aview (onAnswerSubmit)="answerSubmitted($event)" [answerInputVisible]="answerInputVisible"
+                [contentId]="lesson.contents[0]._id">
+              </app-qand-aview>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learning Objective -->
+    <!-- <div class="row mt-5 rounded" *ngIf="learningObjectives.length>0">
+      <div class="col">
+        <h5>
+          <span class="mdi mdi-bullseye-arrow text-success"></span> Learning
+          Objectives
+        </h5>
+        <div class="ml-3 pl-3 pr-3 pb-1 mt-4 rounded">
+          <div *ngFor="let lesson of learningObjectives" class="ml-2">
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '3'
+              ">
+              <app-text-editor-view [contentId]="lesson.contents[0]._id"></app-text-editor-view>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+      <!-- Learning outcome -->
+      <div class="row mt-4" *ngIf="learningOutcomes.length>0">
+        <div class="col">
+          <h5>
+            <span class="fas fa-info-circle text-primary"></span> Learning
+            Outcomes
+          </h5>
+          <div class="mt-3 ml-3 pl-3 pr-3 pb-1 pt-1 rounded">
+            <div *ngFor="let lesson of learningOutcomes" class="ml-2">
+              <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '3'
+              ">
+                <app-text-editor-view [contentId]="lesson.contents[0]._id"></app-text-editor-view>
+                <br>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    
+    <div class="row" *ngIf="concept?.length > 0">
+      <div class="col-md-12">
+        <h5><span class="fas fa-puzzle-piece text-warning"></span> Key Concepts</h5>
+        <div *ngFor="let lesson of concept" class="mt-2" class="card card-gray pl-3 pr-3 pt-3">
+          <h6> {{lesson.lessonNumber}}. {{lesson.lessonName}} </h6>
+          <h6 style="text-transform: capitalize" class="mb-3">
+            
+          </h6>
+          <div>
+            <div *ngIf="
+                  lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '3'
+               ">
+              <app-text-editor-view [contentId]="lesson.contents[0]._id"></app-text-editor-view>
+            </div>
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                  lesson.contents[0].contentType == '1'
+             ">
+              <app-google-slide-view [contentId]="lesson.contents[0]._id"></app-google-slide-view>
+            </div>
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '0'
+                ">
+              <app-adobe-spark-view [contentId]="lesson.contents[0]._id"></app-adobe-spark-view>
+            </div>
+            <div *ngIf="
+              lesson.contents.length > 0 &&
+            lesson.contents[0].contentType == '2'">
+              <app-pdfview [contentId]="lesson.contents[0]._id"></app-pdfview>
+            </div>
+
+          </div>
+
+          <div *ngIf="lesson['sons']?.length > 0">
+            <h5>
+              <span class="fas fa-puzzle-piece text-warning"></span> Activities
+            </h5>
+            <div class="mt-3 ml-3 pl-3 pr-3 pb-1 pt-1 rounded">
+              <div *ngFor="let activity of lesson['sons']; let i= index" class="mt-4">
+                <h6 style="text-transform: capitalize" class="mb-3" *ngIf="activity.type != '18'" >
+                 {{ lessonTypes[activity.type] }}
+                </h6>
+                <div *ngIf="activity?.contents[0]?.contentType == '9' && activity.type == '14'" class="mt-2">
+                  <app-simple-activity [contents]="conceptActivity" [contentsParseData]="conceptActivityParse" [contentId]="lesson.sons[0].contents[0]._id"
+                  dataTarget="exampleModal"></app-simple-activity>
+                  <button (click)="selectActivity(activity)"
+                          class="btn btn-success"
+                          class="btn btn-primary"
+                          data-toggle="modal"
+                          data-target="#exampleModal">Start this activity
+                  </button>
+                </div>
+                <div *ngIf="
+                  activity.contents[0]?.contentType == '10' && activity.type == '15' 
+                     ">
+                  <app-experiential-activity [contentId]="activity.contents[0]._id"></app-experiential-activity>
+                </div>
+
+                <div *ngIf="activity.contents[0]?.contentType == '1' && usersTypes=='student' || activity.contents[0]?.contentType == '3' && usersTypes=='student'">
+                  <h6>{{ activity.lessonName }}</h6>
+                  <app-scientific-activity [contentId]="activity.contents[0]._id"></app-scientific-activity>
+              </div>
+               
+                <div *ngIf="
+                       
+                         activity.contents[0]?.contentType == '3'
+                      ">
+                  <app-text-editor-view [contentId]="activity.contents[0]._id"></app-text-editor-view>
+                </div>
+                <div *ngIf="
+                    
+                      activity.contents[0]?.contentType == '1' && usersTypes=='teacher'
+                      ">
+                  <app-google-slide-view [contentId]="activity.contents[0]._id"></app-google-slide-view>
+                </div>
+                <!-- <div *ngIf="
+                    
+                         activity.contents[0].contentType == '7' && usersTypes=='student'
+                        ">
+                  <app-qand-aview [contentId]="activity.contents[0]._id"></app-qand-aview>
+                </div> -->
+                <hr *ngIf="activity.type != '18'"  />
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="lesson['sons']?.length > 0">
+            <h5>
+              <span class="fas fa-question-circle text-danger"></span> Understanding
+              Questions
+            </h5>
+            <div class="mt-3 ml-3 pl-3 pr-3 pb-1 pt-1 rounded">
+              <div *ngFor="let activity of lesson['sons']" class="ml-2">
+                <div *ngIf="
+           
+                      activity.contents[0]?.contentType == '7' && activity.type == '18'
+                      "     class="mt-2">
+                  <app-qand-aview (onAnswerSubmit)="answerSubmitted($event)" [answerInputVisible]="answerInputVisible"
+                    [contentId]="activity.contents[0]._id">
+                  </app-qand-aview>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="row" *ngIf="topicsData?.length > 0">
+      <div class="col-md-12">
+        <h5><span class="fas fa-puzzle-piece text-warning"></span> Topics</h5>
+        <div *ngFor="let lesson of topicsData" class="mt-2" class="card card-gray pl-3 pr-3 pt-3">
+          <h6> {{lesson.lessonNumber}}. {{lesson.lessonName}} </h6>
+          <h6 style="text-transform: capitalize" class="mb-3">
+            
+          </h6>
+          <div>
+            <div *ngIf="
+                  
+                lesson.contents[0].contentType == '3'
+               ">
+              <app-text-editor-view [contentId]="lesson.contents[0]._id"></app-text-editor-view>
+            </div>
+            <div *ngIf="
+               
+                  lesson.contents[0].contentType == '1'
+             ">
+              <app-google-slide-view [contentId]="lesson.contents[0]._id"></app-google-slide-view>
+            </div>
+            <div *ngIf="
+                
+                lesson.contents[0].contentType == '0'
+                ">
+              <app-adobe-spark-view [contentId]="lesson.contents[0]._id"></app-adobe-spark-view>
+            </div>
+            <div *ngIf="
+              
+            lesson.contents[0].contentType == '2'">
+              <app-pdfview [contentId]="lesson.contents[0]._id"></app-pdfview>
+            </div>
+
+          </div>
+
+          <div *ngIf="lesson['sons']?.length > 0">
+            <h5>
+              <span class="fas fa-puzzle-piece text-warning"></span> Activities
+            </h5>
+            <div class="mt-3 ml-3 pl-3 pr-3 pb-1 pt-1 rounded">
+              <div *ngFor="let activity of lesson['sons']; let i= index" class="mt-4">
+                <h6 style="text-transform: capitalize" class="mb-3" *ngIf="activity.type != '18'" >
+                 {{ lessonTypes[activity.type] }}
+                </h6>
+                <div *ngIf="
+                  activity.contents[0].contentType == '9' && activity.type == '14'
+                   " class="mt-2">
+                  <app-simple-activity [contentId]="activity.contents[0]._id"></app-simple-activity>
+                </div>
+                <div *ngIf="
+                  
+                    activity.contents[0].contentType == '10'
+                     ">
+                  <app-experiential-activity [contentId]="activity.contents[0]._id"></app-experiential-activity>
+                </div>
+
+                <div *ngIf="activity.contents[0].contentType == '1' && usersTypes=='teacher' || activity.contents[0].contentType == '3' && usersTypes=='teacher'">
+                  <h6>{{ activity.lessonName }}</h6>
+                  <app-google-slide-view [contentId]="activity.contents[0]._id"></app-google-slide-view>
+                </div>
+
+                <div *ngIf="activity.contents[0].contentType == '1' && usersTypes=='student' || activity.contents[0].contentType == '3' && usersTypes=='student'">
+                  <h6>{{ activity.lessonName }}</h6>
+                  <app-scientific-activity [contentId]="activity.contents[0]._id"></app-scientific-activity>
+              </div>
+
+                <div *ngIf="
+                       
+                         activity.contents[0].contentType == '3'
+                      ">
+                  <app-text-editor-view [contentId]="activity.contents[0]._id"></app-text-editor-view>
+                </div>
+                <!-- <div *ngIf="
+                     activity.length > 0 &&
+                      activity.contents[0].contentType == '1'
+                      ">
+                  <app-google-slide-view [contentId]="activity.contents[0]._id"></app-google-slide-view>
+                </div> -->
+                <div *ngIf="
+                     
+                         activity.contents[0].contentType == '7'
+                        ">
+                  <app-qand-aview [contentId]="activity.contents[0]._id"></app-qand-aview>
+                </div>
+                <hr *ngIf="activity.type != '18'"  />
+              </div>
+            </div>
+          </div>
+
+         
+        </div>
+      </div>
+    </div>
+
+
+
+      <!-- <div class="row">
+      <div class="col-md-12">
+        <h5><span class="fas fa-puzzle-piece text-warning"></span> Topics</h5>
+        <div class="mt-3 ml-3 pl-3 pr-3 pb-1 pt-1 rounded"> -->
+
+      <!-- <div class="row mt-4" *ngIf="topics.length>0">
+      <div class="col">
+        <h5><span class="fas fa-puzzle-piece text-warning"></span> Topics</h5>
+        <div class="mt-3 ml-3 pl-3 pr-3 pb-1 pt-1 rounded">
+          <div *ngFor="let lesson of topics" class="ml-2">
+            <h6 style="text-transform: capitalize" class="mb-3">
+              {{ lessonTypes[lesson.contents[0].type] }}
+            </h6>
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '3'
+              ">
+              <app-text-editor-view [contentId]="lesson.contents[0]._id"></app-text-editor-view>
+            </div>
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '1'
+              ">
+              <app-google-slide-view [contentId]="lesson.contents[0]._id"></app-google-slide-view>
+            </div>
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '0'
+              ">
+              <app-adobe-spark-view [contentId]="lesson.contents[0]._id"></app-adobe-spark-view>
+            </div>
+            <div *ngIf="
+              lesson.contents.length > 0 &&
+              lesson.contents[0].contentType == '2'
+            ">
+              <app-pdfview [contentId]="lesson.contents[0]._id"></app-pdfview>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+   
+
+
+     <div *ngIf="activities.length > 0" class="row mt-4">
+      <div class="col">
+        <h5>
+          <span class="fas fa-puzzle-piece text-warning"></span> Activities
+        </h5>
+        <div class="mt-3 ml-3 pl-3 pr-3 pb-1 pt-1 rounded">
+          <div *ngFor="let lesson of activities" class="ml-2">
+            <h6 style="text-transform: capitalize" class="mb-3">
+              {{ lessonTypes[lesson.contents[0].type] }}
+            </h6>
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '9'
+              ">
+              <app-simple-activity [contentId]="lesson.contents[0]._id"></app-simple-activity>
+            </div>
+            <div *ngIf="
+              lesson.contents.length > 0 &&
+              lesson.contents[0].contentType == '10'
+            ">
+              <app-experiential-activity [contentId]="lesson.contents[0]._id"></app-experiential-activity>
+            </div>
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '3'
+              ">
+              <app-text-editor-view [contentId]="lesson.contents[0]._id"></app-text-editor-view>
+            </div>
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '1'
+              ">
+              <app-google-slide-view [contentId]="lesson.contents[0]._id"></app-google-slide-view>
+            </div>
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '7'
+              ">
+              <app-qand-aview [contentId]="lesson.contents[0]._id"></app-qand-aview>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="row mt-4" *ngIf="understandingQns.length>0">
+      <div class="col">
+        <h5>
+          <span class="fas fa-question-circle text-danger"></span> Understanding
+          Questions
+        </h5>
+        <div class="mt-3 ml-3 pl-3 pr-3 pb-1 pt-1 rounded">
+          <div *ngFor="let lesson of understandingQns" class="ml-2">
+            <div *ngIf="
+                lesson.contents.length > 0 &&
+                lesson.contents[0].contentType == '7' 
+              ">
+              <app-qand-aview (onAnswerSubmit)="answerSubmitted($event)" [answerInputVisible]="answerInputVisible"  [contentId]="lesson.contents[0]._id">
+              </app-qand-aview>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
+      <!-- Post assement questions (for teachers only) -->
+      <div class="row mt-4" *ngIf="postAssesmentQns.length>0 && usersTypes=='teacher' || usersTypes=='staff'">
+        <div class="col">
+          <h5>
+            <span class="fas fa-question-circle text-danger"></span> Post Assessment Questions
+          </h5>
+          <div class="mt-3 ml-3 pl-3 pr-3 pb-1 pt-1 rounded">
+            <div *ngFor="let lesson of postAssesmentQns" class="ml-2">
+              <div *ngIf="
+                    lesson.contents.length > 0 &&
+                    lesson.contents[0].contentType == '7' 
+                  ">
+                <app-qand-aview (onAnswerSubmit)="answerSubmitted($event)" [answerInputVisible]="answerInputVisible"
+                  [contentId]="lesson.contents[0]._id">
+                </app-qand-aview>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div *ngIf="visible ">
+      <div class="text-center ">
+        <h6 class="text-danger">If you have not completed this micro unit mark as uncomplete</h6>
+      </div>
+    </div>
+    <br>
+    <div class="completed" *ngIf="userTypes=='teacher'">
+      <button type="button" class="btn btn-primary" (click)="lessonComplition()">
+        {{buttonStatus? "Mark as incompleted" : "Mark as completed"}}
+      </button>
+    </div> -->
+
+
+      <div class="col-12" *ngIf="userTypes=='teacher' && Mode=='false'">
+        <div class="alert alert-danger" role="alert" *ngIf="!buttonStatus">
+          If you have completed teaching this lesson, please <a (click)="lessonComplition()" class="alert-link">Click
+            Here</a> to mark this lesson as completed.
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="buttonStatus">
+          Good Job, You have completed teaching this lesson on {{completedDate}}.<br /> Please <a
+            (click)="lessonComplition()" class="alert-link">Click Here</a> if you are not completed teaching
+          this
+          lesson.
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col">
+          <div style="display: flex; justify-content: center; align-items: center;" *ngIf="Mode=='true'">
+            <div *ngIf="!reviewStatus && !btnStatus">
+              &nbsp;&nbsp; <button (click)="hodReview()" class="btn btn-primary">Click here to review the
+                content
+                prepared for uploading.</button>&nbsp;&nbsp;
+            </div>
+
+            <div *ngIf="!reviewStatus && btnStatus">
+              &nbsp;&nbsp; <button (click)="hodReview()" class="btn btn-primary">Click here to review the
+                content
+                prepared for uploading.</button>&nbsp;&nbsp;
+            </div>
+
+            <div class="col-md-12 alert alert-success" *ngIf="reviewStatus">
+              <span>You have completed the review on <b>{{hodCompletedDate}}.</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>

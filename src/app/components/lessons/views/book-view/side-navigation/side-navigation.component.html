@@ -1,0 +1,155 @@
+<div *ngFor="let lesson of lessonData | sortBy: 'asc':'lessonNumber' as result;
+    let i = index">
+  <div class="boxCard">
+    <mat-expansion-panel style="box-shadow: none; background-color:#f7f8fc; border-radius: 1.5rem"  hideToggle="lesson.nano?.length==0">
+      <mat-expansion-panel-header style=" height: 150px; padding-left: 10px; padding-right: 10px;">
+        <mat-panel-title style="display: block; margin-right: 0px;"   (click)="onUnitSelection(lesson, i, result)" >
+          <div style="align-content: center;">
+          <h6 class="text-center" >{{ lesson.lessonNumber }} <br>{{ lesson.lessonName }} </h6> <p class="text-muted text-center" style="font-size: 13px; margin-top: -9px;">Microunit</p> 
+            <p class="text-muted text-center" style="line-height: 13px;"  *ngIf = "lesson.nano?.length > 0"> Nano Units <br/> <span style="font-size: 10px;">(click to expand)</span>  </p> 
+            <div *ngIf="activeUser.userType == 'student' && previousYearStatus == 'true'">
+              <div class="text-success pb-3 pt-3 text-center" *ngIf="completedMicroUnits.includes(lesson._id)">
+                <i class="mdi mdi-check-decagram"></i> Completed
+              </div>
+      
+              <div class="text-warning pb-3 pt-3 text-center" *ngIf="
+                  !completedMicroUnits.includes(lesson._id) &&
+                  i > 0 &&
+                  completedMicroUnits.includes(result[i - 1]._id)
+                ">
+                <div class="ball bounce" style="display: inline-block">
+                  <i class="mdi mdi-tennis-ball"></i>
+                </div>
+                <div style="display: inline-block">&nbsp;In Progress</div>
+              </div>
+      
+              <div class="text-danger pb-3 pt-3 text-center" *ngIf="
+                  !completedMicroUnits.includes(lesson._id) &&
+                  i > 0 &&
+                  !completedMicroUnits.includes(result[i - 1]._id) 
+                ">
+                <div style="display: inline-block">
+                  <i class="mdi mdi-lock"></i>
+                </div>
+                <div style="display: inline-block">&nbsp;Yet to start</div>
+              </div>
+            </div>
+          </div>
+          
+          
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <br>
+      <div *ngFor="let nano of lesson['nano'] | sortBy: 'asc':'lessonNumber' as result;" >
+        <div class="card" style="background-color: #fff !important;" (click)="onTopicSelections(nano._id)">
+          <div  class="card-body mt-3 mb-3 text-center">
+            <h6 style="font-size: 12px;"><span class="text-muted"> {{ nano.lessonNumber }} </span> <br/> {{ nano.lessonName }}</h6>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </div><br>
+
+  
+
+
+  <!-- <div class="card card-success" (click)="onUnitSelection(lesson, i, result)" *ngIf="lesson.type==1">
+    <div class="card-body mt-3 mb-3 text-center" (click)="listMicroAndNano()">
+      <h6>{{ lesson.lessonNumber }} {{ lesson.lessonName }}</h6>
+      Microunit
+      <div *ngIf="activeUser.userType == 'student'">
+        <div class="text-success pb-3 pt-3 text-center" *ngIf="completedMicroUnits.includes(lesson._id)">
+          <i class="mdi mdi-check-decagram"></i> Completed
+        </div>
+
+        <div class="text-warning pb-3 pt-3 text-center" *ngIf="
+            !completedMicroUnits.includes(lesson._id) &&
+            i > 0 &&
+            completedMicroUnits.includes(result[i - 1]._id)
+          ">
+          <div class="ball bounce" style="display: inline-block">
+            <i class="mdi mdi-tennis-ball"></i>
+          </div>
+          <div style="display: inline-block">&nbsp;In Progress</div>
+        </div>
+
+        <div class="text-danger pb-3 pt-3 text-center" *ngIf="
+            !completedMicroUnits.includes(lesson._id) &&
+            i > 0 &&
+            !completedMicroUnits.includes(result[i - 1]._id)
+          ">
+          <div style="display: inline-block">
+            <i class="mdi mdi-lock"></i>
+          </div>
+          <div style="display: inline-block">&nbsp;Yet to start</div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
+
+
+
+
+<div class="card" style="margin-top: 10px;" (click)="onTopicSelection()" >
+  <div class="card-body mt-3 mb-3 text-center">
+    <h6>Topics</h6>
+  </div>
+</div>
+
+
+<div class="card" *ngIf="activeUser.userType == 'student' && previousYearStatus == 'true'">
+  <div class="card-body mt-3 mb-3 text-center" (click)="loadReport('self')">
+    <h6>Self assessment results.</h6>
+    Report
+  </div>
+</div>
+
+<div class="card" (click)="loadQuestionsPreview(19)"
+  *ngIf="activeUser.userType == 'student' && previousYearStatus == 'true'">
+  <div class="card-body mt-3 mb-3 text-center">
+    <h6>Pre Assessment Questions</h6>
+    Preview
+  </div>
+</div>
+
+<div class="card" *ngIf="activeUser.userType == 'student' && previousYearStatus == 'true'">
+  <div class="card-body mt-3 mb-3 text-center" (click)="loadPostAssement(result)">
+    <h6>Post assessment questions.</h6>
+    Assessment
+
+    <!-- <div class="text-danger pb-3 pt-3 text-center"
+      *ngIf="!completedMicroUnits.includes(result[result.length - 1]._id) && isComplex  && previousYearStatus == 'true'">
+
+      <div style="display: inline-block">
+        <i class="mdi mdi-lock"></i>
+      </div>
+      <div style="display: inline-block">&nbsp;Yet to start</div>
+
+    </div> -->
+  </div>
+</div>
+
+<div class="card" *ngIf="activeUser.userType == 'student' && previousYearStatus == 'true'">
+  <div class="card-body mt-3 mb-3 text-center" (click)="loadReport('post')">
+    <h6>Post assessment results.</h6>
+    Report
+    <!-- <div class="text-danger pb-3 pt-3 text-center"
+      *ngIf="!completedMicroUnits.includes(result[result.length - 1]._id)  && previousYearStatus == 'true'">
+      <div style="display: inline-block">
+        <i class="mdi mdi-lock"></i>
+      </div>
+      <div style="display: inline-block">
+        &nbsp;Yet to start post assessment
+      </div>
+    </div> -->
+  </div>
+</div>
+
+
+
+<div class="card" *ngIf="activeUser.userType == 'staff'">
+  <div class="card-body mt-3 mb-3 text-center" routerLink="/principal/principal-report">
+    <h6>View Reports</h6>
+  </div>
+</div>

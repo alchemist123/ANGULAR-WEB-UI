@@ -1,0 +1,8 @@
+.fc-event-title{
+
+    color: unset;
+}
+
+.fc-event, .fc-event-dot{
+    background-color: yellow;
+}

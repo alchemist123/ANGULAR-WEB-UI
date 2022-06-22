@@ -1,0 +1,6 @@
+{
+	"appId": "com.steamcube.stemclass",
+	"appName": "stemclass",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

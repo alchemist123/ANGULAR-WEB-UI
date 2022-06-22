@@ -1,0 +1,612 @@
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <h4 style="cursor: pointer;"><small>{{greetingMsg}}</small><span style="text-transform: capitalize;">
+                {{principalInfo[0]?.details[0]?.staffFirstName}} {{principalInfo[0]?.details[0]?.staffLastName}}</span>,
+        </h4>
+    </div>
+</div><br>
+
+
+<div class="row">
+    <div class="col-12 mb-1">
+        <h5>School Overview</h5>
+        <p>Aggrigated count of different entities of your school.</p>
+    </div>
+    <div class="col-md-3">
+        <div class="card  info-card-blue">
+            <div class="card-body text-center">
+                <h4>{{schoolCountData.studentCount}}</h4>
+                <p>Students</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card info-card-blue text-center">
+            <div class="card-body">
+                <h4>{{schoolCountData.totalNoClass}}</h4>
+                <p>Classes</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card info-card-blue text-center">
+            <div class="card-body">
+                <h4>{{schoolCountData.teacherCount}}</h4>
+                <p>Teachers</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card info-card-blue text-center">
+            <div class="card-body">
+                <h4>{{schoolCountData.staffCount}}</h4>
+                <p>Admins</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section for Stages -->
+<section>
+    <div class="row mt-3">
+        <div class="col-12 mb-1 mt-1">
+            <h5>Sections</h5>
+            <p>Different sections added to the StemClass from your school.</p>
+        </div>
+        <div class="col-md-3" *ngFor="let section of sections">
+            <div class="card info-card-yellow" routerLink="/principal/section-classes/{{section.type}}">
+                <div class="card-body text-center" style="cursor: pointer;">
+                    <h5 style="text-transform: uppercase;">{{sectionsMaterData[section.type].title}}</h5>
+                    <p style="text-transform: uppercase;">{{sectionsMaterData[section.type].subTitle}}</p>
+                    <p style="text-transform: uppercase; font-weight: 500;" class="text-success mt-2">{{
+                        section.teacher[0].teacherFirstName + " " + section.teacher[0].teacherLastName }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="row mt-3">
+    <div class="col-12 mb-1 mt-1">
+        <h5>Top performing teachers</h5><br>
+    </div>
+    <!-- <div style="display: flex; overflow-x:scroll;overflow-y:hidden;" >
+    <div class="col-md-4" *ngFor = "let data of secondary" >
+        <div class="card " style="background-color: #EEFFBD;">
+            <div class="card-body text-center" style="cursor: pointer;">
+                <div class="row" >
+                    <div class="col-md-4 float-left">
+                            <h1>1</h1>
+                            <h6>Position</h6>
+                    </div>
+
+                    <div class="col-md-4">
+
+                    </div>
+
+                    <div class="col-md-4 float-right">
+                        <img
+                        class="rounded-circle avatar-xl"
+                        [src]="data.dp"
+                      />
+                      <h6 class="mt-1">{{ data.teacherName }}</h6>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md 12">
+                        <h1 style="color: #44b88f;">{{data.totalScore | number : '1.0-0'}}</h1>
+                        <h6>Total Score</h6>
+                        <p class="text-muted">Portion Completed: {{ data.totalCompletion }}%</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>{{data.preperation | number : '1.0-0'}}</h4>
+                        <p>Preparation</p>
+                    </div>
+                        
+                    <div class="col-md-4">
+                        <h4>{{data.instruction | number : '1.0-0'}}</h4>
+                        <p>Instruction</p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4>{{data.effectiveness | number : '1.0-0'}}</h4>
+                        <p>Effectiveness</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div> -->
+</div>
+
+<div class="row" *ngIf = "secondary.length > 0">
+    <div class="col-md-12">
+        <h6>Secondary</h6>
+    </div>
+</div>
+
+
+<div class="row cards ">
+    <div style="display: flex; overflow-x:scroll;overflow-y:hidden;">
+        <div class="col-md-3 scrsize" *ngFor=" let data of secondary; let i = index"
+            style="margin: 10px;  background-color: #E4DFF3; border: 1px solid #00364D; box-sizing: border-box; border-radius: 13px;">
+            <div class="lessonName"
+                style="height: 30px; width: 100%; background-color: #00364D; font-family:Metropolis ;">
+                <h5 style="padding: 5px; color: white;">Position : {{i+1}}</h5>
+            </div><br>
+            <div class="row mt-3">
+                <div class="col-md-6 text-center">
+                    <img class="rounded-circle avatar-xl" [src]="data.dp" />
+                    <h6 class="mt-1" style="font-size: 13px;">{{ data.teacherName }}</h6>
+                </div>
+
+                <div class="col-md-6 text-center"
+                    style="display: flex; justify-content: space-around; align-items: center;">
+                    <div class="score ">
+                        <h4 style="color: #5B5959;">{{data.totalScore | number : '1.0-0'}}</h4>
+                        <h6 class="text-muted" style="font-size: 12px; position: relative; bottom: 6px;">Score</h6>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="row"
+                style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; padding-left: 14px; padding-right: 10px;">
+                <div 
+                    style="background-color: #aaa0d8; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center">P {{data.preperation | number : '1.0-0'}}</p>
+                </div>
+
+                <div
+                    style="background-color:#68f00d; border-radius: 15px; height: 25px; width: 55px;">
+                    <p class="text-center">I {{data.instruction | number : '1.0-0'}}</p>
+                </div>
+
+                <div
+                    style="background-color: #be8b6d; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center">E {{data.effectiveness | number : '1.0-0'}}</p>
+                </div>
+
+                <div class="mt-3"
+                    style="background-color: #C1E7FC; border-radius: 15px; height: 30px; width: 120px;  padding-top: 3px;">
+                    <p class="text-center">{{ data.totalCompletion | number : '1.0-0'}}% Completed</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div><br>
+
+<div class="row" *ngIf = "Middle.length > 0">
+    <div class="col-md-12">
+        <h6>Middle</h6>
+    </div>
+</div>
+
+
+<div class="row cards">
+    <div style="display: flex; overflow-x:scroll;overflow-y:hidden;">
+        <div class="col-md-3 scrsize" *ngFor=" let data of Middle; let i = index"
+            style="margin: 10px;  background-color: #E4DFF3; border: 1px solid #00364D; box-sizing: border-box; border-radius: 13px;">
+            <div class="lessonName"
+                style="height: 30px; width: 100%; background-color: #00364D; font-family:Metropolis ;">
+                <h5 style="color: white; padding: 5px;">Position : {{i+1}}</h5>
+            </div><br>
+            <div class="row mt-3">
+                <div class="col-md-6 text-center">
+                    <img class="rounded-circle avatar-xl" [src]="data.dp" />
+                    <h6 class="mt-1" style="font-size: 13px;">{{ data.teacherName }}</h6>
+                </div>
+
+                <div class="col-md-6 text-center"
+                    style="display: flex; justify-content: space-around; align-items: center;">
+                    <div class="score">
+                        <h4 style="color: #5B5959;">{{data.totalScore | number : '1.0-0'}}</h4>
+                        <h6 class="text-muted" style="font-size: 12px; position: relative; bottom: 6px;">Score</h6>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="row"
+                style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; padding-left: 14px; padding-right: 10px;">
+                <div
+                    style="background-color: #aaa0d8; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center">P {{data.preperation | number : '1.0-0'}}</p>
+                </div>
+
+                <div
+                    style="background-color: #68f00d; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center">I {{data.instruction | number : '1.0-0'}}</p>
+                </div>
+
+                <div
+                    style="background-color: #be8b6d; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center">E {{data.effectiveness | number : '1.0-0'}}</p>
+                </div>
+
+                <div class="mt-3"
+                    style="background-color: #C1E7FC; border-radius: 15px; height: 30px; width: 120px;  padding-top: 3px;">
+                    <p class="text-center">{{ data.totalCompletion | number : '1.0-0'}}% Completed</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div><br>
+
+<div class="row" *ngIf = "Preparatory.length > 0">
+    <div class="col-md-12">
+        <h6>Preparatory</h6>
+    </div>
+</div>
+
+
+<div class="row cards">
+    <div style="display: flex; overflow-x:scroll;overflow-y:hidden;">
+        <div class="col-md-3 scrsize" *ngFor=" let data of Preparatory; let i = index"
+            style="margin: 10px;  background-color: #E4DFF3; border: 1px solid #00364D; box-sizing: border-box; border-radius: 13px;">
+            <div class="lessonName"
+                style="height: 30px; width: 100%; background-color: #00364D; font-family:Metropolis ;">
+                <h5 style="color: white; padding: 5px;">Position : {{i+1}}</h5>
+            </div><br>
+            <div class="row mt-3">
+                <div class="col-md-6 text-center">
+                    <img class="rounded-circle avatar-xl" [src]="data.dp" />
+                    <h6 class="mt-1" style="font-size: 13px;">{{ data.teacherName }}</h6>
+                </div>
+
+                <div class="col-md-6 text-center"
+                    style="display: flex; justify-content: space-around; align-items: center;">
+                    <div class="score">
+                        <h4 style="color: #5B5959;">{{data.totalScore | number : '1.0-0'}}</h4>
+                        <h6 class="text-muted" style="font-size: 12px; position: relative; bottom: 6px;">Score</h6>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="row"
+                style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; padding-left: 14px; padding-right: 10px;">
+                <div
+                    style="background-color: #aaa0d8; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center">P {{data.preperation | number : '1.0-0'}}</p>
+                </div>
+
+                <div
+                    style="background-color: #68f00d; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center">I {{data.instruction | number : '1.0-0'}}</p>
+                </div>
+
+                <div
+                    style="background-color: #be8b6d; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center" >E {{data.effectiveness | number : '1.0-0'}}</p>
+                </div>
+
+                <div class="mt-3"
+                    style="background-color: #C1E7FC; border-radius: 15px; height: 30px; width: 120px; padding-left: 12px; padding-right: 10px; padding-top: 3px;">
+                    <p class="text-center">{{ data.totalCompletion | number : '1.0-0'}}% Completed</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div><br>
+
+<div class="row" *ngIf = "Foundational.length > 0">
+    <div class="col-md-12">
+        <h6>Foundational</h6>
+    </div>
+</div>
+
+
+<div class="row cards">
+    <div style="display: flex; overflow-x:scroll;overflow-y:hidden;">
+        <div class="col-md-3 scrsize" *ngFor=" let data of Foundational; let i = index"
+            style="margin: 10px; background-color: #E4DFF3; border: 1px solid #00364D; box-sizing: border-box; border-radius: 13px;">
+            <div class="lessonName"
+                style="height: 30px; width: 100%; background-color: #00364D; font-family:Metropolis ;">
+                <h5 style="color: white; padding: 5px;">Position : {{ i+1 }}</h5>
+            </div><br>
+            <div class="row mt-3">
+                <div class="col-md-6 text-center">
+                    <img class="rounded-circle avatar-xl" [src]="data.dp" />
+                    <h6 class="mt-1" style="font-size: 13px;">{{ data.teacherName }}</h6>
+                </div>
+
+                <div class="col-md-6 text-center"
+                    style="display: flex; justify-content: space-around; align-items: center;">
+                    <div class="score">
+                        <h4 style="color: #5B5959;">{{data.totalScore | number : '1.0-0'}}</h4>
+                        <h6 class="text-muted" style="font-size: 12px; position: relative; bottom: 6px;">Score</h6>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="row"
+                style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; padding-left: 14px; padding-right: 10px;">
+                <div
+                    style="background-color: #aaa0d8; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center">P {{data.preperation | number : '1.0-0'}}</p>
+                </div>
+
+                <div
+                    style="background-color: #68f00d; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center">I {{data.instruction | number : '1.0-0'}}</p>
+                </div>
+
+                <div
+                    style="background-color: #be8b6d; border-radius: 15px; height: 25px; width: 55px; ">
+                    <p class="text-center">E {{data.effectiveness | number : '1.0-0'}}</p>
+                </div>
+
+                <div class="mt-3"
+                    style="background-color: #C1E7FC; border-radius: 15px; height: 30px; width: 120px;  padding-top: 3px;">
+                    <p class="text-center">{{ data.totalCompletion | number : '1.0-0'}}% Completed</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div><br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Top performing students</h5>
+        </div>
+    </div><br>
+    <div class="row" *ngIf = "studentSecondary.length > 0">
+        <div class="col-md-12">
+            <h6>Secondary</h6>
+        </div>
+    </div>
+
+<div class="row" *ngIf = "studentSecondary.length > 0" >
+  
+   <div style="display: flex; overflow-x:scroll;overflow-y:hidden;">
+    <div class="col-md-3" style="margin: 10px;" *ngFor="let data of studentSecondary; let i = index;" >
+        <div >
+            <div class="card d-flex flex-row flex-nowrap" style="background-color:#E4DFF3;">
+                <div class="card-body text-center" style="cursor: pointer;">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <img class="rounded-circle avatar-xl" [src]="data.dp" />
+                            <h6 class="mt-1" style="font-size: 13px;">{{ data.studentName }}</h6>
+                        </div>
+        
+                        <div class="col-md-6 text-center">
+                            <h2 style="color: #5D20C1;">{{i+1}}</h2>
+                            <h5 style="color: #5D20C1;">Position</h5>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6 text-center"
+                            style="display: flex; justify-content: center; align-items: center;">
+                            <h5 style="color: #906565;">
+                                {{ data.standard }} {{ data.division }}
+                            </h5>
+                        </div>
+        
+                        <div class="col-md-6 text-center" 
+                        style="display: flex; justify-content: center; align-items: center;">
+                            <div class="studentscore">
+                                <h4  style="color: #ffff;">{{ data.score | number : '1.0-0' }}</h4>
+                                <h6   style="font-size: 12px; color: #ffff; position: relative; bottom: 6px;">Score</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</div>
+
+
+<div class="row" *ngIf = "middleStudents.length > 0">
+    <div class="col-md-12" >
+        <h6>Middle</h6>
+    </div>
+</div>
+
+<div class="row">
+
+<div class="col-md-3" style="margin: 10px;" *ngFor="let data of middleStudents; let i = index;" >
+    <div style="display: flex; overflow-x:scroll;overflow-y:hidden;">
+        <div class="card d-flex flex-row flex-nowrap" style="background-color:#E4DFF3;">
+            <div class="card-body text-center" style="cursor: pointer;">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <img class="rounded-circle avatar-xl" [src]="data.dp" />
+                        <h6 class="mt-1" style="font-size: 13px;">{{ data.studentName }}</h6>
+                    </div>
+    
+                    <div class="col-md-6 text-center">
+                        <h2 style="color: #5D20C1;">{{i+1}}</h2>
+                        <h5 style="color: #5D20C1;">Position</h5>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6 text-center"
+                        style="display: flex; justify-content: center; align-items: center;">
+                        <h5 style="color: #906565;">
+                            {{ data.standard }} {{ data.division }}
+                        </h5>
+                    </div>
+    
+                    <div class="col-md-6 text-center"
+                        style="display: flex; justify-content: center; align-items: center;">
+                        <div class="studentscore">
+                            <h4  style="color: #ffff;">{{ data.score | number : '1.0-0' }}</h4>
+                            <h6 class="text-muted" style="font-size: 12px; color: #ffff; position: relative; bottom: 6px;">Score</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="row" *ngIf = "PreparatoryStudents.length > 0">
+    <div class="col-md-12" >
+        <h6>Preparatory</h6>
+    </div>
+</div>
+
+<div class="row">
+
+<div class="col-md-3" style="margin: 10px;" *ngFor="let data of PreparatoryStudents; let i = index;" >
+    <div style="display: flex; overflow-x:scroll;overflow-y:hidden;">
+        <div class="card d-flex flex-row flex-nowrap" style="background-color:#E4DFF3;">
+            <div class="card-body text-center" style="cursor: pointer;">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <img class="rounded-circle avatar-xl" [src]="data.dp" />
+                        <h6 class="mt-1" style="font-size: 13px;">{{ data.studentName }}</h6>
+                    </div>
+    
+                    <div class="col-md-6 text-center">
+                        <h2 style="color: #5D20C1;">{{i+1}}</h2>
+                        <h5 style="color: #5D20C1;">Position</h5>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6 text-center"
+                        style="display: flex; justify-content: center; align-items: center;">
+                        <h5 style="color: #906565;">
+                            {{ data.standard }} {{ data.division }}
+                        </h5>
+                    </div>
+    
+                    <div class="col-md-6 text-center"
+                        style="display: flex; justify-content: center; align-items: center;">
+                        <div class="studentscore">
+                            <h4  style="color: #ffff;">{{ data.score | number : '1.0-0' }}</h4>
+                            <h6 class="text-muted" style="font-size: 12px; color: #ffff; position: relative; bottom: 6px;">Score</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="row" *ngIf = "foundationalStudents.length > 0">
+    <div class="col-md-12" >
+        <h6>Foundational</h6>
+    </div>
+</div>
+
+<div class="row">
+
+<div class="col-md-3" style="margin: 10px;" *ngFor="let data of foundationalStudents; let i = index;" >
+    <div style="display: flex; overflow-x:scroll;overflow-y:hidden;">
+        <div class="card d-flex flex-row flex-nowrap" style="background-color:#E4DFF3;">
+            <div class="card-body text-center" style="cursor: pointer;">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <img class="rounded-circle avatar-xl" [src]="data.dp" />
+                        <h6 class="mt-1" style="font-size: 13px;">{{ data.studentName }}</h6>
+                    </div>
+    
+                    <div class="col-md-6 text-center">
+                        <h2 style="color: #5D20C1;">{{i+1}}</h2>
+                        <h5 style="color: #5D20C1;">Position</h5>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6 text-center"
+                        style="display: flex; justify-content: center; align-items: center;">
+                        <h5 style="color: #906565;">
+                            {{ data.standard }} {{ data.division }}
+                        </h5>
+                    </div>
+    
+                    <div class="col-md-6 text-center"
+                        style="display: flex; justify-content: center; align-items: center;">
+                        <div class="studentscore">
+                            <h4  style="color: #ffff;">{{ data.score | number : '1.0-0' }}</h4>
+                            <h6 class="text-muted" style="font-size: 12px; color: #ffff; position: relative; bottom: 6px;">Score</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<br>
+
+
+
+<!-- <app-group-counts></app-group-counts> -->
+
+
+
+
+<!-- <div class="row">
+
+    <div class="row mt-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="float-left">
+                        <h4 class="card-title mt-0"></h4>
+                        <h6 class="card-subtitle font-14 text-muted"></h6>
+                    </div>
+                    <div class="float-right">
+                        <div class="app-search d-none d-lg-block">
+                            <div class="position-relative">
+                                <input type="text" class="form-control" placeholder="Search..." /><span
+                                    class="fa fa-search"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tb">
+                            <table class="table table-striped">
+                                <thead>
+                                    <th>Classes</th>
+                                    <th>Suject Name</th>
+                                    <th></th>
+                                    <th>Standard</th>
+                                    <th>Division</th>
+                                   
+                                    
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                       
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div> -->

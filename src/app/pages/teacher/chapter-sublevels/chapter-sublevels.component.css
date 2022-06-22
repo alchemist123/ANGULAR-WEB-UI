@@ -1,0 +1,32 @@
+.card {
+  cursor: pointer;
+  box-shadow: none !important;
+}
+.badge {
+  display: inline-block;
+  padding: 0.7em 0.7em;
+  font-size: 90%;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin: 0.2rem;
+}
+.btn {
+  text-transform: capitalize;
+}
+
+
+.addchapter{
+  border: none;
+  background-color: transparent;
+  color: blue;
+  float:right;
+}
+
+
+

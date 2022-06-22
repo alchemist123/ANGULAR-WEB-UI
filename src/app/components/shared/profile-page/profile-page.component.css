@@ -1,0 +1,25 @@
+.profile-pic-change {
+  margin-top: -10px;
+}
+.buttonText {
+  background-color: rgb(77, 76, 76);
+  border-radius: 100px;
+  width: 30px;
+  display: inline-block;
+  height: 30px;
+  padding-top: 4px;
+  border-style: solid;
+  border-color: #ffffffba;
+  border-width: thin;
+  box-shadow: -2px 7px 21px -6px rgba(0, 0, 0, 0.71);
+  -webkit-box-shadow: -2px 7px 21px -6px rgba(0, 0, 0, 0.71);
+  -moz-box-shadow: -2px 7px 21px -6px rgba(0, 0, 0, 0.71);
+  cursor: pointer;
+}
+.rounded-circle {
+  background-color: grey;
+}
+
+.gray-card {
+  border-radius: 0px !important;
+}

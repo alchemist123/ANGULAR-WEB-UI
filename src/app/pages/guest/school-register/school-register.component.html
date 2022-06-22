@@ -1,0 +1,166 @@
+<!-- Begin page -->
+<div
+  class="accountbg"
+  style="
+    background: url('assets/images/backgrounds/32112.jpg');
+    background-size: cover;
+    background-position: center;
+  "
+></div>
+
+<div class="wrapper-page account-page-full">
+  <div class="card shadow-none">
+    <div class="card-block">
+      <div class="account-box">
+        <div class="card-box shadow-none p-4">
+          <div class="p-2">
+            <div class="text-center mt-4">
+              <a href="index.html"
+                ><img
+                  src="assets/images/stemclass-logo-dark.png"
+                  height="72"
+                  alt="logo"
+              /></a>
+            </div>
+
+            <h4 class="font-size-18 mt-5 text-center">Register School</h4>
+            <p class="text-muted text-center">
+              Get your Stemclass account now.
+            </p>
+
+            <form
+              class="mt-4"
+              [formGroup]="registrationForm"
+              (validSubmit)="register()"
+            >
+              <div class="form-group">
+                <label for="schoolName">School name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="schoolName"
+                  formControlName="schoolName"
+                  placeholder="Enter name of the school"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="useremail">Email Id</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="useremail"
+                  formControlName="email"
+                  placeholder="Enter email id for school"
+                />
+              </div>
+              <div class="form-group">
+                <label for="country">Country</label>
+                <select
+                  #country
+                  (change)="countryChange(country.value)"
+                  id="country"
+                  formControlName="country"
+                  class="form-control"
+                >
+                  <option>Select country</option>
+                  <option
+                    *ngFor="let country of countries"
+                    [value]="country.country_name"
+                  >
+                    {{ country.country_name }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="country">State/ Provins</label>
+                <select
+                  id="country"
+                  formControlName="state"
+                  class="form-control"
+                >
+                  <option>Select state/ Provins</option>
+                  <option
+                    *ngFor="let state of states"
+                    [value]="state.state_name"
+                  >
+                    {{ state.state_name }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="country">School address</label>
+                <textarea
+                  class="form-control"
+                  formControlName="Address"
+                  placeholder="enter school address"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="zip">pin/zip code</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="zip"
+                  formControlName="pincode"
+                  placeholder="Please enter zip/pin code"
+                />
+              </div>
+              <div class="form-group">
+                <label for="userpassword">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="userpassword"
+                  formControlName="password"
+                  placeholder="Enter password"
+                />
+              </div>
+              <div class="form-group">
+                <label for="userpassword1">Confirm Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="userpassword1"
+                  formControlName="confirmPassword"
+                  placeholder="Re enter the password"
+                />
+                <div class="text-danger">{{ passwordWrongMsg }}</div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-12 text-right">
+                  <button
+                    class="btn btn-primary w-md waves-effect waves-light"
+                    type="submit"
+                  >
+                    Register
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group mt-2 mb-0 row">
+                <div class="col-12 mt-3">
+                  <p class="mb-0">
+                    By registering you agree to the Stemclass
+                    <a href="#" class="text-primary">Terms of Use</a>
+                  </p>
+                </div>
+              </div>
+            </form>
+
+            <div class="mt-5 pt-4 text-center">
+              <p>
+                Already have an account ?
+                <a routerLink="/login" class="font-weight-medium text-primary">
+                  Login
+                </a>
+              </p>
+              <p>© 2022 Stemclass</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

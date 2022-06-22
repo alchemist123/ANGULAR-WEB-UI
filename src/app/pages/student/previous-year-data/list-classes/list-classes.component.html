@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h4 style="font-family:Metropolis ;">List of previous year classes</h4>
+        <span style="font-size: 16px; font-family:Metropolis ;">Select your class here. </span>
+
+    </div>
+</div><br>
+
+
+    
+      <div class="row">
+        <div *ngFor="let class of classList" class="col-md-3" >
+            <div class="card text-center" routerLink="/student/list-previous-subjects" style="background-color:#f7f8fc ; height: 125px; width: 200px;">
+                <div class="card-body" style="cursor: pointer;" ><br>
+                    <h3 class="mb-1" style="text-transform: uppercase"> {{ class.standard[0].standards }} - {{ class.division[0].division }}</h3>
+                  
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          <div  style="display: flex; justify-content: center; align-items: center;">
+            <h4>
+              {{ text }}
+              </h4>
+          </div>
+        </div>
+      </div>
+ 

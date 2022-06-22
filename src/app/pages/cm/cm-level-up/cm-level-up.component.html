@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="main-head">
+        <h2 style="font-family:Metropolis ;">Lab Level</h2>
+        <span style="font-size: 16px; font-family:Metropolis ;">Add lab level. </span>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="float-right"><button (click)="addlevel()" class="btn-primary float-right" mat-button
+                    style="letter-spacing: 2px;"><i class="fas fa-plus"></i>Add level</button></div>
+        </div>
+    </div>
+</div><br>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="float-left">
+              <h4 class="card-title mt-0"></h4>
+              <h6 class="card-subtitle font-14 text-muted"></h6>
+            </div>
+            <div class="float-right">
+              <div class="app-search d-none d-lg-block">
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="tb">
+                <table class="table table-striped">
+                  <thead>
+                    <th>SI</th>
+                    <th>Name</th>
+                    <th>Level</th>
+                    
+                  </thead>
+                  <tbody>
+                    <tr *ngFor = "let level of levelData let i=index">
+                      <td>{{ i + 1 }}</td>
+                      <td>
+                       {{ level.teacher[0].teacherFirstName }}
+                      </td>
+                      <td *ngIf = "level.level == '0'">Brownze</td>
+                      <td *ngIf = "level.level == '1'">Silver</td>
+                      <td *ngIf = "level.level == '2'">Gold</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+</div>

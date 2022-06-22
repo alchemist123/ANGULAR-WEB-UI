@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-10">
+      <div class="height-after-header text-center" *ngIf="lesson == ''">
+        <div *ngIf="userType == 'teacher'">
+          <app-assesmnt-preview *ngIf="reportType == ''" [assesmentType]="questionsPreviewType" [lessonId]="chapterId" ></app-assesmnt-preview>
+         
+          <br /><br />
+          <app-student-mark-details
+            [reportData]="reportData"
+          ></app-student-mark-details>
+          
+          <!-- <app-self-assesment-reports     
+            [reportData]="reportData"  >
+          </app-self-assesment-reports> -->
+          
+  
+        </div>
+        <br /><br />
+        <img src="/assets/images/characters/5293.jpg" style="width: 30%" />
+        <h4 class="text-muted">Please select a topic to continue!</h4>
+      </div>
+      <div
+        class="flex-grow-1 height-after-header"
+        style="overflow-y: scroll"
+        *ngIf="lesson != ''"
+      >
+        <app-unit-view
+          (onAnswerSubmit)="onAnswerSubmit($event)"
+          (onLessonSelected)="changeActiveLesson($event)"
+          [lesson]="lesson"
+        ></app-unit-view>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div
+        *ngIf="chapterId != ''"
+        class="hide-scrollbar flex-grow-1 height-after-header"
+        style="overflow-y: scroll; scrollbar-width: 0px"
+      >
+        <app-side-navigation
+          [lessonId]="chapterId"
+          [counter]="counter"
+          (onLessonSelected)="changeActiveLesson($event)"
+          (onReportSelected)="loadReport($event)"
+          (onPreviewSelected)="loadPreview($event)"
+        ></app-side-navigation>
+      </div>
+    </div>
+  </div>
+  

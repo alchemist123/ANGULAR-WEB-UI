@@ -1,0 +1,9 @@
+td,
+th {
+  text-align: center;
+}
+
+.cdk-global-overlay-wrapper {
+  overflow: auto;
+  pointer-events: auto;  
+}

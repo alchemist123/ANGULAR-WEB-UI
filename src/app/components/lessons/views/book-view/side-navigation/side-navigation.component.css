@@ -1,0 +1,36 @@
+.card {
+  cursor: pointer;
+  background-color: #f7f8fc !important;
+  box-shadow: none !important;
+}
+.card-footer {
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+.rounded {
+  border-radius: 1rem !important;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+.ball {
+  animation: bounce 0.8s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.boxCard{
+  border: 10px;
+  border-radius: 100px;
+}
+
+.mat-expansion-panel-body{
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}

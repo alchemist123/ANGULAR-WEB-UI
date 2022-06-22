@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col">
+        <div class="float-left">
+            <h4>
+                Chapters<br /><small class="text-muted">You can start preparing your lessons here.</small>
+            </h4>
+            <app-breadcrumb [lessonId]="chapterId"></app-breadcrumb>
+        </div>
+        <div class="float-right btn-group" role="group">
+            <button class="btn btn-primary bg-primary" (click)="openChapterModal()">
+                <i class="fas fa-plus"></i> &nbsp;Create new chapter
+            </button>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle mr-3 ml-2" id="lessonSettings" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-cog"></i> &nbsp;
+                    Unit Settings
+                </button>
+                <div class="dropdown-menu" aria-labelledby="lessonSettings">
+                    <a class="dropdown-item">Edit</a>
+                    <a class="dropdown-item text-danger mt-2">Delete</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row mt-3">
+  <div class="col">
+    
+    <div class="alert alert-danger" *ngIf="!lessonStatus" role="alert">
+      You have not updated the total number of chapters for this subject.
+      <button class="addchapter"  (click)="addChapter()">Add Here</button>
+     
+    </div>
+
+    <div class="alert alert-success" *ngIf="lessonStatus" role="alert">
+      {{lessonAdded.added}} Chapter(s) Added of {{lessonAdded.total}} Chapters
+      <button class="addchapter"  (click)="addChapter()">Edit Total Number of Chapters</button>
+     
+    </div>
+
+  </div>
+</div>
+<br /><br />
+<div class="row">
+    <div class="col-md-3 d-flex" *ngFor="let chapter of chapterList | sortBy: 'asc':'lessonNumber' as result;">
+        <div class="card info-card-green" style="width: 100%;" (click)="selectChapter(chapter._id)"><br>
+            <div class="card-body text-center">
+                <div class="mb-3">
+            <i class="mdi mdi-book pr-2 pt-2 pb-2 pl-2 bg-white rounded"></i>
+          </div>
+                <h5>
+                    {{ chapter.lessonName }}
+                </h5>
+                <h6 class="card-subtitle text-muted mt-1">
+                    Chapter - {{ chapter.lessonNumber }}
+                </h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<app-add-chapter-modal (formSubmitted)="refreshList()" [parentId]="chapterId" type="0" typeText="chapter"
+    dataTarget="chapterModal"></app-add-chapter-modal>

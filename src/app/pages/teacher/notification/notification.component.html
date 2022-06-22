@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-12" style="margin:10px">
+        <h2>Notifications</h2>
+    </div>
+
+</div>
+
+    <div data-simplebar>
+  
+      <a href="" *ngFor= "let data of notification" class="text-reset notification-item">
+        <div class="media">
+          <div class="avatar-xs mr-3">
+            <span
+              class="avatar-title bg-warning rounded-circle font-size-16"
+            >
+              <i class="mdi mdi-message-text-outline" *ngIf="!data.fromName"></i>
+              <span *ngIf="data.fromName">{{data.fromName.charAt(0)}}</span>
+            </span>
+          </div>
+          <div class="media-body">
+            <h6 class="mt-0 mb-1">{{getNotificationTitle(data.type)}}</h6>
+            <div class="font-size-12 text-muted">
+              <p class="mb-1" [innerHtml]="data.message"></p>
+              <p *ngIf="getComment(data)">Message from HOD: <b>{{getComment(data)}}</b></p>
+             <small>{{fromNow(data.date_time)}}</small>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>

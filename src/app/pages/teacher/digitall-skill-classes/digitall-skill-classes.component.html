@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col">
+    <h4>Please select an assigned class</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3" *ngFor="let class of classList">
+    <app-class-card
+      [subject]="class"
+      routerLink="/teacher/digital-skill-evaluation-list/{{
+        class.standard[0]._id
+      }}/{{ class.division[0]._id }}"
+    ></app-class-card>
+  </div>
+</div>
